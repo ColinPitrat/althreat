@@ -24,7 +24,6 @@ Liste::Liste(SDL_Rect position)
   font = NULL;
 
   pos.x = position.x; pos.y = position.y; pos.w = position.w; pos.h = position.h;
-  first = NULL;
 }
 
 Liste::~Liste()
@@ -60,10 +59,7 @@ int Liste::filtre(const SDL_Event *event)
         if(event->button.x < pos.w + pos.x - slideSize)
         {
           std::list<std::string*>::iterator it;
-          if(first != NULL)
-            it = first;
-          else
-            it = choix.begin();
+		  it = first;
           int posY = pos.y;
           while(it != choix.end())
           {
@@ -147,7 +143,7 @@ void Liste::prevValue()
   std::list<std::string*>::iterator it = find(choix.begin(), choix.end(), val);
   if(it != choix.begin() && it != choix.end())
   {
-    if(first != NULL && it == first)
+    if(it == first)
     {
       first--;
       numFirst--;
@@ -210,10 +206,7 @@ void Liste::afficher(SDL_Surface *Screen)
 
     // TODO : ajouter un ascenseur
     std::list<std::string*>::iterator it;
-    if(first != NULL)
-      it = first;
-    else
-      it = choix.begin();
+	it = first;
     int posY = pos.y;
     int i = numFirst;
     int n = numFirst;
@@ -243,25 +236,16 @@ void Liste::afficher(SDL_Surface *Screen)
       {
         if(*it == val)
         {
-          if(first != NULL)
-            first++;
-          else
-          {
-            first = choix.begin();
-            first++;
-          }
+		  first++;
           numFirst++;
         }
         break;
       }
       it++;
     }
-    if(first != NULL)
-    {
-      tmpPos.h = (pos.h - 2*slideSize) / nbVals;
-      tmpPos.y = pos.y + slideSize + tmpPos.h * n;
-      SDL_FillRect(Screen, &tmpPos, SDL_MapRGB(Screen->format, pselect->r, pselect->g, pselect->b));
-    }
+    tmpPos.h = (pos.h - 2*slideSize) / nbVals;
+    tmpPos.y = pos.y + slideSize + tmpPos.h * n;
+    SDL_FillRect(Screen, &tmpPos, SDL_MapRGB(Screen->format, pselect->r, pselect->g, pselect->b));
   }
 }
 
