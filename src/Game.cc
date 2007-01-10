@@ -140,6 +140,7 @@ bool Game::resetLevel(std::string filename)
 bool Game::nextLevel(std::string filename)
 {
   Configuration *configuration = Configuration::getConfiguration();
+  SDL_Surface *Screen = SDL_GetVideoSurface();
   numLevel++;
   if(!configuration->nosound())
     level->stopMusic();
@@ -182,6 +183,7 @@ bool Game::nextLevel(std::string filename)
   level = new Level(levelFile);
   if(!configuration->nosound())
     level->playMusic();
+  vaisseau->positionner(0, (Screen->h - vaisseau->getSprite()->getPicture()->h)/2);
 
   return true;
 }

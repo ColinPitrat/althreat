@@ -201,12 +201,12 @@ void GameOver(unsigned int score, bool practice)
           fichier << scores[i] << " " << names[i] << std::endl;
       fichier.close();
     }
+  }
 
-    if(cont)
-    {
-      cont->deleteAll();
-      delete cont;
-    }
+  if(cont)
+  {
+    cont->deleteAll();
+    delete cont;
   }
 
   SDL_FreeSurface(msg);
