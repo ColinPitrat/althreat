@@ -33,43 +33,49 @@ int FocusContainer::filtre(const SDL_Event *event)
 
 void FocusContainer::focusNext()
 {
-  typeliste::iterator i;
-  if(focusedWidget)
+  if(this->containFocusableWidget())
   {
-    focusedWidget->onFocus(false);
-    i = find(liste.begin(), liste.end(), focusedWidget);
-    if(i == liste.end())
+    typeliste::iterator i;
+    if(focusedWidget)
+    {
+      focusedWidget->onFocus(false);
+      i = find(liste.begin(), liste.end(), focusedWidget);
+      if(i == liste.end())
+        i = liste.begin();
+      i++;
+      if(i == liste.end())
+        i = liste.begin();
+    }
+    else
+    {
       i = liste.begin();
-    i++;
-    if(i == liste.end())
-      i = liste.begin();
+    }
+    focusedWidget = *i;
+    focusedWidget->onFocus(true);
   }
-  else
-  {
-    i = liste.begin();
-  }
-  focusedWidget = *i;
-  focusedWidget->onFocus(true);
 }
 
 void FocusContainer::focusPrev()
 {
-  typeliste::iterator i;
-  if(focusedWidget)
+  if(this->containFocusableWidget())
   {
-    focusedWidget->onFocus(false);
-    i = find(liste.begin(), liste.end(), focusedWidget);
-    if(i == liste.begin())
+    typeliste::iterator i;
+    if(focusedWidget)
+    {
+      focusedWidget->onFocus(false);
+      i = find(liste.begin(), liste.end(), focusedWidget);
+      if(i == liste.begin())
+        i = liste.end();
+      i--;
+    }
+    else
+    {
       i = liste.end();
-    i--;
+      i--;
+    }
+    focusedWidget = *i;
+    focusedWidget->onFocus(true, false);
   }
-  else
-  {
-    i = liste.end();
-    i--;
-  }
-  focusedWidget = *i;
-  focusedWidget->onFocus(true, false);
 }
 
 bool FocusContainer::focus(Widget *w)

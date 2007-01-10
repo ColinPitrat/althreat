@@ -20,6 +20,7 @@ class MenuButton: public Widget
     void setUnactiveColors(SDL_Color setbg, SDL_Color setfg, SDL_Color setborder) { unactivebg = setbg; unactivefg = setfg; unactiveborder = setborder; };
     void setBorderSize(unsigned short int size) { borderSize = size; };
     SDL_Rect *getPos() { return &pos; };
+    bool isFocusable() { return !unactive; }
 
     void setActive(bool active) { unactive = !active; };
     bool getActive() { return !unactive; };

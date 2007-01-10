@@ -17,6 +17,7 @@ public:
 
   void setFocus(bool foc);
   void setContainer(FocusContainer *c) { container = c; };
+  virtual bool isFocusable() = 0;
 
   // Place le flag focused. Ne doit pas être appelée directement
   virtual void onFocus(bool foc, bool nextIfUnactive = true) = 0;

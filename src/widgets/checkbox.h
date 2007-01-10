@@ -19,6 +19,7 @@ class Checkbox: public Widget
     void setUnactiveColors(SDL_Color setbg, SDL_Color setfg, SDL_Color setborder) { unactivebg = setbg; unactivefg = setfg; unactiveborder = setborder; };
     void setBorderSize(unsigned short int size) { borderSize = size; };
     void setImages(std::string imageOn, std::string imageOff);
+    bool isFocusable() { return !unactive; }
 
     bool getValue() { return *val; };
     bool getActive() { return !unactive; };

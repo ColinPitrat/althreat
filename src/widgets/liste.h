@@ -22,10 +22,13 @@ class Liste: public Widget
     void setUnactiveColors(SDL_Color setbg, SDL_Color setfg, SDL_Color setborder, SDL_Color setselect) { unactivebg = setbg; unactivefg = setfg; unactiveborder = setborder; unactiveselect = setselect; };
     void setBorderSize(unsigned short int size) { borderSize = size; };
     void setSlideSize(unsigned short int size) { slideSize = size; };
+    bool isFocusable() { return !unactive; }
 
     int getIntValue();
     std::string getValue() { return val ? *val : ""; };
+    // TODO : revenir au début lors de la suppression d'un élément n'est pas le comportement attendu
     void addValue(std::string *value) { choix.push_back(value); nbVals++; first = choix.begin(); };
+    // XXX : la suppression du dernier élément doit entrainer un crash (que renvoi choix.begin() ?)
     void delValue(std::string *value) { choix.remove(value); nbVals--; first = choix.begin(); };
     void setActive(bool active) { unactive = !active; };
     bool getActive() { return !unactive; };

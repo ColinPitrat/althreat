@@ -23,6 +23,7 @@ class Jauge: public Widget
     bool *getUnactivePtr() { return &unactive; };
     int getValue() { return *val; };
     void setValue(int value) { *val = value; };
+    bool isFocusable() { return !unactive; }
 
     virtual void onFocus(bool foc, bool nextIfUnactive = true);
     virtual void afficher(SDL_Surface *Screen);

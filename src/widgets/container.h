@@ -20,6 +20,8 @@ class Container: public Widget
     virtual void addWidget(Widget *widget) { liste.push_back(widget); };
     virtual void clear() { liste.clear(); };
     virtual void deleteAll();
+    virtual bool containFocusableWidget();
+    virtual bool isFocusable() { return containFocusableWidget(); }
 
   protected:
     typeliste liste;

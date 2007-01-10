@@ -46,6 +46,16 @@ void Container::deleteAll()
   }
 }
 
+bool Container::containFocusableWidget()
+{
+  for(typeliste::iterator i = liste.begin(); i != liste.end(); i++)
+  {
+    if((*i)->isFocusable())
+      return true;
+  }
+  return false;
+}
+
 void Container::onFocus(bool foc, bool)
 {
   focused = foc;

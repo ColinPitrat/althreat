@@ -59,7 +59,7 @@ int Liste::filtre(const SDL_Event *event)
         if(event->button.x < pos.w + pos.x - slideSize)
         {
           std::list<std::string*>::iterator it;
-		  it = first;
+          it = first;
           int posY = pos.y;
           while(it != choix.end())
           {
@@ -206,7 +206,7 @@ void Liste::afficher(SDL_Surface *Screen)
 
     // TODO : ajouter un ascenseur
     std::list<std::string*>::iterator it;
-	it = first;
+    it = first;
     int posY = pos.y;
     int i = numFirst;
     int n = numFirst;
@@ -236,7 +236,7 @@ void Liste::afficher(SDL_Surface *Screen)
       {
         if(*it == val)
         {
-		  first++;
+          first++;
           numFirst++;
         }
         break;

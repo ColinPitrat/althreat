@@ -19,6 +19,7 @@ class Switch: public Widget
     void setFocusColors(SDL_Color setbg, SDL_Color setfg, SDL_Color setborder) { focusbg = setbg; focusfg = setfg; focusborder = setborder; };
     void setUnactiveColors(SDL_Color setbg, SDL_Color setfg, SDL_Color setborder) { unactivebg = setbg; unactivefg = setfg; unactiveborder = setborder; };
     void setBorderSize(unsigned short int size) { borderSize = size; };
+    bool isFocusable() { return !unactive; }
 
     void setCaption(std::string cap) { *caption = cap; };
 

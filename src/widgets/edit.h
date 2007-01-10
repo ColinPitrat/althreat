@@ -26,6 +26,7 @@ class Edit: public Widget
     bool *getUnactivePtr() { return &unactive; };
     void setText(std::string value) { *val = value; };
     void setActive(bool active) { unactive = !active; };
+    bool isFocusable() { return !unactive; }
     
     virtual void onFocus(bool foc, bool nextIfUnactive = true);
     virtual void afficher(SDL_Surface *Screen);

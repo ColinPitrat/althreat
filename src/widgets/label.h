@@ -19,6 +19,7 @@ class Label: public Widget
     void setColors(SDL_Color setbg, SDL_Color setfg, SDL_Color setborder) { bg = setbg; fg = setfg; border = setborder; };
     void setUnactiveColors(SDL_Color setbg, SDL_Color setfg, SDL_Color setborder) { unactivebg = setbg; unactivefg = setfg; unactiveborder = setborder; };
     void setBorderSize(unsigned short int size) { borderSize = size; };
+    bool isFocusable() { return false; }
 
     void setText(std::string value) { val = value; };
     
