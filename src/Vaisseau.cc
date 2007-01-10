@@ -59,6 +59,8 @@ Vaisseau::Vaisseau()
             else
               i--;
           break;
+        case SDL_QUIT:
+          exit(0);
         default:
           break;
       }

@@ -59,8 +59,7 @@ static void jeu_events(unsigned int &dir, bool &shoot, bool &FinJeu)
           shoot = 0;
         break;
       case SDL_QUIT:
-        FinJeu = true;
-        break;
+        exit(0);
       default:
         break;
     }
@@ -170,6 +169,8 @@ void GameOver(unsigned int score, bool practice)
               break;
           }
           break;
+        case SDL_QUIT:
+          exit(0);
         default:
           break;
       }
@@ -268,6 +269,8 @@ void GameOver(unsigned int score, bool practice)
                 break;
             }
             break;
+          case SDL_QUIT:
+            exit(0);
           default:
             break;
         }

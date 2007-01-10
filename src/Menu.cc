@@ -175,8 +175,7 @@ void Menu::credits_events()
         }
         break;
       case SDL_QUIT:
-        FinCredits = true;
-        break;
+        exit(0);
       default:
         break;
     }
@@ -249,9 +248,7 @@ void Menu::menu_events()
           choisi = true;
         break;
       case SDL_QUIT:
-        Selected = nbChoix - 1;
-        choisi = true;
-        break;
+        exit(0);
       default:
         break;
     }

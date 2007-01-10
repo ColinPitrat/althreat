@@ -111,8 +111,7 @@ void Options::events()
         }
         break;
       case SDL_QUIT:
-        cancel = true;
-        break;
+        exit(0);
       default:
         break;
     }
@@ -192,6 +191,8 @@ void Options::afficher()
                 keys[i] = event.key.keysym.sym;
                 choisi = true;
                 break;
+              case SDL_QUIT:
+                exit(0);
               default:
                 break;
             }

@@ -78,10 +78,7 @@ void MenuJeu::events()
           choisi = true;
         break;
       case SDL_QUIT:
-        // Quitter doit être le premier choix
-        Selected = nbChoix - 1;
-        choisi = true;
-        break;
+        exit(0);
       default:
         break;
     }

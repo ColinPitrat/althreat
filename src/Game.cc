@@ -65,6 +65,8 @@ Game::Game(bool practice = false)
             if(event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == configuration->touche(TOUCHE_ARME))
               choisi = true;
             break;
+          case SDL_QUIT:
+            exit(0);
           default:
             break;
         } 
