@@ -54,6 +54,7 @@ class Vaisseau
     double dx, dy;
     // Accelerations
     double ddx, ddy;
+    bool monostable;
 };
 
 #endif

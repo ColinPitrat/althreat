@@ -107,7 +107,7 @@ Vaisseau::Vaisseau()
   std::string destructName;
   std::string currentArmeName;
 
-  fichier >> skinName >> destructName >> vitesse_max >> accel >> energieMax >> nbTypesArmes;
+  fichier >> skinName >> destructName >> vitesse_max >> accel >> energieMax >> nbTypesArmes >> monostable;
   skin = new Sprite(configuration->getDataDir() + skinName, configuration->getDataDir());
   destruct = new Sprite(configuration->getDataDir() + destructName, configuration->getDataDir());
   armes = new Arme*[nbTypesArmes];
@@ -208,10 +208,13 @@ void Vaisseau::animer(double delay)
 {
   if(ddx == 0)
   {
+      if(monostable)
+      {
 	  if(dx > 0)
 		  dx -= delay * accel;
 	  if(dx < 0)
 		  dx += delay * accel;
+      }
   }
   else
   {
@@ -221,10 +224,13 @@ void Vaisseau::animer(double delay)
   }
   if(ddy == 0)
   {
+      if(monostable)
+      {
 	  if(dy > 0)
 		  dy -= delay * accel;
 	  if(dy < 0)
 		  dy += delay * accel;
+      }
   }
   else
   {
