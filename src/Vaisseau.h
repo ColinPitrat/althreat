@@ -40,7 +40,8 @@ class Vaisseau
 
   private:
     // Propriétés du vaisseau
-    double vitesse;
+    double vitesse_max;
+    double accel;
     unsigned int energieMax;
     unsigned int nbTypesArmes;
     Arme **armes;
@@ -49,7 +50,10 @@ class Vaisseau
 
     // Etat actuel du vaisseau
     unsigned int energie;
+    // Vitesses
     double dx, dy;
+    // Accelerations
+    double ddx, ddy;
 };
 
 #endif

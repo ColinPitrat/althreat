@@ -107,7 +107,7 @@ Vaisseau::Vaisseau()
   std::string destructName;
   std::string currentArmeName;
 
-  fichier >> skinName >> destructName >> vitesse >> energieMax >> nbTypesArmes;
+  fichier >> skinName >> destructName >> vitesse_max >> accel >> energieMax >> nbTypesArmes;
   skin = new Sprite(configuration->getDataDir() + skinName, configuration->getDataDir());
   destruct = new Sprite(configuration->getDataDir() + destructName, configuration->getDataDir());
   armes = new Arme*[nbTypesArmes];
@@ -153,22 +153,22 @@ return skin->getPicture();
 void Vaisseau::setDirection(unsigned int dir)
 {
   if(dir & Gauche)
-    dx = -vitesse;
+    ddx = -accel;
   else
   {
     if(dir & Droite)
-      dx = vitesse;
+      ddx = accel;
     else
-      dx = 0;
+      ddx = 0;
   }
   if(dir & Haut)
-    dy = -vitesse;
+    ddy = -accel;
   else
   {
     if(dir & Bas)
-      dy = vitesse;
+      ddy = accel;
     else
-      dy = 0;
+      ddy = 0;
   }
 }
 
@@ -206,6 +206,32 @@ void Vaisseau::afficher()
 
 void Vaisseau::animer(double delay)
 {
+  if(ddx == 0)
+  {
+	  if(dx > 0)
+		  dx -= delay * accel;
+	  if(dx < 0)
+		  dx += delay * accel;
+  }
+  else
+  {
+	  dx += delay * ddx;
+	  if(dx > vitesse_max) dx = vitesse_max;
+	  if(dx < -vitesse_max) dx = -vitesse_max;
+  }
+  if(ddy == 0)
+  {
+	  if(dy > 0)
+		  dy -= delay * accel;
+	  if(dy < 0)
+		  dy += delay * accel;
+  }
+  else
+  {
+	  dy += delay * ddy;
+	  if(dy > vitesse_max) dy = vitesse_max;
+	  if(dy < -vitesse_max) dy = -vitesse_max;
+  }
   if(energie > 0)
   {
     double deltaX = delay * dx;
