@@ -210,10 +210,12 @@ void Vaisseau::animer(double delay)
   {
       if(monostable)
       {
-	  if(dx > 0)
-		  dx -= delay * accel;
-	  if(dx < 0)
-		  dx += delay * accel;
+        if(dx > 0)
+          dx -= delay * accel;
+        if(dx < 0)
+          dx += delay * accel;
+		if(dx > -accel && dx < accel)
+		  dx = 0;
       }
   }
   else
@@ -225,12 +227,14 @@ void Vaisseau::animer(double delay)
   if(ddy == 0)
   {
       if(monostable)
-      {
-	  if(dy > 0)
-		  dy -= delay * accel;
-	  if(dy < 0)
-		  dy += delay * accel;
-      }
+	  {
+		  if(dy > 0)
+			  dy -= delay * accel;
+		  if(dy < 0)
+			  dy += delay * accel;
+		  if(dy > -accel && dy < accel)
+		    dy = 0;
+	  }
   }
   else
   {
