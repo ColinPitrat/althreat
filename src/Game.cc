@@ -184,6 +184,7 @@ bool Game::nextLevel(std::string filename)
   if(!configuration->nosound())
     level->playMusic();
   vaisseau->positionner(0, (Screen->h - vaisseau->getSprite()->getPicture()->h)/2);
+  vaisseau->setVitesse(0, 0);
 
   return true;
 }

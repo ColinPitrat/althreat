@@ -27,6 +27,7 @@ class Vaisseau
     unsigned int getEnergie() { return energie; };
     void setEnergie(unsigned int set) { if(set <= energieMax) energie = set; };
     void positionner(double newx, double newy) { skin->setPos(newx, newy); };
+    void setVitesse(double newdx, double newdy) { dx = newdx; dy = newdy; };
 
     // Méthodes
     void setDirection(unsigned int dir);

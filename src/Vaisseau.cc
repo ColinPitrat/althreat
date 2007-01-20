@@ -268,5 +268,6 @@ void Vaisseau::reset()
 {
   SDL_Surface *Screen = SDL_GetVideoSurface();
   skin->setPos(0, (Screen->h - skin->getPicture()->h)/ 2);
+  dx = dy = 0;
   energie = energieMax;
 }
