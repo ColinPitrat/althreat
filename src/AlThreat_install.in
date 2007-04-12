@@ -8,7 +8,7 @@ fi
 ARCHIVE=$1
 TIMESTAMP=`date +%s`
 WORKDIR=/tmp/AlThreat_package_$TIMESTAMP
-INSTALLDIR=/usr/local/share/AlThreat/
+INSTALLDIR=_althreat_installdir_
 NO_INSTALL=0
 
 mkdir $WORKDIR
