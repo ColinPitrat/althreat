@@ -1,0 +1,119 @@
+#!/bin/bash
+if [ -z $1 ]
+then
+    echo "Syntaxe: $0 <archive file>"
+    exit
+fi
+
+ARCHIVE=$1
+TIMESTAMP=`date +%s`
+WORKDIR=/tmp/AlThreat_package_$TIMESTAMP
+INSTALLDIR=/usr/local/share/AlThreat/
+NO_INSTALL=0
+
+mkdir $WORKDIR
+tar -xzf $ARCHIVE -C $WORKDIR
+
+cd $WORKDIR
+
+function check
+{
+    directory=$1
+    if [ -d $directory ]
+    then
+        verif_type=$2
+        for i in `ls $directory | grep -v "\.lst$"`
+        do
+            if [ -$verif_type $INSTALLDIR/$directory/$i ]
+            then
+                echo "L'objet $directory $i semble déjà exister."
+                NO_INSTALL=1
+            fi
+        done
+    fi
+}
+
+function check_lst
+{
+    directory=$1
+    if [ -d $directory ]
+    then
+        if [ ! -f $directory/$directory.lst ]
+        then
+            echo "Le fichier $directory/$directory.lst n'existe pas"
+            NO_INSTALL=1
+        else
+            NUM=`head -n 1 $directory/$directory.lst`
+            LINES=`wc -l $directory/$directory.lst | awk '{ print $1 }'`
+            let LINES=$LINES-1
+            FICHIERS=`ls $directory | wc -l`
+            let FICHIERS=$FICHIERS-1
+            if [ ! "$LINES" = "$NUM" ]
+            then
+                echo "Le nombre de $directory ne correspond pas avec le nombre de lignes dans $directory.lst."
+                NO_INSTALL=1
+            fi
+            if [ ! "$FICHIERS" = "$NUM" ]
+            then
+                echo "Le nombre de fichiers dans $directory ne correspond pas avec le nombre de $directory dans $directory.lst."
+                NO_INSTALL=1
+            fi
+        fi
+    fi
+}
+
+function install_files
+{
+    directory=$1
+    if [ ! -d $INSTALLDIR/$directory ]
+    then
+	    mkdir -p $INSTALLDIR/$directory
+    fi
+    for i in `ls $directory`
+    do
+        cp -r $directory/$i $INSTALLDIR/$directory/
+    done
+}
+
+function install_lst
+{
+    directory=$1
+    NUM=`head -n 1 $directory/$directory.lst`
+    if [ ! -d $INSTALLDIR/$directory ]
+    then
+	    mkdir -p $INSTALLDIR/$directory
+    fi
+    if [ ! -f $INSTALLDIR/$directory/$directory.lst ]
+    then
+	    echo "0" > $INSTALLDIR/$directory/$directory.lst
+    fi
+    tail -n $NUM $directory/$directory.lst >> $INSTALLDIR/$directory/$directory.lst
+    sed -i "s/1,1^.*$/$NUM/" $directory/$directory.lst
+}
+
+echo "Vérification du paquet."
+
+check "armes" "d"
+check "decors" "d"
+check "levels" "f"
+check "sons" "f"
+check "vaisseaux" "d"
+check_lst "levels"
+
+if [ ! "$NO_INSTALL" = "0" ]
+then
+    echo "J'interromps l'installation."
+    exit
+fi
+
+echo "Installation du paquet."
+
+install_files "armes"
+install_files "decors"
+install_files "levels"
+install_files "sons" 
+install_files "vaisseaux"
+install_lst "levels"
+install_lst "vaisseaux"
+
+echo "Installation terminée."

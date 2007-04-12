@@ -5,5 +5,8 @@ LDADD = -lSDL -lSDL_ttf -lSDL_image -lSDL_mixer $(top_builddir)/src/widgets/libT
 SUBDIRS = widgets
 
 bin_PROGRAMS = AlThreat
+dist_bin_SCRIPTS = AlThreat_install
 AlThreat_CPPFLAGS = -DDATADIR="\"$(pkgdatadir)\"" -DSRCDIR="\"$(srcdir)\""
 AlThreat_SOURCES = AlThreat.cc Arme.cc Bonus.cc Configuration.cc Ennemi.cc Game.cc Level.cc Menu.cc MenuJeu.cc Options.cc Projectile.cc Sprite.cc SpriteData.cc TypeBonus.cc TypeEnnemi.cc Vaisseau.cc graphics.cc Arme.h Bonus.h Configuration.h Ennemi.h Game.h Level.h Menu.h MenuJeu.h Options.h Projectile.h Sprite.h SpriteData.h TypeBonus.h TypeEnnemi.h Vaisseau.h config.h graphics.h
+
+AlThreat_install:
