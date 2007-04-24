@@ -161,3 +161,5 @@ bool MenuJeu::afficher()
     }
   }
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

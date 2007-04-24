@@ -85,3 +85,5 @@ void Ennemi::animer(double delay)
     skin->deplacer(deltaX, deltaY); 
   }
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

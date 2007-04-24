@@ -35,3 +35,5 @@ TypeEnnemi::~TypeEnnemi()
   delete destructSkin;
   Mix_FreeChunk(son);
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

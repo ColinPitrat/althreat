@@ -34,3 +34,5 @@ Uint32 getpixel(SDL_Surface *surface, int x, int y);
 SDL_Surface *loadImage(const char *fileName);
 
 #endif
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

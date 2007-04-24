@@ -53,3 +53,5 @@ bool Bonus::horsEcran()
   const SDL_Rect *pos = skin->getPos();
   return (pos->x + (Sint16)pos->w < 0) || (pos->y + (Sint16)pos->h < 0) || (pos->y > Screen->h);
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

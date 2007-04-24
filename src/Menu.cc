@@ -302,3 +302,5 @@ unsigned char Menu::show(Game *&jeu)
 
   return Selected;
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

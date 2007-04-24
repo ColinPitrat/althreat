@@ -34,6 +34,8 @@ public:
   void animer();
   void afficher(SDL_Surface *Screen, bool hideIfFinished=true);
   bool collision(Sprite *ennemi);
+  bool isHBlocked() { return hblocked; };
+  bool isVBlocked() { return vblocked; };
 
 private:
   /*SDL_Surface **Pictures;
@@ -47,7 +49,11 @@ private:
   bool finished;
   bool limited;
   bool sharedData;
+  bool hblocked;
+  bool vblocked;
   Uint32 nextTime;
 };
 
 #endif
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

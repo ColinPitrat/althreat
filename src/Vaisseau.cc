@@ -214,8 +214,8 @@ void Vaisseau::animer(double delay)
           dx -= delay * accel;
         if(dx < 0)
           dx += delay * accel;
-		if(dx > -accel && dx < accel)
-		  dx = 0;
+        if(dx > -accel && dx < accel)
+          dx = 0;
       }
   }
   else
@@ -247,6 +247,14 @@ void Vaisseau::animer(double delay)
     double deltaX = delay * dx;
     double deltaY = delay * dy;
     skin->deplacer(deltaX, deltaY);
+    if(skin->isHBlocked())
+    {
+        dx = 0;
+    }
+    if(skin->isVBlocked())
+    {
+        dy = 0;
+    }
   }
 }
 
@@ -271,3 +279,5 @@ void Vaisseau::reset()
   dx = dy = 0;
   energie = energieMax;
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

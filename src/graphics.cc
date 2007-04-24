@@ -156,3 +156,5 @@ SDL_Surface *Texte(const char *texte, const char *font_face, short font_size, SD
 
   return text;
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

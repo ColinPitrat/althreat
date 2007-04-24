@@ -32,3 +32,5 @@ Arme::~Arme()
   Mix_FreeChunk(son);
   Mix_FreeChunk(sonDestruct);
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

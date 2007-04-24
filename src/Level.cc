@@ -243,3 +243,5 @@ void Level::animer(double delay)
     }
   }
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

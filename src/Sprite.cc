@@ -138,14 +138,27 @@ void Sprite::deplacer(double dx, double dy)
   pos.y = (int) y;
   if(limited)
   {
+    hblocked = vblocked = false;
     if( pos.x + pos.w > limites.w + limites.x)
+    {
       x = limites.x + limites.w - pos.w;
+      hblocked = true;
+    }
     if( pos.x < limites.x)
+    {
       x = limites.x;
+      hblocked = true;
+    }
     if( pos.y + pos.h > limites.h + limites.y)
+    {
       y = limites.y + limites.h - pos.h;
+      vblocked = true;
+    }
     if( pos.y < limites.y )
+    {
       y = limites.y;
+      vblocked = true;
+    }
   }
 }
 
@@ -185,3 +198,5 @@ bool Sprite::collision(Sprite *ennemi)
   }
   return false;
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

@@ -65,3 +65,5 @@ class Configuration
 };
 
 #endif
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

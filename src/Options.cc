@@ -246,3 +246,5 @@ void Options::afficher()
     configuration->save();
   }
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

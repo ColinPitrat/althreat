@@ -144,3 +144,5 @@ bool Configuration::save()
   // Sauvegarder la configuration
   return true;
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

@@ -442,3 +442,5 @@ int main(int argc, char *argv[])
   delete configuration;
   return 0;
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

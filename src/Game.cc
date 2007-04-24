@@ -430,3 +430,5 @@ void Game::executeAction(BonusAction *actions, int nbActions)
     }
   }
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

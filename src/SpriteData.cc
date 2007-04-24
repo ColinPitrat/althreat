@@ -151,3 +151,5 @@ void SpriteData::setAlpha(Uint32 flags, Uint32 alpha)
   }
 }
 
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

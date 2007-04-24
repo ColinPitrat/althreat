@@ -33,3 +33,5 @@
 
 /* Version number of package */
 #define VERSION "0.3"
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent

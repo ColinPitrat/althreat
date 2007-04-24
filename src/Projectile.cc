@@ -73,3 +73,5 @@ void Projectile::detruire()
   destruct->setPos(pos->x, pos->y);
   destruct->reset();
 }
+
+// vim:shiftwidth=2:shiftround:expandtab:cindent
