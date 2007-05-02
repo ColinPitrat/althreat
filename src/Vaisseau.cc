@@ -214,7 +214,7 @@ void Vaisseau::animer(double delay)
           dx -= delay * accel;
         if(dx < 0)
           dx += delay * accel;
-        if(dx > -accel && dx < accel)
+        if(dx > -delay*accel && dx < delay*accel)
           dx = 0;
       }
   }
@@ -232,7 +232,7 @@ void Vaisseau::animer(double delay)
 			  dy -= delay * accel;
 		  if(dy < 0)
 			  dy += delay * accel;
-		  if(dy > -accel && dy < accel)
+		  if(dy > -delay*accel && dy < delay*accel)
 		    dy = 0;
 	  }
   }
