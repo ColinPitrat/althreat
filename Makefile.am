@@ -8,10 +8,10 @@ EXTRA_DIST = $(AlThreat_data)
 
 #$(mkinstalldirs) $(datadir)
 install-data-local:
-	test -d $(datadir) || mkdir $(datadir) && chmod u+w $(datadir)
-	test -d $(pkgdatadir) || mkdir -p $(pkgdatadir) && chmod u+w $(pkgdatadir)
-	cd $(srcdir) && cp -pr $(AlThreat_data) $(pkgdatadir)/ 
-	chmod -R u+w $(pkgdatadir)
+	test -d $(DESTDIR)/$(datadir) || mkdir $(DESTDIR)/$(datadir) && chmod u+w $(DESTDIR)/$(datadir)
+	test -d $(DESTDIR)/$(pkgdatadir) || mkdir -p $(DESTDIR)/$(pkgdatadir) && chmod u+w $(DESTDIR)/$(pkgdatadir)
+	cd $(srcdir) && cp -pr $(AlThreat_data) $(DESTDIR)/$(pkgdatadir)/ 
+	chmod -R u+w $(DESTDIR)/$(pkgdatadir)
 
 uninstall-local:
-	rm -rf $(pkgdatadir)
+	rm -rf $(DESTDIR)/$(pkgdatadir)
