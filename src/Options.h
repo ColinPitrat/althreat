@@ -10,6 +10,7 @@
 #include "widgets/jauge.h"
 #include "widgets/label.h"
 #include "widgets/checkbox.h"
+#include "Joystick.h"
 
 class Options
 {
@@ -20,6 +21,8 @@ class Options
     void events();
 
   private:
+    bool isJoystickEvent(int event, int joystick, int but_or_ax, int val, Controles control);
+
     bool ok;
     bool cancel;
     bool controlModif;
@@ -34,7 +37,10 @@ class Options
     int fx_vol;
     int keys[nbControles];
     bool keysModified;
+
+    joystick_event joybuttons[nbControles];
     SDL_Surface *fond;
+    bool joysModified;
     bool *unactiveMusLabel;
     bool *unactiveMusJauge;
     bool *unactiveFXLabel;

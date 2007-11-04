@@ -8,10 +8,15 @@ Configuration::Configuration()
   _nosound = false;
   _spectrum = false;
   _fullscreen = false;
+  _joystick = true;
   _musicvol = MIX_MAX_VOLUME;
   _soundFXvol = MIX_MAX_VOLUME;
   _verbose = false;
   _debug = false;
+  nbJoysticks = 0;
+  joysticks = NULL;
+
+  // Keyboard default controls
   keys[TOUCHE_HAUT] = SDLK_UP;
   keys[TOUCHE_BAS] = SDLK_DOWN;
   keys[TOUCHE_GAUCHE] = SDLK_LEFT;
@@ -19,11 +24,38 @@ Configuration::Configuration()
   keys[TOUCHE_ARME] = SDLK_SPACE;
   keys[TOUCHE_ARME2] = SDLK_f;
   keys[TOUCHE_BOUCLIER] = SDLK_q;
+  keys[TOUCHE_PAUSE] = SDLK_ESCAPE;
+
+  // Joystick default controls
+  joybuttons[TOUCHE_HAUT].which = 0;
+  joybuttons[TOUCHE_BAS].which = 0;
+  joybuttons[TOUCHE_GAUCHE].which = 0;
+  joybuttons[TOUCHE_DROITE].which = 0;
+  joybuttons[TOUCHE_ARME].which = 0;
+  joybuttons[TOUCHE_ARME2].which = 0;
+  joybuttons[TOUCHE_BOUCLIER].which = 0;
+  joybuttons[TOUCHE_PAUSE].which = 0;
+  joybuttons[TOUCHE_HAUT].button_or_axis = 0;
+  joybuttons[TOUCHE_BAS].button_or_axis = 0;
+  joybuttons[TOUCHE_GAUCHE].button_or_axis = 1;
+  joybuttons[TOUCHE_DROITE].button_or_axis = 1;
+  joybuttons[TOUCHE_ARME].button_or_axis = 0;
+  joybuttons[TOUCHE_ARME2].button_or_axis = 1;
+  joybuttons[TOUCHE_BOUCLIER].button_or_axis = 2;
+  joybuttons[TOUCHE_PAUSE].button_or_axis = 3;
+  joybuttons[TOUCHE_HAUT].value = 0;
+  joybuttons[TOUCHE_BAS].value = 1;
+  joybuttons[TOUCHE_GAUCHE].value = 0;
+  joybuttons[TOUCHE_DROITE].value = 1;
+  joybuttons[TOUCHE_ARME].value = 1;
+  joybuttons[TOUCHE_ARME2].value = 1;
+  joybuttons[TOUCHE_BOUCLIER].value = 1;
+  joybuttons[TOUCHE_PAUSE].value = 1;
 
   confFile = (std::string)getenv("HOME") + "/" + ".AlThreat.conf";
   highscoresFile = (std::string)getenv("HOME") + "/" + ".AlThreat.high";
 
-  // Rechcerche des données
+  // Recherche des données
   {
     std::string file("levels/levels.lst");
     std::ifstream fichier;
@@ -88,6 +120,17 @@ Configuration::Configuration()
         fichier >> i;
         fichier >> keys[i];
       }
+      if(propertieName=="JoyButton")
+      {
+        int i;
+        unsigned int utmp;
+        signed int stmp;
+        fichier >> i;
+        fichier >> utmp; joybuttons[i].type = utmp;
+        fichier >> utmp; joybuttons[i].which = utmp;
+        fichier >> utmp; joybuttons[i].button_or_axis = utmp;
+        fichier >> stmp; joybuttons[i].value = stmp;
+      }
     }
     fichier.close();
   }
@@ -97,6 +140,7 @@ Configuration::Configuration()
 
 Configuration::~Configuration()
 {
+  delete[] joysticks;
 }
 
 bool Configuration::toggleNosound()
@@ -127,6 +171,41 @@ bool Configuration::toggleNosound()
   }
 }
 
+void Configuration::setNbJoysticks(int opt)
+{ 
+  if(opt > 0) 
+  { 
+    nbJoysticks = opt; 
+    joysticks = new SDL_Joystick *[nbJoysticks]; 
+    for(int i = 0; i < nbJoysticks; i++)
+      joysticks[i] = NULL;
+  }
+}
+
+bool Configuration::setJoystick(int i, SDL_Joystick *joy)
+{ 
+  if(i < nbJoysticks && joysticks[i] == NULL) 
+  {
+    joysticks[i] = joy; 
+    return true;
+  }
+  return false;
+}
+
+bool Configuration::isJoystickEvent(int event, int joystick, int but_or_ax, int val, Controles control)
+{ 
+  if(event == SDL_JOYAXISMOTION)
+    return joybuttons[control].type == SDL_JOYAXISMOTION &&
+           joystick == joybuttons[control].which && 
+           but_or_ax == joybuttons[control].button_or_axis && 
+           SIGN(val) == SIGN(joybuttons[control].value);
+  else
+    return (joybuttons[control].type == SDL_JOYBUTTONUP || joybuttons[control].type == SDL_JOYBUTTONDOWN) &&
+           joystick == joybuttons[control].which && 
+           but_or_ax == joybuttons[control].button_or_axis && 
+           val == joybuttons[control].value; 
+}
+
 bool Configuration::save()
 {
   std::ofstream fichier;
@@ -138,6 +217,8 @@ bool Configuration::save()
   fichier << "Fullscreen " << _fullscreen << std::endl;
   for(int i = 0; i < nbControles; i++)
     fichier << "Touche " << i << " " << keys[i] << std::endl;
+  for(int i = 0; i < nbControles; i++)
+    fichier << "JoyButton " << i << " " << (unsigned int) joybuttons[i].type << " " << (unsigned int) joybuttons[i].which << " " << (unsigned int) joybuttons[i].button_or_axis << " " << (signed int) joybuttons[i].value << std::endl;
 
   fichier.close();
 

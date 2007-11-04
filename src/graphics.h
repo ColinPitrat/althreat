@@ -20,7 +20,7 @@ void InitSDL();
 // taille "font_size" sur fond transparent
 // Il est souvent plus judicieux de charger la police une 
 // seule fois plutôt que d'utiliser cette fonction.
-SDL_Surface *Texte(const char *texte, const char *font_face, short font_size, SDL_Color fgColor);
+SDL_Surface *Texte(std::string texte, const char *font_face, short font_size, SDL_Color fgColor);
 
 // Place un pixel de couleur "pixel" sur la surface "surface"
 // à l'abscisse "x" et l'ordonnée "y"

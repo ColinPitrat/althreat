@@ -42,7 +42,7 @@ class Menu
     // Choix
     signed short int nbChoix;
     signed short int Selected;
-    char **texte;
+    std::string *texte;
     bool choisi;
 
     // Autres

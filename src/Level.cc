@@ -25,7 +25,8 @@ Level::Level(std::string filename)
     std::cerr << "Impossible d'ouvrir le fichier " << filename << std::endl;
 
   fichier >> longueur >> nomMusique >> nbTypesEnnemis;
-  musique = Mix_LoadMUS((configuration->getDataDir() + nomMusique).c_str());
+  music_file = configuration->getDataDir() + nomMusique;
+  musique = Mix_LoadMUS((music_file).c_str());
   typesEnnemis = new TypeEnnemi*[nbTypesEnnemis];
   for(unsigned int i = 0; i < nbTypesEnnemis; i++)
   {

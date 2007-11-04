@@ -4,23 +4,14 @@ void InitSDL()
 {
   Configuration *configuration = Configuration::getConfiguration();
 
-  if(!configuration->nosound())
+  Uint32 sdl_init_flags = SDL_INIT_VIDEO;
+  if(!configuration->nosound()) sdl_init_flags |= SDL_INIT_AUDIO;
+  if(configuration->joystick()) sdl_init_flags |= SDL_INIT_JOYSTICK;
+  if(SDL_Init(sdl_init_flags) < 0)
   {
-    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
-    {
-      std::cerr << "Impossible d'initialiser SDL : " << SDL_GetError() << std::endl;
-      exit(-1);
-    }
+    std::cerr << "Impossible d'initialiser SDL : " << SDL_GetError() << std::endl;
+    exit(-1);
   }
-  else
-  {
-    if(SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-      std::cerr << "Impossible d'initialiser SDL : " << SDL_GetError() << std::endl;
-      exit(-1);
-    }
-  }
-  atexit(SDL_Quit);
 
   SDL_Surface *Screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, DEFAULT_BPP, (configuration->fullscreen() ? SDL_FULLSCREEN : 0) | SDL_HWSURFACE | SDL_ANYFORMAT | SDL_DOUBLEBUF | SDL_HWACCEL);
 
@@ -49,12 +40,23 @@ void InitSDL()
       configuration->applySoundConf();
   }
 
+  if(configuration->joystick())
+  {
+    int numJoysticks = SDL_NumJoysticks();
+    configuration->setNbJoysticks(numJoysticks);
+    for(int i=0; i < numJoysticks; i++)
+    {
+      configuration->setJoystick(i, SDL_JoystickOpen(i));
+    }
+  }
+
   SDL_EnableUNICODE(1);
   SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 
   if (TTF_Init() < 0) 
   {
     std::cerr << "Impossible d'initialiser SDL_TTF : " << SDL_GetError() << std::endl;
+    SDL_Quit();
     exit(-1);
   }
 
@@ -140,7 +142,7 @@ SDL_Surface *loadImage(const char *fileName)
   return image;
 }
 
-SDL_Surface *Texte(const char *texte, const char *font_face, short font_size, SDL_Color fgColor)
+SDL_Surface *Texte(std::string texte, const char *font_face, short font_size, SDL_Color fgColor)
 {
   TTF_Font *font;
   SDL_Surface *text;
@@ -149,7 +151,7 @@ SDL_Surface *Texte(const char *texte, const char *font_face, short font_size, SD
   if (!font) 
     std::cerr << "Impossible de charger la taille " << font_size << "pt depuis " << font_face << " : " << SDL_GetError() << std::endl;
 
-  text = TTF_RenderText_Blended(font, texte, fgColor);
+  text = TTF_RenderText_Blended(font, texte.c_str(), fgColor);
 
   // Fermeture de la police
   TTF_CloseFont(font); 

@@ -65,7 +65,34 @@ Game::Game(bool practice = false)
             if(event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == configuration->touche(TOUCHE_ARME))
               choisi = true;
             break;
+          case SDL_JOYAXISMOTION:
+            // TODO : Handle joystick sensibility
+            if(SIGN(event.jaxis.value) != 0)
+            {
+              if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+                choisi = true;
+              // For other events we build an event corresponding to return key down and send it to optionsLayer->filtre
+              SDL_Event ev;
+              ev.type = SDL_KEYDOWN;
+              ev.key.state = SDL_PRESSED;
+              if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_BAS))
+              {
+                ev.key.keysym.sym = SDLK_DOWN;
+                cont->filtre(&ev);
+              }
+              if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_HAUT))
+              {
+                ev.key.keysym.sym = SDLK_UP;
+                cont->filtre(&ev);
+              }
+            }
+            break;
+          case SDL_JOYBUTTONDOWN:
+            if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_ARME))
+              choisi = true;
+            break;
           case SDL_QUIT:
+            SDL_Quit();
             exit(0);
           default:
             break;

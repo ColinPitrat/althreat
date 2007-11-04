@@ -23,7 +23,7 @@ Menu::Menu()
   Selected = 0;
 
   nbChoix = 5;
-  texte = new char*[nbChoix];
+  texte = new std::string[nbChoix];
   texte[0] = "Aventure";
   texte[1] = "Entrainement";
   texte[2] = "Options";
@@ -174,7 +174,16 @@ void Menu::credits_events()
             break;
         }
         break;
+      case SDL_JOYAXISMOTION:
+        if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+          FinCredits = true;
+        break;
+      case SDL_JOYBUTTONDOWN:
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+          FinCredits = true;
+        break;
       case SDL_QUIT:
+        SDL_Quit();
         exit(0);
       default:
         break;
@@ -247,7 +256,43 @@ void Menu::menu_events()
         if(event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == conf->touche(TOUCHE_ARME))
           choisi = true;
         break;
+      case SDL_JOYAXISMOTION:
+        if(SIGN(event.jaxis.value) != 0)
+        {
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_HAUT))
+          {
+            if(--Selected < 0)
+              Selected += nbChoix;
+            menuLayer->focusPrev();
+          }
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_BAS))
+          {
+            if(++Selected >= nbChoix)
+              Selected -= nbChoix;
+            menuLayer->focusNext();
+          }
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+            choisi = true;
+        }
+        break;
+      case SDL_JOYBUTTONDOWN:
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_HAUT))
+        {
+          if(--Selected < 0)
+            Selected += nbChoix;
+          menuLayer->focusPrev();
+        }
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_BAS))
+        {
+          if(++Selected >= nbChoix)
+            Selected -= nbChoix;
+          menuLayer->focusNext();
+        }
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_ARME))
+          choisi = true;
+        break;
       case SDL_QUIT:
+        SDL_Quit();
         exit(0);
       default:
         break;

@@ -37,6 +37,7 @@ public:
   std::list<Projectile*>* getProjList() { return &projectiles; };
   std::list<Ennemi*>* getEnnemList() { return &ennemis; };
   std::list<Bonus*>* getBonusList() { return &bonus; };
+  std::string getMusicFile() { return music_file; };
 
   void afficher();
   void animer(double delay);
@@ -47,6 +48,7 @@ private:
   unsigned int longueur;
   double pos;
   Mix_Music *musique; 
+  std::string music_file;
   unsigned int nbTypesEnnemis;
   unsigned int nbTypesBonus;
   TypeEnnemi **typesEnnemis;

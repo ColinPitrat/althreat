@@ -1,12 +1,14 @@
 #include "MenuJeu.h"
 
-MenuJeu::MenuJeu(SDL_Surface *setfond)
+MenuJeu::MenuJeu(SDL_Surface *setfond, std::string setmusic_file)
 {
   configuration = Configuration::getConfiguration();
   fond = setfond;
+  music_file = setmusic_file;
 
   nbChoix = 3;
-  texte = new char*[nbChoix];
+  Selected = 0;
+  texte = new std::string[nbChoix];
   texte[0] = "Retour au jeu";
   texte[1] = "Options";
   texte[2] = "Quitter le jeu";
@@ -44,7 +46,7 @@ MenuJeu::~MenuJeu()
 void MenuJeu::show_options()
 {
   // TODO : Passer la musique courante aux options : est-ce possible, est-ce nécessaire ?
-  Options *options = new Options(fond);
+  Options *options = new Options(fond, NULL, music_file);
   options->afficher();
 }
 
@@ -77,7 +79,43 @@ void MenuJeu::events()
         if(event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == configuration->touche(TOUCHE_ARME))
           choisi = true;
         break;
+      case SDL_JOYAXISMOTION:
+        if(SIGN(event.jaxis.value) != 0)
+        {
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_HAUT))
+          {
+            if(--Selected < 0)
+              Selected += nbChoix;
+            menuLayer->focusPrev();
+          }
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_BAS))
+          {
+            if(++Selected >= nbChoix)
+              Selected -= nbChoix;
+            menuLayer->focusNext();
+          }
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+            choisi = true;
+        }
+        break;
+      case SDL_JOYBUTTONDOWN:
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_HAUT))
+        {
+          if(--Selected < 0)
+            Selected += nbChoix;
+          menuLayer->focusPrev();
+        }
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_BAS))
+        {
+          if(++Selected >= nbChoix)
+            Selected -= nbChoix;
+          menuLayer->focusNext();
+        }
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_ARME))
+          choisi = true;
+        break;
       case SDL_QUIT:
+        SDL_Quit();
         exit(0);
       default:
         break;
@@ -150,7 +188,7 @@ bool MenuJeu::afficher()
         break;
       case 1:
         // Options
-        options = new Options(fond);
+        options = new Options(fond, NULL, music_file);
         options->afficher();
         break;
       case 0:

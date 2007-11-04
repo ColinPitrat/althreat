@@ -82,6 +82,9 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
   optionsLayer->addWidget(ok_bouton);
   optionsLayer->addWidget(cancel_bouton);
   optionsLayer->focus(ok_bouton);
+
+  for(int i=0; i < nbControles; i++)
+    keys[i] = joybuttons[i].type = 0;
 }
 
 Options::~Options()
@@ -110,12 +113,81 @@ void Options::events()
             break;
         }
         break;
+      case SDL_JOYAXISMOTION:
+        if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_HAUT))
+          optionsLayer->focusPrev();
+        if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_BAS))
+          optionsLayer->focusNext();
+        {
+          // For other events we build an event corresponding to return key down and send it to optionsLayer->filtre
+          SDL_Event ev;
+          ev.type = SDL_KEYDOWN;
+          ev.key.state = SDL_PRESSED;
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_GAUCHE))
+          {
+            ev.key.keysym.sym = SDLK_LEFT;
+            optionsLayer->filtre(&ev);
+          }
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_DROITE))
+          {
+            ev.key.keysym.sym = SDLK_RIGHT;
+            optionsLayer->filtre(&ev);
+          }
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+          {
+            ev.key.keysym.sym = SDLK_RETURN;
+            optionsLayer->filtre(&ev);
+          }
+        }
+        break;
+      case SDL_JOYBUTTONDOWN:
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_HAUT))
+          optionsLayer->focusPrev();
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_BAS))
+          optionsLayer->focusNext();
+        {
+          // For other events we build an event corresponding to return key down and send it to optionsLayer->filtre
+          SDL_Event ev;
+          ev.type = SDL_KEYDOWN;
+          ev.key.state = SDL_PRESSED;
+          if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_GAUCHE))
+          {
+            ev.key.keysym.sym = SDLK_LEFT;
+            optionsLayer->filtre(&ev);
+          }
+          if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_DROITE))
+          {
+            ev.key.keysym.sym = SDLK_RIGHT;
+            optionsLayer->filtre(&ev);
+          }
+          if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+          {
+            ev.key.keysym.sym = SDLK_RETURN;
+            optionsLayer->filtre(&ev);
+          }
+        }
+        break;
       case SDL_QUIT:
+        SDL_Quit();
         exit(0);
       default:
         break;
     }
   }
+}
+
+bool Options::isJoystickEvent(int event, int joystick, int but_or_ax, int val, Controles control)
+{
+  if(event == SDL_JOYAXISMOTION)
+    return joybuttons[control].type == SDL_JOYAXISMOTION &&
+           joystick == joybuttons[control].which && 
+           but_or_ax == joybuttons[control].button_or_axis && 
+           SIGN(val) == SIGN(joybuttons[control].value);
+  else
+    return (joybuttons[control].type == SDL_JOYBUTTONUP || joybuttons[control].type == SDL_JOYBUTTONDOWN) &&
+           joystick == joybuttons[control].which && 
+           but_or_ax == joybuttons[control].button_or_axis && 
+           val == joybuttons[control].value; 
 }
 
 void Options::afficher()
@@ -159,12 +231,11 @@ void Options::afficher()
     // Modification des touches
     if(controlModif)
     {
-      keysModified = true;
       FocusContainer *controlsLayer = NULL;
       view->clear();
       SDL_Rect item_pos;
       item_pos.x = 100; item_pos.w = 150; item_pos.h = 25;
-      std::string actions[nbControles] = { "Haut", "Bas", "Gauche", "Droite", "Feu", "Arme spéciale", "Bouclier" };
+      std::string actions[nbControles] = { "Haut", "Bas", "Gauche", "Droite", "Feu", "Arme spéciale", "Bouclier", "Pause" };
 
       controlsLayer = new FocusContainer();
       view->addWidget(controlsLayer);
@@ -183,15 +254,56 @@ void Options::afficher()
         while(!choisi)
         {
           SDL_Event event;
+          // To ignore repetitions or mistake (same keys for two actions)
+          bool ignore = false;
           while(SDL_PollEvent(&event))
           {
             switch(event.type)
             {
               case SDL_KEYDOWN:
-                keys[i] = event.key.keysym.sym;
-                choisi = true;
+                for(int j=0; j < i; j++)
+                  if(keys[j] == event.key.keysym.sym)
+                    ignore=true;
+                if(!ignore)
+                {
+                  keys[i] = event.key.keysym.sym;
+                  choisi = true;
+                  keysModified = true;
+                }
+                break;
+              case SDL_JOYAXISMOTION:
+                if(SIGN(event.jaxis.value) != 0)
+                {
+                  for(int j=0; j < i; j++)
+                    if(isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, (Controles) j))
+                      ignore=true;
+                  if(!ignore)
+                  {
+                    joybuttons[i].type = event.type;
+                    joybuttons[i].which = event.jaxis.which;
+                    joybuttons[i].button_or_axis = event.jaxis.axis;
+                    joybuttons[i].value = event.jaxis.value;
+                    choisi = true;
+                    joysModified = true;
+                  }
+                }
+                break;
+              case SDL_JOYBUTTONDOWN:
+                for(int j=0; j < i; j++)
+                  if(isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, (Controles) j))
+                    ignore=true;
+                if(!ignore)
+                {
+                  joybuttons[i].type = event.type;
+                  joybuttons[i].which = event.jbutton.which;
+                  joybuttons[i].button_or_axis = event.jbutton.button;
+                  joybuttons[i].value = event.jbutton.state;
+                  choisi = true;
+                  joysModified = true;
+                }
                 break;
               case SDL_QUIT:
+                SDL_Quit();
                 exit(0);
               default:
                 break;
@@ -229,6 +341,8 @@ void Options::afficher()
       if(!configuration->nosound())
       {
         Mix_HaltMusic();
+        if(!musique && music_file != "")
+          musique = Mix_LoadMUS(music_file.c_str());
         if(!musique)
           std::cerr << "Erreur : Impossible de charger la musique : " << music_file << std::endl;
         else
@@ -240,9 +354,14 @@ void Options::afficher()
     {
       configuration->setSoundFXVol(fx_vol);
     }
-    if(keysModified)
+    if(keysModified || joysModified)
       for(int i = 0; i < nbControles; i++)
-        configuration->setTouche((Controles)i, keys[i]);
+      {
+        if(keys[i] != 0) 
+          configuration->setTouche((Controles)i, keys[i]);
+        if(joybuttons[i].type != 0)
+          configuration->setJoystickEvent((Controles)i, joybuttons[i].type, joybuttons[i].which, joybuttons[i].button_or_axis, joybuttons[i].value);
+      }
     configuration->save();
   }
 }

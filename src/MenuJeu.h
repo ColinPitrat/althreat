@@ -11,7 +11,7 @@
 class MenuJeu
 {
   public:
-    MenuJeu(SDL_Surface *fond);
+    MenuJeu(SDL_Surface *fond, std::string music_file);
     ~MenuJeu();
 
     bool afficher();
@@ -24,11 +24,12 @@ class MenuJeu
     signed short int nbChoix;
     signed short int Selected;
     bool choisi;
-    char **texte;
+    std::string *texte;
 
     Configuration *configuration;
     FocusContainer *menuLayer;
     SDL_Surface *fond;
+    std::string music_file;
 };
 
 #endif

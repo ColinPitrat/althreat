@@ -37,28 +37,104 @@ static void jeu_events(unsigned int &dir, bool &shoot, bool &FinJeu)
           dir |= Droite;
         if(event.key.keysym.sym == configuration->touche(TOUCHE_ARME))
           shoot = 1;
-        if(event.key.keysym.sym == SDLK_ESCAPE)
+        if(event.key.keysym.sym == configuration->touche(TOUCHE_PAUSE))
         {
           // TODO : Copier l'image du jeu
           SDL_Surface* fondMenu = SDL_CreateRGBSurface(Screen->flags, Screen->w, Screen->h, Screen->format->BitsPerPixel, Screen->format->Rmask, Screen->format->Gmask, Screen->format->Bmask, Screen->format->Amask);
           SDL_BlitSurface(Screen, NULL, fondMenu, NULL);
-          MenuJeu *menu = new MenuJeu(fondMenu);
+          MenuJeu *menu = new MenuJeu(fondMenu, jeu->getLevel()->getMusicFile());
           FinJeu = menu->afficher();
         }
         break;
       case SDL_KEYUP:
         if(event.key.keysym.sym == configuration->touche(TOUCHE_HAUT))
-          dir -= Haut;
+          dir &= ~Haut;
         if(event.key.keysym.sym == configuration->touche(TOUCHE_BAS))
-          dir -= Bas;
+          dir &= ~Bas;
         if(event.key.keysym.sym == configuration->touche(TOUCHE_GAUCHE))
-          dir -= Gauche;
+          dir &= ~Gauche;
         if(event.key.keysym.sym == configuration->touche(TOUCHE_DROITE))
-          dir -= Droite;
+          dir &= ~Droite;
         if(event.key.keysym.sym == configuration->touche(TOUCHE_ARME))
           shoot = 0;
         break;
+      case SDL_JOYBUTTONDOWN:
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_HAUT))
+          dir |= Haut;
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_BAS))
+          dir |= Bas;
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_GAUCHE))
+          dir |= Gauche;
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_DROITE))
+          dir |= Droite;
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+          shoot = 1;
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_PAUSE))
+        {
+          // TODO : Copier l'image du jeu
+          SDL_Surface* fondMenu = SDL_CreateRGBSurface(Screen->flags, Screen->w, Screen->h, Screen->format->BitsPerPixel, Screen->format->Rmask, Screen->format->Gmask, Screen->format->Bmask, Screen->format->Amask);
+          SDL_BlitSurface(Screen, NULL, fondMenu, NULL);
+          MenuJeu *menu = new MenuJeu(fondMenu, jeu->getLevel()->getMusicFile());
+          FinJeu = menu->afficher();
+        }
+        break;
+      case SDL_JOYBUTTONUP:
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_HAUT))
+          dir &= ~Haut;
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_BAS))
+          dir &= ~Bas;
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_GAUCHE))
+          dir &= ~Gauche;
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_DROITE))
+          dir &= ~Droite;
+        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+          shoot = 0;
+        break;
+      case SDL_JOYAXISMOTION:
+        // TODO : Handle an axis sensibility
+        if(SIGN(event.jaxis.value) != 0)
+        {
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_HAUT))
+            dir |= Haut;
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_BAS))
+            dir |= Bas;
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_GAUCHE))
+            dir |= Gauche;
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_DROITE))
+            dir |= Droite;
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+            shoot = 0;
+        }
+        else
+        {
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_HAUT))
+          {
+            dir &= ~Bas;
+            dir &= ~Haut;
+          }
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_BAS))
+          {
+            dir &= ~Bas;
+            dir &= ~Haut;
+          }
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_GAUCHE))
+          {
+            dir &= ~Gauche;
+            dir &= ~Droite;
+          }
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_DROITE))
+          {
+            dir &= ~Gauche;
+            dir &= ~Droite;
+          }
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_ARME))
+            shoot = 0;
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, -1, TOUCHE_ARME))
+            shoot = 0;
+        }
+        break;
       case SDL_QUIT:
+        SDL_Quit();
         exit(0);
       default:
         break;
@@ -70,7 +146,7 @@ static void jeu_events(unsigned int &dir, bool &shoot, bool &FinJeu)
 void info(std::string appname)
 {
   std::cout << "Usage : " << appname << " <options>\n";
-  std::cout << "  Options :\n\t-h : Affiche ce message d'aide (help)\n\t-f : Plein écran (fullscreen)\n\t-w : Mode fenêtré (windowed)\n\t-m : Pas de son (mute)\n\t-s : Son activé (sound)\n\t-v : Informations détaillées (verbose)\n\t-d : Informations de débogage (debug)\n\t-p : Mode spectre (phantom)\n";
+  std::cout << "  Options :\n\t-h : Affiche ce message d'aide (help)\n\t-f : Plein écran (fullscreen)\n\t-w : Mode fenêtré (windowed)\n\t-m : Pas de son (mute)\n\t-s : Son activé (sound)\n\t-j : Joystick désactivé (joystick)\n\t-v : Informations détaillées (verbose)\n\t-d : Informations de débogage (debug)\n\t-p : Mode spectre (phantom)\n";
 }
 
 // Traite la fin du jeu (ecran récapitulatif, highscores ...)
@@ -169,7 +245,16 @@ void GameOver(unsigned int score, bool practice)
               break;
           }
           break;
+        case SDL_JOYAXISMOTION:
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+            finished = true;
+          break;
+        case SDL_JOYBUTTONDOWN:
+          if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+            finished = true;
+          break;
         case SDL_QUIT:
+          SDL_Quit();
           exit(0);
         default:
           break;
@@ -269,7 +354,16 @@ void GameOver(unsigned int score, bool practice)
                 break;
             }
             break;
+        case SDL_JOYAXISMOTION:
+          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+            finished = true;
+          break;
+        case SDL_JOYBUTTONDOWN:
+          if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+            finished = true;
+          break;
           case SDL_QUIT:
+            SDL_Quit();
             exit(0);
           default:
             break;
@@ -353,6 +447,7 @@ int main(int argc, char *argv[])
   // Traitement des options
   // -m : pas de son
   // -s : avec son
+  // -j : pas de joystick
   // -f : plein ecran
   // -w : fenetré
   // -h : affiche l'aide
@@ -360,7 +455,7 @@ int main(int argc, char *argv[])
   // -v : mode verbeux
   {
     char c;
-    while ((c = getopt(argc, argv, "mhfwvdps")) != -1)
+    while ((c = getopt(argc, argv, "mhfwvdpsnj")) != -1)
     {
       switch(c)
       {
@@ -372,6 +467,9 @@ int main(int argc, char *argv[])
           break;
         case 'p':
           configuration->setSpectrum(true);
+          break;
+        case 'j':
+          configuration->setJoystick(false);
           break;
         case 'f':
           configuration->setFullscreen(true);
@@ -438,6 +536,9 @@ int main(int argc, char *argv[])
   delete menu;
 
   if(!configuration->nosound()) Mix_CloseAudio();
+  // TODO : C'est le seul point de sortie ou l'on ferme l'audio
+  // de plus on ne ferme pas les joysticks. Il faudrait grouper
+  // tout ça dans une fonction QuitSDL symétrique de InitSDL.
   SDL_Quit();
   delete configuration;
   return 0;
