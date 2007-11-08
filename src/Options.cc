@@ -1,4 +1,5 @@
 #include "Options.h"
+#include "lang.h"
 
 Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmusic_file)
 {
@@ -10,7 +11,7 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
 
   SDL_Rect fs_pos;
   fs_pos.x = 70; fs_pos.y = 150; fs_pos.w = 300; fs_pos.h = 25;
-  std::string textefs = "Plein ecran";
+  std::string textefs = _("Fullscreen");
   Checkbox *fs_box = new Checkbox(fs_pos, textefs, &fs_var);
   fs_box->setImages((configuration->getDataDir() + "images/on.png").c_str(), (configuration->getDataDir() + "images/off.png").c_str());
   fs_box->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
@@ -18,7 +19,7 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
 
   SDL_Rect ns_pos;
   ns_pos.x = 70; ns_pos.y = 180; ns_pos.w = 300; ns_pos.h = 25;
-  std::string textens = "Son muet";
+  std::string textens = _("Mute");
   Checkbox *ns_box = new Checkbox(ns_pos, textens, &ns_var);
   ns_box->setImages((configuration->getDataDir() + "images/on.png").c_str(), (configuration->getDataDir() + "images/off.png").c_str());
   ns_box->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
@@ -26,7 +27,7 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
 
   SDL_Rect mus_label_pos;
   mus_label_pos.x = 70; mus_label_pos.y = 230; mus_label_pos.w = 250; mus_label_pos.h = 25;
-  Label *mus_label = new Label(mus_label_pos, "Volume musique :", T3F_LEFT);
+  Label *mus_label = new Label(mus_label_pos, _("Music volume:"), T3F_LEFT);
   mus_label->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
   mus_label->setBorderSize(0);
 
@@ -36,7 +37,7 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
 
   SDL_Rect fx_label_pos;
   fx_label_pos.x = 70; fx_label_pos.y = 265; fx_label_pos.w = 250; fx_label_pos.h = 25;
-  Label *fx_label = new Label(fx_label_pos, "Volume effets sonores :", T3F_LEFT);
+  Label *fx_label = new Label(fx_label_pos, _("Sounds FX volume:"), T3F_LEFT);
   fx_label->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
   fx_label->setBorderSize(0);
 
@@ -46,17 +47,17 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
 
   SDL_Rect control_pos;
   control_pos.x = 70; control_pos.y = 330; control_pos.w = 300; control_pos.h = 25;
-  Switch *control_bouton = new Switch(control_pos, "Modifier les controles", &controlModif);
+  Switch *control_bouton = new Switch(control_pos, _("Modify controls"), &controlModif);
   control_bouton->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
 
   SDL_Rect ok_pos;
   ok_pos.x = 100; ok_pos.y = 530; ok_pos.w = 80; ok_pos.h = 25;
-  Switch *ok_bouton = new Switch(ok_pos, "OK", &ok);
+  Switch *ok_bouton = new Switch(ok_pos, _("OK"), &ok);
   ok_bouton->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
 
   SDL_Rect cancel_pos;
   cancel_pos.x = 250; cancel_pos.y = 530; cancel_pos.w = 80; cancel_pos.h = 25;
-  Switch *cancel_bouton = new Switch(cancel_pos, "Cancel", &cancel);
+  Switch *cancel_bouton = new Switch(cancel_pos, _("Cancel"), &cancel);
   cancel_bouton->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
 
   if(configuration->nosound())
@@ -235,7 +236,7 @@ void Options::afficher()
       view->clear();
       SDL_Rect item_pos;
       item_pos.x = 100; item_pos.w = 150; item_pos.h = 25;
-      std::string actions[nbControles] = { "Haut", "Bas", "Gauche", "Droite", "Feu", "Arme spéciale", "Bouclier", "Pause" };
+      std::string actions[nbControles] = { N_("Up"), N_("Down"), N_("Left"), N_("Right"), N_("Fire"), N_("Special weapon"), N_("Shield"), N_("Pause") };
 
       controlsLayer = new FocusContainer();
       view->addWidget(controlsLayer);
@@ -329,10 +330,10 @@ void Options::afficher()
         if(!musique && music_file != "")
           musique = Mix_LoadMUS(music_file.c_str());
         if(!musique)
-          std::cerr << "Erreur : Impossible de charger la musique : " << music_file << std::endl;
+          std::cerr << "Error: Impossible to load music: " << music_file << std::endl;
         else
           if(Mix_FadeInMusic(musique, -1, 1000) == -1)
-            std::cerr << "Erreur : Impossible de jouer la musique : " << Mix_GetError() << std::endl;
+            std::cerr << "Error: Impossible to load music: " << Mix_GetError() << std::endl;
       }
     }
     if(mus_vol != configuration->musicvol())
@@ -344,10 +345,10 @@ void Options::afficher()
         if(!musique && music_file != "")
           musique = Mix_LoadMUS(music_file.c_str());
         if(!musique)
-          std::cerr << "Erreur : Impossible de charger la musique : " << music_file << std::endl;
+          std::cerr << "Error: Impossible to load music: " << music_file << std::endl;
         else
           if(Mix_FadeInMusic(musique, -1, 1000) == -1)
-            std::cerr << "Erreur : Impossible de jouer la musique du menu : " << Mix_GetError() << std::endl;
+            std::cerr << "Error: Impossible to load menu music: " << Mix_GetError() << std::endl;
       }
     }
     if(fx_vol != configuration->soundFXvol())

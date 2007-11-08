@@ -4,7 +4,7 @@ Bonus::Bonus(TypeBonus *settype, int setpos, double sety, double setdx, double s
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Construction : bonus" << std::endl;
+    std::cerr << "Constructor: bonus" << std::endl;
   SDL_Surface *Screen = SDL_GetVideoSurface();
   type = settype;
   skin = new Sprite(type->getSkin());
@@ -22,7 +22,7 @@ Bonus::~Bonus()
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Destruction : bonus" << std::endl;
+    std::cerr << "Destructor: bonus" << std::endl;
   delete skin;
 }
 
@@ -35,7 +35,7 @@ void Bonus::detruire()
     {
       // Peut-être une erreur critique, ou simplement l'abscence de channel libre
       if(configuration->verbose())
-        std::cerr << "Erreur : Impossible de jouer un son : " << Mix_GetError() << std::endl;
+        std::cerr << "Error: Impossible to play a sound: " << Mix_GetError() << std::endl;
     }
   }
   dead = true;

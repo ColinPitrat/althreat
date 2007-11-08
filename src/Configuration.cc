@@ -71,8 +71,8 @@ Configuration::Configuration()
         fichier.open(("../" + file).c_str(), std::ios::in);
         if(!fichier.is_open())
         {
-          std::cerr << "Erreur : Impossible de déterminer le répertoire contenant les fichiers de données.\n";
-          std::cerr << "Chemins essayés : \n";
+          std::cerr << "Error: Impossible to find the directory containing data files.\n";
+          std::cerr << "Tried pathes: \n";
           std::cerr << " - " << (std::string)DATADIR + "/" << std::endl;
           std::cerr << " - " << (std::string)SRCDIR + "/" << std::endl;
           std::cerr << " - " << "../" << std::endl;
@@ -149,12 +149,12 @@ bool Configuration::toggleNosound()
   {
     if(SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
     {
-      std::cerr << "Impossible d'initialiser SDL audio : " << SDL_GetError() << std::endl;
+      std::cerr << "Impossible to initialize SDL audio module: " << SDL_GetError() << std::endl;
       return true;
     }
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
     {
-      std::cerr << "Impossible d'ouvrir le canal audio : " << Mix_GetError() << std::endl;
+      std::cerr << "Impossible to open audio channel: " << Mix_GetError() << std::endl;
       return true;
     }
     Mix_Volume(-1, _soundFXvol);

@@ -15,14 +15,14 @@ SpriteData::SpriteData(int num, char **fichiers, int d)
     tmp = IMG_Load(fichiers[i]);
     if(tmp == NULL)
     {
-      std::cerr << "Erreur : Impossible de charger " << fichiers[i] << " : " << SDL_GetError() << std::endl;
+      std::cerr << "Error: Impossible to load " << fichiers[i] << " : " << SDL_GetError() << std::endl;
       break;
     }
 
     Pictures[i] = SDL_DisplayFormatAlpha(tmp);
     if(Pictures[i] == NULL)
     {
-      std::cerr << "Erreur : Impossible de charger " << fichiers[i] << " : " << SDL_GetError() << std::endl;
+      std::cerr << "Error : Impossible to load " << fichiers[i] << " : " << SDL_GetError() << std::endl;
       break;
     }
     SDL_FreeSurface(tmp);
@@ -35,7 +35,7 @@ SpriteData::SpriteData(int num, char **fichiers, int d)
     {
       if(Pictures[i]->w != width || Pictures[i]->h != height)
       {
-        std::cerr << "Erreur : L'image " << fichiers[i] << " ne fait pas la même taille que " << fichiers[0] << std::endl;
+        std::cerr << "Error : Picture " << fichiers[i] << " isn't the same size as " << fichiers[0] << std::endl;
         break;
       }
     }
@@ -56,7 +56,7 @@ SpriteData::SpriteData(int num, SDL_Surface **images, int d)
     Pictures[i] = SDL_DisplayFormatAlpha(images[i]);
     if(Pictures[i] == NULL)
     {
-      std::cerr << "Erreur : Une image passée pour une animation est vide\n";
+      std::cerr << "Error : A picture given for an animation is empty\n";
       break;
     }
     if(i == 0)
@@ -68,7 +68,7 @@ SpriteData::SpriteData(int num, SDL_Surface **images, int d)
     {
       if(Pictures[i]->w != width || Pictures[i]->h != height)
       {
-        std::cerr << "Erreur : Les images d'un sprite ne font pas toutes la même taille." << std::endl;
+        std::cerr << "Error: Pictures of a sprite aren't all of the same size." << std::endl;
         break;
       }
     }
@@ -81,7 +81,7 @@ SpriteData::SpriteData(std::string filename, std::string prefix)
   std::ifstream fichier;
   fichier.open(filename.c_str(), std::ios::in);
   if(!fichier)
-    std::cerr << "Erreur : Impossible d'ouvrir le fichier " << filename << std::endl;
+    std::cerr << "Error: Impossible to open a file " << filename << std::endl;
 
   fichier >> nbPict >> delay;
 
@@ -96,14 +96,14 @@ SpriteData::SpriteData(std::string filename, std::string prefix)
     tmp = IMG_Load((prefix + filename2).c_str());
     if(tmp == NULL)
     {
-      std::cerr << "Erreur : Impossible de charger " << prefix+filename2 << " : " << SDL_GetError() << std::endl;
+      std::cerr << "Error: Impossible to load " << prefix+filename2 << " : " << SDL_GetError() << std::endl;
       break;
     }
 
     Pictures[i] = SDL_DisplayFormatAlpha(tmp);
     if(Pictures[i] == NULL)
     {
-      std::cerr << "Erreur : Impossible de charger " << prefix+filename2 << " : " << SDL_GetError() << std::endl;
+      std::cerr << "Error: Impossible to load " << prefix+filename2 << " : " << SDL_GetError() << std::endl;
       break;
     }
     SDL_FreeSurface(tmp);
@@ -116,14 +116,14 @@ SpriteData::SpriteData(std::string filename, std::string prefix)
     {
       if(Pictures[i]->w != width || Pictures[i]->h != height)
       {
-        std::cerr << "Erreur : L'image " << prefix+filename2 << " du sprite " << filename << " ne fait pas la taille prévue." << std::endl;
+        std::cerr << "Error : Picture " << prefix+filename2 << " of sprite " << filename << " is not the good size." << std::endl;
         break;
       }
     }
   }
 
   if(fichier.fail())
-    std::cerr << "Erreur lors de la lecture du fichier " << filename << std::endl;
+    std::cerr << "Error while reading file " << filename << std::endl;
 }
 
 SpriteData::~SpriteData()

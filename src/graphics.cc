@@ -1,4 +1,5 @@
 #include "graphics.h"
+#include "lang.h"
 
 void InitSDL()
 {
@@ -9,7 +10,7 @@ void InitSDL()
   if(configuration->joystick()) sdl_init_flags |= SDL_INIT_JOYSTICK;
   if(SDL_Init(sdl_init_flags) < 0)
   {
-    std::cerr << "Impossible d'initialiser SDL : " << SDL_GetError() << std::endl;
+    std::cerr << "Impossible to initialize SDL: " << SDL_GetError() << std::endl;
     exit(-1);
   }
 
@@ -17,13 +18,13 @@ void InitSDL()
 
   if(Screen == NULL)
   {
-    std::cerr << "Impossible de sélectionner le mode video" << SCREEN_WIDTH << "x" << SCREEN_HEIGHT << "x" << DEFAULT_BPP << " : " << SDL_GetError() << std::endl;
+    std::cerr << "Impossible to select video mode " << SCREEN_WIDTH << "x" << SCREEN_HEIGHT << "x" << DEFAULT_BPP << ": " << SDL_GetError() << std::endl;
     SDL_Quit();
     exit(-1);
   }
 
   if((Screen->flags & SDL_DOUBLEBUF) != SDL_DOUBLEBUF && configuration->verbose())
-    std::cout << "Le double buffering n'est pas disponible." << std::endl;
+    std::cout << "Double buffering isn't available." << std::endl;
 
   if(!configuration->nosound())
   {
@@ -31,7 +32,7 @@ void InitSDL()
     // TODO : Trouver un compromis dépendant de la configuration pour la longueur du buffer
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
     {
-      std::cerr << "Impossible d'ouvrir le canal audio : " << Mix_GetError() << std::endl;
+      std::cerr << "Impossible to open audio channel: " << Mix_GetError() << std::endl;
       configuration->setNoSound(true);
     }
     else
@@ -55,12 +56,12 @@ void InitSDL()
 
   if (TTF_Init() < 0) 
   {
-    std::cerr << "Impossible d'initialiser SDL_TTF : " << SDL_GetError() << std::endl;
+    std::cerr << "Impossible to initialize SDL_TTF: " << SDL_GetError() << std::endl;
     SDL_Quit();
     exit(-1);
   }
 
-  SDL_WM_SetCaption ("AlThreat", NULL);
+  SDL_WM_SetCaption (_("AlThreat"), NULL);
 }
 
 void putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
@@ -127,14 +128,14 @@ SDL_Surface *loadImage(const char *fileName)
   tmp = IMG_Load(fileName);
   if(tmp == NULL)
   {
-    std::cerr << "Impossible de charger " << fileName << " : " << SDL_GetError() << std::endl;
+    std::cerr << "Impossible to load " << fileName << ": " << SDL_GetError() << std::endl;
     return NULL;
   }
 
   image = SDL_DisplayFormatAlpha(tmp);
   if(image == NULL)
   {
-    std::cerr << "Impossible de convertir " << fileName << " au format de l'écran : " << SDL_GetError() << std::endl;
+    std::cerr << "Impossible to convert " << fileName << " to screen format: " << SDL_GetError() << std::endl;
     return tmp;
   }
   SDL_FreeSurface(tmp);
@@ -149,7 +150,7 @@ SDL_Surface *Texte(std::string texte, const char *font_face, short font_size, SD
 
   font = TTF_OpenFont(font_face, font_size); // Chargement de la police
   if (!font) 
-    std::cerr << "Impossible de charger la taille " << font_size << "pt depuis " << font_face << " : " << SDL_GetError() << std::endl;
+    std::cerr << "Impossible to load font size" << font_size << "pt from " << font_face << ": " << SDL_GetError() << std::endl;
 
   text = TTF_RenderText_Blended(font, texte.c_str(), fgColor);
 

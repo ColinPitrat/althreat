@@ -4,7 +4,7 @@ Projectile::Projectile(Arme *settype, double initx, double inity, double initdx,
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Construction : projectile" << std::endl;
+    std::cerr << "Constructor: projectile" << std::endl;
   type = settype;
   skin = new Sprite(configuration->getDataDir() + type->getSkin(), configuration->getDataDir());
   destruct = new Sprite(configuration->getDataDir() + type->getDestructSkin(), configuration->getDataDir());
@@ -26,7 +26,7 @@ Projectile::Projectile(Arme *settype, double initx, double inity, double initdx,
     {
       // Peut-être une erreur critique, ou simplement l'abscence de channel libre
       if(configuration->verbose())
-        std::cerr << "Erreur : Impossible de jouer un son : " << Mix_GetError() << std::endl;
+        std::cerr << "Error: Impossible to play sound: " << Mix_GetError() << std::endl;
     }
   }
 }
@@ -35,7 +35,7 @@ Projectile::~Projectile()
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Destruction : projectile" << std::endl;
+    std::cerr << "Destructor: projectile" << std::endl;
   delete skin;
   delete destruct;
 }
@@ -65,7 +65,7 @@ void Projectile::detruire()
     {
       // Peut-être une erreur critique, ou simplement l'abscence de channel libre
       if(configuration->verbose())
-        std::cerr << "Erreur : Impossible de jouer un son : " << Mix_GetError() << std::endl;
+        std::cerr << "Error: Impossible to play sound: " << Mix_GetError() << std::endl;
     }
   }
   explose = true; 

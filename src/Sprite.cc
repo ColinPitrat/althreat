@@ -21,7 +21,7 @@ Sprite::Sprite(int num, char **fichiers, int d)
   }
   else
   {
-    std::cerr << "Erreur lors du chargement du contenu du sprite.\n";
+    std::cerr << "Error while loading sprite content.\n";
   }
 }
 
@@ -43,7 +43,7 @@ Sprite::Sprite(int num, SDL_Surface **images, int d)
   }
   else
   {
-    std::cerr << "Erreur lors du chargement du contenu du sprite.\n";
+    std::cerr << "Error while loading sprite content.\n";
   }
 }
 
@@ -65,7 +65,7 @@ Sprite::Sprite(std::string filename, std::string prefix)
   }
   else
   {
-    std::cerr << "Erreur lors du chargement du contenu du sprite.\n";
+    std::cerr << "Error while loading sprite content.\n";
   }
 }
 
@@ -87,7 +87,7 @@ Sprite::Sprite(SpriteData* setdata)
   }
   else
   {
-    std::cerr << "Erreur: le sprite est vide.\n";
+    std::cerr << "Error: sprite is empty.\n";
   }
 }
 

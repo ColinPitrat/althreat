@@ -4,7 +4,7 @@ Level::Level(std::string filename)
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Construction : level" << std::endl;
+    std::cerr << "Constructor: level" << std::endl;
   pos = 0;
   // Initialisation des étoiles
   {
@@ -22,7 +22,7 @@ Level::Level(std::string filename)
   std::string nomMusique;
   fichier.open((configuration->getDataDir() + filename).c_str(), std::ios::in);
   if(!fichier)
-    std::cerr << "Impossible d'ouvrir le fichier " << filename << std::endl;
+    std::cerr << "Impossible to open file " << filename << std::endl;
 
   fichier >> longueur >> nomMusique >> nbTypesEnnemis;
   music_file = configuration->getDataDir() + nomMusique;
@@ -67,7 +67,7 @@ Level::Level(std::string filename)
   }
 
   if(fichier.fail())
-    std::cerr << "Erreur lors de la lecture du fichier " << filename << std::endl;
+    std::cerr << "Error while reading file " << filename << std::endl;
 
   fichier.close();
 }
@@ -76,7 +76,7 @@ Level::~Level()
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Destruction : level" << std::endl;
+    std::cerr << "Destructor: level" << std::endl;
   if(musique)
   {
     Mix_FreeMusic(musique);
@@ -124,7 +124,7 @@ void Level::playMusic()
   if(!musique || (Mix_PlayMusic(musique, -1) == -1))
   {
     // L'erreur n'est pas forcement fatale
-    std::cerr << "Impossible de jouer la musique du menu : " << Mix_GetError() << std::endl;
+    std::cerr << "Impossible to play menu music: " << Mix_GetError() << std::endl;
   }
 }
 

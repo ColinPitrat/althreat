@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "lang.h"
 
 Menu *Menu::menu = NULL;
 
@@ -16,7 +17,7 @@ Menu::Menu()
   {
     musique = Mix_LoadMUS((configuration->getDataDir() + "sons/Menusong.ogg").c_str());
     if(!musique)
-      std::cerr << "Erreur lors du chargement de la musique du menu : " << Mix_GetError() << std::endl;
+      std::cerr << "Error while loading menu music: " << Mix_GetError() << std::endl;
 
   }
   fond = loadImage((configuration->getDataDir() + "images/Menu.png").c_str());
@@ -24,11 +25,11 @@ Menu::Menu()
 
   nbChoix = 5;
   texte = new std::string[nbChoix];
-  texte[0] = "Aventure";
-  texte[1] = "Entrainement";
-  texte[2] = "Options";
-  texte[3] = "Credits";
-  texte[4] = "Quitter";
+  texte[0] = _("Adventure");
+  texte[1] = _("Training");
+  texte[2] = _("Options");
+  texte[3] = _("Credits");
+  texte[4] = _("Quit");
 
   SDL_Rect dest[nbChoix];
   MenuButton *choixBoutons[nbChoix];
@@ -81,7 +82,7 @@ void Menu::init()
 
   if(musique && (Mix_FadeInMusic(musique, -1, 1000) == -1))
   {
-    std::cerr << "Erreur : Impossible de jouer la musique du menu : " << Mix_GetError() << std::endl;
+    std::cerr << "Error: Impossible to play menu music: " << Mix_GetError() << std::endl;
   }
 }
 
@@ -102,7 +103,7 @@ void Menu::show_credits()
 
     SDL_Rect ok_pos;
     ok_pos.x = 360; ok_pos.y = 525; ok_pos.w = 80; ok_pos.h = 25;
-    Switch *ok_bouton = new Switch(ok_pos, "OK", &FinCredits);
+    Switch *ok_bouton = new Switch(ok_pos, _("OK"), &FinCredits);
     ok_bouton->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
 
     creditsLayer->addWidget(ok_bouton);
@@ -131,12 +132,12 @@ void Menu::affichage_credits()
   SDL_Color yellow = { 255, 255, 0, 0 };
   SDL_Color red = { 255, 0, 0, 0 };
 
-  SDL_Surface *text1 = Texte("Programmation : Skippy", (configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 40, blue);
-  SDL_Surface *text2 = Texte("Graphismes : Raz & Skippy", (configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 40, blue);
-  SDL_Surface *text3 = Texte("Musique : Raz & Vavrek", (configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 40, blue);
-  SDL_Surface *text4 = Texte("-=( the3fold )=-", (configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 40, yellow);
-  SDL_Surface *text5 = Texte("http://www.vavrek.com", (configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20, red);
-  SDL_Surface *text6 = Texte("http://the3fold.free.fr", (configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20, red);
+  SDL_Surface *text1 = Texte(_("Development: Skippy"), (configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 40, blue);
+  SDL_Surface *text2 = Texte(_("Graphisms: Raz & Skippy"), (configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 40, blue);
+  SDL_Surface *text3 = Texte(_("Music: Raz & Vavrek"), (configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 40, blue);
+  SDL_Surface *text4 = Texte(_("-=( the3fold )=-"), (configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 40, yellow);
+  SDL_Surface *text5 = Texte(_("http://www.vavrek.com"), (configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20, red);
+  SDL_Surface *text6 = Texte(_("http://the3fold.free.fr"), (configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20, red);
 
   SDL_Rect rect1 = { 70, 200, text1->w, text1->h };
   SDL_Rect rect2, rect3, rect4;

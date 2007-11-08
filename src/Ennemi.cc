@@ -4,7 +4,7 @@ Ennemi::Ennemi(TypeEnnemi *settype, int setpos, double sety, double setdx, doubl
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Construction : ennemi" << std::endl;
+    std::cerr << "Constructor: ennemi" << std::endl;
   SDL_Surface *Screen = SDL_GetVideoSurface();
   type = settype;
   energie = type->getEnergieMax();
@@ -23,7 +23,7 @@ Ennemi::~Ennemi()
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Destruction : ennemi" << std::endl;
+    std::cerr << "Destructor: ennemi" << std::endl;
   delete skin;
   delete destruct;
 }
@@ -51,7 +51,7 @@ void Ennemi::detruire()
     {
       // Peut-être une erreur critique, ou simplement l'abscence de channel libre
       if(configuration->verbose())
-        std::cerr << "Erreur : Impossible de jouer un son : " << Mix_GetError() << std::endl;
+        std::cerr << "Error: Impossible to play a sound: " << Mix_GetError() << std::endl;
     }
   }
   energie = 0;

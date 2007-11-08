@@ -4,7 +4,7 @@ Vaisseau::Vaisseau()
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Construction : vaisseau" << std::endl;
+    std::cerr << "Constructor: vaisseau" << std::endl;
   SDL_Surface *Screen = SDL_GetVideoSurface();
 
   std::ifstream fichier;
@@ -126,7 +126,7 @@ Vaisseau::Vaisseau()
 
   fichier.open((configuration->getDataDir() + filename).c_str(), std::ios::in);
   if(!fichier)
-    std::cerr << "Impossible d'ouvrir le fichier " << filename << std::endl;
+    std::cerr << "Impossible to open file " << filename << std::endl;
 
   std::string skinName;
   std::string destructName;
@@ -143,7 +143,7 @@ Vaisseau::Vaisseau()
   }
 
   if(fichier.fail())
-    std::cerr << "Erreur lors de la lecture du fichier " << filename << std::endl;
+    std::cerr << "Error while reading file " << filename << std::endl;
 
   fichier.close();
 
@@ -159,7 +159,7 @@ Vaisseau::~Vaisseau()
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Destruction : vaisseau" << std::endl;
+    std::cerr << "Destructor: vaisseau" << std::endl;
   delete skin;
   delete destruct;
   for(unsigned int i = 0; i < nbTypesArmes; i++)

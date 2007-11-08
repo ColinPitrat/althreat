@@ -1,4 +1,5 @@
 #include "MenuJeu.h"
+#include "lang.h"
 
 MenuJeu::MenuJeu(SDL_Surface *setfond, std::string setmusic_file)
 {
@@ -9,9 +10,9 @@ MenuJeu::MenuJeu(SDL_Surface *setfond, std::string setmusic_file)
   nbChoix = 3;
   Selected = 0;
   texte = new std::string[nbChoix];
-  texte[0] = "Retour au jeu";
-  texte[1] = "Options";
-  texte[2] = "Quitter le jeu";
+  texte[0] = _("Return to game");
+  texte[1] = _("Options");
+  texte[2] = _("Quit game");
 
   SDL_Surface *Screen = SDL_GetVideoSurface();
   SDL_Rect dest[nbChoix];

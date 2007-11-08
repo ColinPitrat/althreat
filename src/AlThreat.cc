@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <unistd.h>
+#include <dirent.h>
 #include "widgets/edit.h"
 #include "Game.h"
 #include "Menu.h"
@@ -8,6 +9,7 @@
 #include "Level.h"
 #include "Vaisseau.h"
 #include "Configuration.h"
+#include "lang.h"
 
 #define MAX(x,y) (((x) > (y)) ? (x) : (y))
 #define MIN(x,y) (((x) < (y)) ? (x) : (y))
@@ -145,8 +147,8 @@ static void jeu_events(unsigned int &dir, bool &shoot, bool &FinJeu)
 // Affiche l'aide sur la ligne de commande
 void info(std::string appname)
 {
-  std::cout << "Usage : " << appname << " <options>\n";
-  std::cout << "  Options :\n\t-h : Affiche ce message d'aide (help)\n\t-f : Plein écran (fullscreen)\n\t-w : Mode fenêtré (windowed)\n\t-m : Pas de son (mute)\n\t-s : Son activé (sound)\n\t-j : Joystick désactivé (joystick)\n\t-v : Informations détaillées (verbose)\n\t-d : Informations de débogage (debug)\n\t-p : Mode spectre (phantom)\n";
+  std::cout << "Usage: " << appname << " <options>\n";
+  std::cout << "  Options:\n\t-h: Show this help message\n\t-f: Fullscreen mode\n\t-w: Windowed mode\n\t-m: Mute\n\t-s: With sound\n\t-j: No joystick\n\t-v: Verbose mode\n\t-d: Debug informations\n\t-p: Spectrum mode\n";
 }
 
 // Traite la fin du jeu (ecran récapitulatif, highscores ...)
@@ -158,18 +160,18 @@ void GameOver(unsigned int score, bool practice)
 
   std::string infos;
   std::ostringstream oss (std::ostringstream::out);
-  oss << "Score : " << score;
+  oss << _("Score: ") << score;
   infos = oss.str();
 
   SDL_Color color; color.r = 180; color.g = 180; color.b = 180;
-  SDL_Surface *msg = Texte("Game Over", (configuration->getDataDir() + "fonts/vera.ttf").c_str(), 80, color);
+  SDL_Surface *msg = Texte(_("Game Over"), (configuration->getDataDir() + "fonts/vera.ttf").c_str(), 80, color);
   color.r = 180; color.g = 200; color.b = 30;
   SDL_Surface *inf = Texte(infos.c_str(), (configuration->getDataDir() + "fonts/vera.ttf").c_str(), 40, color);
   SDL_Rect destMsg; destMsg.x = (Screen->w - msg->w) / 2; destMsg.y = (Screen->h - msg->h) / 4; destMsg.w = msg->w; destMsg.h = msg->h;
   SDL_Rect destInf; destInf.x = (Screen->w - inf->w) / 2; destInf.y = 2 * (Screen->h - msg->h) / 4; destInf.w = inf->w; destInf.h = inf->h;
 
   std::string names[NB_HIGHSCORES];
-  std::string name("Votre nom");
+  std::string name(_("Your name"));
   std::string tmpName, tmpNameNext;
   unsigned int tmpScore, tmpScoreNext;
   unsigned int scores[NB_HIGHSCORES];
@@ -310,7 +312,7 @@ void GameOver(unsigned int score, bool practice)
     cont = new FocusContainer();
     pos.x = 100; pos.w = 600;
     pos.y = 50; pos.h = 60;
-    Label *lab = new Label(pos, "Hall of Fame", T3F_CENTER);
+    Label *lab = new Label(pos, _("Hall of Fame"), T3F_CENTER);
     lab->setFont((configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 80);
     lab->setColors((SDL_Color) {0, 0, 0, 255}, (SDL_Color) {255, 255, 0, 255}, (SDL_Color) {0, 0, 0, 255});
     lab->setBorderSize(0);
@@ -430,7 +432,7 @@ void Jeu(bool practice = false)
       nextLevel = true;
     Uint32 end = SDL_GetTicks();
     if(configuration->verbose())
-      std::cout << frames << " images en " << ((double)end - beginning) / 1000 << " secondes -> " << (double)frames * 1000 / ((double)end - beginning) << "FPS\n";
+      std::cout << frames << " frames in " << ((double)end - beginning) / 1000 << " seconds -> " << (double)frames * 1000 / ((double)end - beginning) << "FPS\n";
     if(practice && nextLevel)
       break;
   }
@@ -444,15 +446,15 @@ int main(int argc, char *argv[])
 {
   Configuration *configuration = Configuration::getConfiguration();
 
-  // Traitement des options
-  // -m : pas de son
-  // -s : avec son
-  // -j : pas de joystick
-  // -f : plein ecran
-  // -w : fenetré
-  // -h : affiche l'aide
-  // -p : spectrum mode
-  // -v : mode verbeux
+  // Options
+  // -m: mute
+  // -s: unmute
+  // -j: no joystick
+  // -f: fullscreen
+  // -w: windowed
+  // -h: show help
+  // -p: spectrum mode
+  // -v: verbose
   {
     char c;
     while ((c = getopt(argc, argv, "mhfwvdpsnj")) != -1)
@@ -484,7 +486,7 @@ int main(int argc, char *argv[])
           configuration->setDebug(true);
           break;
         case '?':
-          std::cerr << "Erreur : Option inconnue `-" << optopt << "'.\n";
+          std::cerr << "Error: Unknown option `-" << optopt << "'.\n";
           exit(-1);
         case 'h':
         default:
@@ -493,6 +495,29 @@ int main(int argc, char *argv[])
       }
     }
   }
+
+#if ENABLE_NLS
+  DIR *tmp_dir;
+  setlocale(LC_ALL, "");
+  tmp_dir = opendir("../po");
+  if(tmp_dir != NULL)
+  {
+    bindtextdomain(LOCALE_PACKAGE, "../po");
+    closedir(tmp_dir);
+  }
+  else
+  {
+    tmp_dir = opendir("./po");
+    if(tmp_dir != NULL)
+    {
+      bindtextdomain(LOCALE_PACKAGE, "./po");
+      closedir(tmp_dir);
+    }
+    else
+      bindtextdomain(LOCALE_PACKAGE, LOCALE_DIR);
+  }
+  textdomain(LOCALE_PACKAGE);
+#endif
 
   InitSDL();
 
@@ -528,7 +553,7 @@ int main(int argc, char *argv[])
         Quitter = true;
         break;
       default:
-        std::cerr << "Erreur : choix de menu inconnu.\n";
+        std::cerr << "Error: unknown menu choice.\n";
         reinit = false;
         break;
     }

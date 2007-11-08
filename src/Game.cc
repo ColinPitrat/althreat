@@ -1,10 +1,11 @@
 #include "Game.h"
+#include "lang.h"
 
 Game::Game()
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Construction : game" << std::endl;
+    std::cerr << "Constructor: game" << std::endl;
   level = NULL;
   vaisseau = new Vaisseau();
   numLevel = 0;
@@ -17,7 +18,7 @@ Game::Game(bool practice = false)
   Configuration *configuration = Configuration::getConfiguration();
   SDL_Surface *Screen = SDL_GetVideoSurface();
   if(configuration->debug())
-    std::cerr << "Construction : game" << std::endl;
+    std::cerr << "Constructor: game" << std::endl;
   level = NULL;
   vaisseau = new Vaisseau();
   level = 0;
@@ -66,7 +67,7 @@ Game::Game(bool practice = false)
               choisi = true;
             break;
           case SDL_JOYAXISMOTION:
-            // TODO : Handle joystick sensibility
+            // TODO: Handle joystick sensibility
             if(SIGN(event.jaxis.value) != 0)
             {
               if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
@@ -109,7 +110,7 @@ Game::~Game()
 {
   Configuration *configuration = Configuration::getConfiguration();
   if(configuration->debug())
-    std::cerr << "Destruction : game" << std::endl;
+    std::cerr << "Destructor: game" << std::endl;
   if(vaisseau)
     delete vaisseau;
   if(level)
@@ -135,12 +136,12 @@ bool Game::resetLevel(std::string filename)
   {
     levelsList.open((configuration->getDataDir() + filename.c_str()).c_str(),std::ios::in);
     if(!levelsList)
-      std::cerr << "Impossible d'ouvrir le fichier " << filename << std::endl;
+      std::cerr << "Impossible to open file " << filename << std::endl;
 
     levelsList >> nbLevels;
 
     if(levelsList.fail())
-      std::cerr << "Erreur lors de la lecture du fichier " << filename << std::endl;
+      std::cerr << "Error while reading file " << filename << std::endl;
 
     if(numLevel > nbLevels)
       return false;
@@ -153,7 +154,7 @@ bool Game::resetLevel(std::string filename)
     }
 
     if(levelsList.fail())
-      std::cerr << "Erreur lors de la lecture du fichier " << filename << std::endl;
+      std::cerr << "Error while reading file " << filename << std::endl;
 
     levelsList.close();
   }
@@ -185,12 +186,12 @@ bool Game::nextLevel(std::string filename)
   {
     levelsList.open((configuration->getDataDir() + filename.c_str()).c_str(),std::ios::in);
     if(!levelsList)
-      std::cerr << "Impossible d'ouvrir le fichier " << filename << std::endl;
+      std::cerr << "Impossible to open file " << filename << std::endl;
 
     levelsList >> nbLevels;
 
     if(levelsList.fail())
-      std::cerr << "Erreur lors de la lecture du fichier " << filename << std::endl;
+      std::cerr << "Error while reading file " << filename << std::endl;
 
     if(numLevel > nbLevels)
       return false;
@@ -203,7 +204,7 @@ bool Game::nextLevel(std::string filename)
     }
 
     if(levelsList.fail())
-      std::cerr << "Erreur lors de la lecture du fichier " << filename << std::endl;
+      std::cerr << "Error while reading file " << filename << std::endl;
 
     levelsList.close();
   }
@@ -227,7 +228,7 @@ void Game::afficher()
   std::string infos;
   std::ostringstream oss (std::ostringstream::out);
 
-  oss << "Level : " << this->numLevel << "   Score : " << this->score << "   Vies : " << this->vies << "   Energie : ";
+  oss << _("Level: ") << this->numLevel << _("   Score: ") << this->score << _("   Lives: ") << this->vies << _("   Energy: ");
   infos = oss.str();
 
   SDL_Color color;
@@ -353,9 +354,9 @@ void Game::collisions()
 }
 
 // Ce qui est implémenté pour l'instant :
-//  - score : add, sub
-//  - lives : add, sub
-//  - energy : add, sub, set
+//  - score: add, sub
+//  - lives: add, sub
+//  - energy: add, sub, set
 void Game::executeAction(BonusAction *actions, int nbActions)
 {
   for(int i=0; i < nbActions; i++)
