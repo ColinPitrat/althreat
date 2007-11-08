@@ -2,6 +2,7 @@ AC_INIT(src/AlThreat.cc)
 
 AM_CONFIG_HEADER(src/config.h)
 AM_INIT_AUTOMAKE(AlThreat, 0.3)
+AM_GNU_GETTEXT([external])
 
 AC_PROG_CXX
 AC_PROG_RANLIB
@@ -12,4 +13,4 @@ AC_CHECK_LIB([SDL_image], [IMG_Load],, AC_MSG_ERROR([SDL_image library needed fo
 AC_CHECK_LIB([SDL_mixer], [Mix_LoadMUS],, AC_MSG_ERROR([SDL_mixer library needed for AlThreat! see http://www.libsdl.org/]))
 AC_CHECK_LIB([SDL_ttf], [TTF_Init],, AC_MSG_ERROR([SDL_ttf library needed for AlThreat! see http://www.libsdl.org/]))
 
-AC_OUTPUT(Makefile src/Makefile src/widgets/Makefile)
+AC_OUTPUT(Makefile src/Makefile src/widgets/Makefile armes/Makefile decors/Makefile fonts/Makefile images/Makefile levels/Makefile sons/Makefile vaisseaux/Makefile po/Makefile)

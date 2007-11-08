@@ -1,0 +1,166 @@
+# French translations for AlThreat package
+# Traductions françaises du paquet AlThreat.
+# Copyright (C) 2007 -=(the3fold)=-
+# This file is distributed under the same license as the AlThreat package.
+#  <colin.pitrat@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: AlThreat 0.3\n"
+"Report-Msgid-Bugs-To: althreat@googlegroups.com\n"
+"POT-Creation-Date: 2007-11-08 21:36+0100\n"
+"PO-Revision-Date: 2007-11-07 22:38+0100\n"
+"Last-Translator:  <colin.pitrat@gmail.com>\n"
+"Language-Team: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../src/AlThreat.cc:163
+msgid "Score: "
+msgstr "Score : "
+
+#: ../src/AlThreat.cc:167
+msgid "Game Over"
+msgstr ""
+
+#: ../src/AlThreat.cc:174
+msgid "Your name"
+msgstr "Votre nom"
+
+#: ../src/AlThreat.cc:315
+msgid "Hall of Fame"
+msgstr ""
+
+#: ../src/Game.cc:231
+msgid "Level: "
+msgstr "Niveau : "
+
+#: ../src/Game.cc:231
+msgid "   Score: "
+msgstr "   Score : "
+
+#: ../src/Game.cc:231
+msgid "   Lives: "
+msgstr "   Vies : "
+
+#: ../src/Game.cc:231
+msgid "   Energy: "
+msgstr "   Energie : "
+
+#: ../src/Menu.cc:28
+msgid "Adventure"
+msgstr "Aventure"
+
+#: ../src/Menu.cc:29
+msgid "Training"
+msgstr "Entrainement"
+
+#: ../src/Menu.cc:30 ../src/MenuJeu.cc:14
+msgid "Options"
+msgstr "Options"
+
+#: ../src/Menu.cc:31
+msgid "Credits"
+msgstr "Credits"
+
+#: ../src/Menu.cc:32
+msgid "Quit"
+msgstr "Quitter"
+
+#: ../src/Menu.cc:106 ../src/Options.cc:55
+msgid "OK"
+msgstr "OK"
+
+#: ../src/Menu.cc:135
+msgid "Development: Skippy"
+msgstr "Programmation : Skippy"
+
+#: ../src/Menu.cc:136
+msgid "Graphisms: Raz & Skippy"
+msgstr "Graphismes : Raz & Skippy"
+
+#: ../src/Menu.cc:137
+msgid "Music: Raz & Vavrek"
+msgstr "Musique : Raz & Vavrek"
+
+#: ../src/Menu.cc:138
+msgid "-=( the3fold )=-"
+msgstr ""
+
+#: ../src/Menu.cc:139
+msgid "http://www.vavrek.com"
+msgstr ""
+
+#: ../src/Menu.cc:140
+msgid "http://the3fold.free.fr"
+msgstr ""
+
+#: ../src/MenuJeu.cc:13
+msgid "Return to game"
+msgstr "Retour au jeu"
+
+#: ../src/MenuJeu.cc:15
+msgid "Quit game"
+msgstr "Quitter le jeu"
+
+#: ../src/Options.cc:14
+msgid "Fullscreen"
+msgstr "Plein ecran"
+
+#: ../src/Options.cc:22
+msgid "Mute"
+msgstr "Muet"
+
+#: ../src/Options.cc:30
+msgid "Music volume:"
+msgstr "Volume de la musique :"
+
+#: ../src/Options.cc:40
+msgid "Sounds FX volume:"
+msgstr "Volume des effets sonores :"
+
+#: ../src/Options.cc:50
+msgid "Modify controls"
+msgstr "Modifier les controles"
+
+#: ../src/Options.cc:60
+msgid "Cancel"
+msgstr "Annuler"
+
+#: ../src/Options.cc:239
+msgid "Up"
+msgstr "Haut"
+
+#: ../src/Options.cc:239
+msgid "Down"
+msgstr "Bas"
+
+#: ../src/Options.cc:239
+msgid "Left"
+msgstr "Gauche"
+
+#: ../src/Options.cc:239
+msgid "Right"
+msgstr "Droite"
+
+#: ../src/Options.cc:239
+msgid "Fire"
+msgstr "Feu"
+
+#: ../src/Options.cc:239
+msgid "Special weapon"
+msgstr "Arme speciale"
+
+#: ../src/Options.cc:239
+msgid "Shield"
+msgstr "Bouclier"
+
+#: ../src/Options.cc:239
+msgid "Pause"
+msgstr "Pause"
+
+#: ../src/graphics.cc:64
+msgid "AlThreat"
+msgstr ""
