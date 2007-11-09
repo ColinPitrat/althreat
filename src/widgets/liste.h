@@ -35,8 +35,8 @@ class Liste: public Widget
     bool *getUnactivePtr() { return &unactive; };
     void nextValue();
     void prevValue();
-    // TODO : setValue
-    // void setValue(std::string value) { *val = value; };
+    void setValue(std::string value);
+    void setValue(int value);
 
     virtual void onFocus(bool foc, bool nextIfUnactive = true);
     virtual void afficher(SDL_Surface *Screen);

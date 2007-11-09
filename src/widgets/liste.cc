@@ -10,7 +10,7 @@ Liste::Liste(SDL_Rect position)
   focusborder = (SDL_Color) {150, 150, 150, 255};
   focusbg = (SDL_Color) {0, 0, 0, 255};
   focusfg = (SDL_Color) {255, 255, 0, 255};
-  focusselect = (SDL_Color) {80, 80, 80, 255};
+  focusselect = (SDL_Color) {180, 180, 180, 255};
   unactiveborder = (SDL_Color) {150, 150, 150, 255};
   unactivebg = (SDL_Color) {0, 0, 0, 255};
   unactivefg = (SDL_Color) {175, 175, 175, 255};
@@ -259,4 +259,28 @@ void Liste::onFocus(bool foc, bool nextIfUnactive)
     else
       container->focusPrev();
   }
+}
+
+void Liste::setValue(int element)
+{
+    int i=0;
+    std::list<std::string*>::iterator it = choix.begin();
+    while(it != choix.end())
+    {
+      if(i == element)
+        val = *it;
+      i++;
+      it++;
+    }
+}
+
+void Liste::setValue(std::string value)
+{
+    std::list<std::string*>::iterator it = choix.begin();
+    while(it != choix.end())
+    {
+      if(*(*it) == value)
+        val = *it;
+      it++;
+    }
 }

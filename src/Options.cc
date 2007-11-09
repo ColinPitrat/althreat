@@ -51,25 +51,29 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
   control_bouton->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
 
   SDL_Rect lang_label_pos;
-  lang_label_pos.x = 70; lang_label_pos.y = 365; lang_label_pos.w = 250; lang_label_pos.h = 25;
+  lang_label_pos.x = 70; lang_label_pos.y = 380; lang_label_pos.w = 250; lang_label_pos.h = 25;
   Label *lang_label = new Label(lang_label_pos, _("Language:"), T3F_LEFT);
   lang_label->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
   lang_label->setBorderSize(0);
 
   SDL_Rect lang_pos;
-  lang_pos.x = 330; lang_pos.y = 365; lang_pos.w = 300; lang_pos.h = 25;
+  lang_pos.x = 330; lang_pos.y = 380; lang_pos.w = 300; lang_pos.h = 100;
   lang_list = new Liste(lang_pos);
   lang_list->setFont((configuration->getDataDir() + "fonts/babelfish.ttf"), 30);
   for(int i=0; i < sizeof(language_names)/sizeof(std::string); i++)
+  {
     lang_list->addValue(new std::string(language_names[i]));
+    if(language_codes[i] == configuration->language()) 
+      lang_list->setValue(i);
+  }
 
   SDL_Rect ok_pos;
-  ok_pos.x = 100; ok_pos.y = 530; ok_pos.w = 80; ok_pos.h = 25;
+  ok_pos.x = 100; ok_pos.y = 530; ok_pos.w = 100; ok_pos.h = 25;
   Switch *ok_bouton = new Switch(ok_pos, _("OK"), &ok);
   ok_bouton->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
 
   SDL_Rect cancel_pos;
-  cancel_pos.x = 250; cancel_pos.y = 530; cancel_pos.w = 80; cancel_pos.h = 25;
+  cancel_pos.x = 250; cancel_pos.y = 530; cancel_pos.w = 100; cancel_pos.h = 25;
   Switch *cancel_bouton = new Switch(cancel_pos, _("Cancel"), &cancel);
   cancel_bouton->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
 

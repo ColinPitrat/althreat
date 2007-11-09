@@ -19,6 +19,7 @@ class Menu
     unsigned char show(Game *&jeu);
     ~Menu();
     void init();
+    void init_text();
 
   private:
     Menu();

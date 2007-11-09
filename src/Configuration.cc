@@ -17,7 +17,6 @@ Configuration::Configuration()
   joysticks = NULL;
 
   char* locale = setlocale(LC_ALL, NULL);
-  std::cout << "locale : " << locale << std::endl;
   if(locale && strstr(locale, "fr"))
     _lang = "fr_FR";
   else 

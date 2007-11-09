@@ -23,28 +23,8 @@ Menu::Menu()
   fond = loadImage((configuration->getDataDir() + "images/Menu.png").c_str());
   Selected = 0;
 
-  nbChoix = 5;
-  texte = new std::string[nbChoix];
-  texte[0] = _("Adventure");
-  texte[1] = _("Training");
-  texte[2] = _("Options");
-  texte[3] = _("Credits");
-  texte[4] = _("Quit");
-
-  SDL_Rect dest[nbChoix];
-  MenuButton *choixBoutons[nbChoix];
   menuLayer = new FocusContainer();
-  for(int i = 0; i < nbChoix; i++)
-  {
-    dest[i].w = 180; 
-    dest[i].h = 40;
-    dest[i].x = (Screen->w - dest[i].w) / 2;
-    dest[i].y = (Screen->h - nbChoix * dest[i].h - (nbChoix - 1) * dest[i].h / 2) / 2 + i * dest[i].h + (i - 1) * dest[i].h;
-    choixBoutons[i] = new MenuButton(dest[i], texte[i], i, &Selected, &choisi);
-    choixBoutons[i]->setFont((configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 30);
-    menuLayer->addWidget(choixBoutons[i]);
-  }
-  menuLayer->focus(choixBoutons[0]);
+  init_text();
 }
 
 Menu::~Menu()
@@ -86,10 +66,41 @@ void Menu::init()
   }
 }
 
+void Menu::init_text()
+{
+  SDL_Surface *Screen = SDL_GetVideoSurface();
+  if(texte) delete[] texte;
+  if(menuLayer) menuLayer->deleteAll();
+
+  nbChoix = 5;
+  texte = new std::string[nbChoix];
+  texte[0] = _("Adventure");
+  texte[1] = _("Training");
+  texte[2] = _("Options");
+  texte[3] = _("Credits");
+  texte[4] = _("Quit");
+
+  SDL_Rect dest[nbChoix];
+  MenuButton *choixBoutons[nbChoix];
+  for(int i = 0; i < nbChoix; i++)
+  {
+    dest[i].w = 180; 
+    dest[i].h = 40;
+    dest[i].x = (Screen->w - dest[i].w) / 2;
+    dest[i].y = (Screen->h - nbChoix * dest[i].h - (nbChoix - 1) * dest[i].h / 2) / 2 + i * dest[i].h + (i - 1) * dest[i].h;
+    choixBoutons[i] = new MenuButton(dest[i], texte[i], i, &Selected, &choisi);
+    choixBoutons[i]->setFont((configuration->getDataDir() + "fonts/babelfish.ttf").c_str(), 30);
+    menuLayer->addWidget(choixBoutons[i]);
+  }
+
+  menuLayer->focus(choixBoutons[0]);
+}
+
 void Menu::show_options()
 {
   Options *options = new Options(fond, musique, configuration->getDataDir() + "sons/Menusong.ogg");
   options->afficher();
+  init_text();
 }
 
 void Menu::show_credits()

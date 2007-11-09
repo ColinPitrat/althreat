@@ -9,6 +9,12 @@ FocusContainer::~FocusContainer()
 {
 }
 
+void FocusContainer::deleteAll()
+{
+    focusedWidget = NULL;
+    Container::deleteAll();
+}
+
 int FocusContainer::filtre(const SDL_Event *event)
 {
   if(event->type == SDL_KEYDOWN)

@@ -1,6 +1,6 @@
 POFILES = $(top_srcdir)/po/fr_FR/LC_MESSAGES/AlThreat.po
 
-MOFILES = $(POFILES:.po=.mo)
+MOFILES = $(top_builddir)/po/fr_FR/LC_MESSAGES/AlThreat.mo
 
 SRCFILES = $(top_srcdir)/src/AlThreat.cc \
 	   $(top_srcdir)/src/Arme.cc \
@@ -63,7 +63,6 @@ $(MOFILES): $(POFILES)
 	$(MSGFMT) -o $@ $<
 
 $(POFILES): $(POTFILE)
-	echo $(MOFILES)
 	test -f $@ && $(MSGMERGE) $(MSGMERGE_OPTIONS) $@ $(POTFILE)
 
 $(POTFILE): $(SRCFILES)

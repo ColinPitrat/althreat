@@ -15,6 +15,7 @@ class FocusContainer: public Container
     void focusPrev();
     bool focus(Widget *w);
     virtual void addWidget(Widget *widget) { liste.push_back(widget); widget->setContainer(this); };
+    virtual void deleteAll();
     virtual int filtre(const SDL_Event *event);
     virtual void onFocus(bool foc, bool nextIfUnactive = true);
 
