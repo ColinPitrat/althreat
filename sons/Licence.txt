@@ -1,11 +1,12 @@
-Les musiques originales du jeu AlThreat sont distribuées sous licence
-Creative Commons. Voici le détail de ces musiques :
+Original musics of AlThreat are distributed under Creative Commons licenses.
+Here is the detailed list of these musics :
 
-Musique   Artiste          Licence       Morceau              Commentaires
+Music     Artis            License       Track                Comments
 
 Menu      Raz              CC-by-nc-nd   Psycho Theory           
 Level 1   Andrew Vavrek    CC-by-sa      Sunlight             http://vavrek.com
-Level 2   Andrew Vavrek    CC-by-sa      Freedom              http://vavrek.com
-Level 3   L'Onomatopeur    CC-by-nc-nd   Who Loves My 8-Bits  http://www.jamendo.com
-Level 4   Andrew Vavrek    CC-by-sa      Entropy              http://vavrek.com
-Level 5   Les Asskronautes CC-by-nc-sa   Crazy bull           http://www.jamendo.com
+Level 2   Fast Friday      CC-by-sa      Ego Kiss             http://www.jamendo.com
+Level 3   Andrew Vavrek    CC-by-sa      Freedom              http://vavrek.com
+Level 4   L'Onomatopeur    CC-by-nc-nd   Who Loves My 8-Bits  http://www.jamendo.com
+Level 5   Andrew Vavrek    CC-by-sa      Entropy              http://vavrek.com
+Level 6   Les Asskronautes CC-by-nc-sa   Crazy bull           http://www.jamendo.com
