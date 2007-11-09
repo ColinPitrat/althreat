@@ -60,6 +60,7 @@ all-local-no:
 all-local-yes: $(MOFILES)
 
 $(MOFILES): $(POFILES)
+	mkdir -p `dirname $@`
 	$(MSGFMT) -o $@ $<
 
 $(POFILES): $(POTFILE)
