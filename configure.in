@@ -1,7 +1,7 @@
 AC_INIT(src/AlThreat.cc)
 
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE(AlThreat, 0.3)
+AM_INIT_AUTOMAKE(AlThreat, 0.4)
 AM_GNU_GETTEXT([external])
 
 AC_PROG_CXX
