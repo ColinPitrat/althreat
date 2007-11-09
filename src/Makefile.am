@@ -1,7 +1,5 @@
-
-INCLUDES = -I/usr/include/SDL -I$(top_srcdir)/widgets
-#AM_LDFLAGS = -Wl,-rpath,/usr/lib -L/usr/lib
-LDADD = -lSDL -lSDL_ttf -lSDL_image -lSDL_mixer $(top_builddir)/src/widgets/libT3F_Widgets.a
+INCLUDES = -I$(top_srcdir)/widgets
+LDADD = $(top_builddir)/src/widgets/libT3F_Widgets.a 
 
 SUBDIRS = widgets
 
