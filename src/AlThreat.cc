@@ -498,7 +498,7 @@ int main(int argc, char *argv[])
 
 #if ENABLE_NLS
   DIR *tmp_dir;
-  setlocale(LC_ALL, "");
+  setlocale(LC_ALL, configuration->language().c_str());
   tmp_dir = opendir("../po");
   if(tmp_dir != NULL)
   {

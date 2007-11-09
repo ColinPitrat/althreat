@@ -37,6 +37,7 @@ class Configuration
     int musicvol() { return _musicvol; };
     int soundFXvol() { return _soundFXvol; };
     int touche(Controles touche) { return keys[touche]; };
+    std::string language() { return _lang; };
     std::string getDataDir() { return datadir; };
     std::string getHighscoresFile() { return highscoresFile; };
 
@@ -52,6 +53,7 @@ class Configuration
     void setDebug(bool opt) { _debug = opt; };
     void setTouche(Controles touche, int keycode) { keys[touche] = keycode; };
     void setNbJoysticks(int opt);
+    void setLanguage(std::string opt) { _lang = opt; setlocale(LC_ALL, _lang.c_str()); };
     bool setJoystick(int i, SDL_Joystick *joy);
     void setJoystickEvent(Controles control, int event, int joystick, int but_or_ax, int val) { joybuttons[control].type = event; joybuttons[control].which = joystick; joybuttons[control].button_or_axis = but_or_ax; joybuttons[control].value = val; };
     bool isJoystickEvent(int event, int joystick, int but_or_ax, int val, Controles control);
@@ -70,6 +72,7 @@ class Configuration
     bool _verbose;
     bool _debug;
     bool _joystick;
+    std::string _lang;
     std::string datadir;
     std::string confFile;
     std::string highscoresFile;

@@ -221,11 +221,9 @@ LOCALE_DATA = $(POTFILE) $(POFILES)
 EXTRA_DIST = $(LOCALE_DATA)
 MSGMERGE_OPTIONS = --quiet --update
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --force-po
-SUFFIXES = .po .mo
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .po .mo
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -307,7 +305,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(DATA)
+all-am: Makefile $(DATA) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(LOCALEdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -392,22 +390,27 @@ uninstall-am: uninstall-LOCALEDATA
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic distclean \
-	distclean-generic distdir dvi dvi-am html html-am info info-am \
-	install install-LOCALEDATA install-am install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+.PHONY: all all-am all-local check check-am clean clean-generic \
+	distclean distclean-generic distdir dvi dvi-am html html-am \
+	info info-am install install-LOCALEDATA install-am \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
 	pdf-am ps ps-am uninstall uninstall-LOCALEDATA uninstall-am
 
 
-.po.mo:
+all-local: all-local-@USE_NLS@
+all-local-no:
+all-local-yes: $(MOFILES)
+
+$(MOFILES): $(POFILES)
 	$(MSGFMT) -o $@ $<
 
 $(POFILES): $(POTFILE)
+	echo $(MOFILES)
 	test -f $@ && $(MSGMERGE) $(MSGMERGE_OPTIONS) $@ $(POTFILE)
 
 $(POTFILE): $(SRCFILES)

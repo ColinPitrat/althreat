@@ -54,12 +54,16 @@ EXTRA_DIST = $(LOCALE_DATA)
 
 MSGMERGE_OPTIONS = --quiet --update
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --force-po
-SUFFIXES = .po .mo
 
-.po.mo:
+all-local: all-local-@USE_NLS@
+all-local-no:
+all-local-yes: $(MOFILES)
+
+$(MOFILES): $(POFILES)
 	$(MSGFMT) -o $@ $<
 
 $(POFILES): $(POTFILE)
+	echo $(MOFILES)
 	test -f $@ && $(MSGMERGE) $(MSGMERGE_OPTIONS) $@ $(POTFILE)
 
 $(POTFILE): $(SRCFILES)

@@ -21,4 +21,7 @@
 
 #endif
 
+static std::string language_names[] = { "English", "Français" };
+static std::string language_codes[] = { "en_US", "fr_FR" };
+
 #endif

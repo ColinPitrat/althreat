@@ -50,6 +50,19 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
   Switch *control_bouton = new Switch(control_pos, _("Modify controls"), &controlModif);
   control_bouton->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
 
+  SDL_Rect lang_label_pos;
+  lang_label_pos.x = 70; lang_label_pos.y = 365; lang_label_pos.w = 250; lang_label_pos.h = 25;
+  Label *lang_label = new Label(lang_label_pos, _("Language:"), T3F_LEFT);
+  lang_label->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
+  lang_label->setBorderSize(0);
+
+  SDL_Rect lang_pos;
+  lang_pos.x = 330; lang_pos.y = 365; lang_pos.w = 300; lang_pos.h = 25;
+  lang_list = new Liste(lang_pos);
+  lang_list->setFont((configuration->getDataDir() + "fonts/babelfish.ttf"), 30);
+  for(int i=0; i < sizeof(language_names)/sizeof(std::string); i++)
+    lang_list->addValue(new std::string(language_names[i]));
+
   SDL_Rect ok_pos;
   ok_pos.x = 100; ok_pos.y = 530; ok_pos.w = 80; ok_pos.h = 25;
   Switch *ok_bouton = new Switch(ok_pos, _("OK"), &ok);
@@ -80,6 +93,8 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
   optionsLayer->addWidget(fx_label);
   optionsLayer->addWidget(fx_jauge);
   optionsLayer->addWidget(control_bouton);
+  optionsLayer->addWidget(lang_label);
+  optionsLayer->addWidget(lang_list);
   optionsLayer->addWidget(ok_bouton);
   optionsLayer->addWidget(cancel_bouton);
   optionsLayer->focus(ok_bouton);
@@ -355,6 +370,9 @@ void Options::afficher()
     {
       configuration->setSoundFXVol(fx_vol);
     }
+    std::string lang_var = language_codes[lang_list->getIntValue()];
+    if(lang_var != configuration->language())
+      configuration->setLanguage(lang_var);
     if(keysModified || joysModified)
       for(int i = 0; i < nbControles; i++)
       {

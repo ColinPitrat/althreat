@@ -16,6 +16,16 @@ Configuration::Configuration()
   nbJoysticks = 0;
   joysticks = NULL;
 
+  char* locale = setlocale(LC_ALL, NULL);
+  std::cout << "locale : " << locale << std::endl;
+  if(locale && strstr(locale, "fr"))
+    _lang = "fr_FR";
+  else 
+    if(locale && strstr(locale, "en"))
+      _lang = "en_US";
+    else
+      _lang = "C";
+
   // Keyboard default controls
   keys[TOUCHE_HAUT] = SDLK_UP;
   keys[TOUCHE_BAS] = SDLK_DOWN;
@@ -114,6 +124,8 @@ Configuration::Configuration()
         fichier >> _soundFXvol;
       if(propertieName=="Fullscreen")
         fichier >> _fullscreen;
+      if(propertieName=="Language")
+        fichier >> _lang;
       if(propertieName=="Touche")
       {
         int i;
@@ -215,6 +227,7 @@ bool Configuration::save()
   fichier << "MusicVol " << _musicvol << std::endl;
   fichier << "FXVol " << _soundFXvol << std::endl;
   fichier << "Fullscreen " << _fullscreen << std::endl;
+  fichier << "Language " << _lang << std::endl;
   for(int i = 0; i < nbControles; i++)
     fichier << "Touche " << i << " " << keys[i] << std::endl;
   for(int i = 0; i < nbControles; i++)

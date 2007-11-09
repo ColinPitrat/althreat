@@ -10,6 +10,7 @@
 #include "widgets/jauge.h"
 #include "widgets/label.h"
 #include "widgets/checkbox.h"
+#include "widgets/liste.h"
 #include "Joystick.h"
 
 class Options
@@ -27,6 +28,7 @@ class Options
     bool cancel;
     bool controlModif;
     FocusContainer *optionsLayer;
+    Liste *lang_list;
     Configuration *configuration;
     Mix_Music *musique;
 
