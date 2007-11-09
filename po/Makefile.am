@@ -48,7 +48,7 @@ MSGID_BUGS_ADDRESS = althreat@googlegroups.com
 POTFILE = $(top_srcdir)/po/$(DOMAIN).pot
 
 LOCALEdir=$(pkgdatadir)/locale
-LOCALE_DATA = $(POTFILE) $(POFILES)
+LOCALE_DATA = $(POTFILE) $(POFILES) $(MOFILES)
 
 EXTRA_DIST = $(LOCALE_DATA)
 
