@@ -28,7 +28,6 @@ SRCFILES = $(top_srcdir)/src/AlThreat.cc \
 	   $(top_srcdir)/src/Sprite.h \
 	   $(top_srcdir)/src/SpriteData.cc \
 	   $(top_srcdir)/src/SpriteData.h \
-	   $(top_srcdir)/src/Trajectoire.h \
 	   $(top_srcdir)/src/TypeBonus.cc \
 	   $(top_srcdir)/src/TypeBonus.h \
 	   $(top_srcdir)/src/TypeEnnemi.cc \
