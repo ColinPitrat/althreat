@@ -217,7 +217,7 @@ COPYRIGHT_HOLDER = -=(the3fold)=-
 MSGID_BUGS_ADDRESS = althreat@googlegroups.com
 POTFILE = $(top_srcdir)/po/$(DOMAIN).pot
 LOCALEdir = $(pkgdatadir)/locale
-LOCALE_DATA = $(POTFILE) $(POFILES)
+LOCALE_DATA = $(POTFILE) $(POFILES) $(MOFILES)
 EXTRA_DIST = $(LOCALE_DATA)
 MSGMERGE_OPTIONS = --quiet --update
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --force-po
@@ -407,6 +407,7 @@ all-local-no:
 all-local-yes: $(MOFILES)
 
 $(MOFILES): $(POFILES)
+	$(MKDIR_P) `dirname $@`
 	$(MSGFMT) -o $@ $<
 
 $(POFILES): $(POTFILE)
