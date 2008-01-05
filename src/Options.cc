@@ -10,7 +10,7 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
   optionsLayer = new FocusContainer();
 
   SDL_Rect fs_pos;
-  fs_pos.x = 70; fs_pos.y = 150; fs_pos.w = 300; fs_pos.h = 25;
+  fs_pos.x = 70; fs_pos.y = 130; fs_pos.w = 300; fs_pos.h = 25;
   std::string textefs = _("Fullscreen");
   Checkbox *fs_box = new Checkbox(fs_pos, textefs, &fs_var);
   fs_box->setImages((configuration->getDataDir() + "images/on.png").c_str(), (configuration->getDataDir() + "images/off.png").c_str());
@@ -18,7 +18,7 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
   fs_box->setBorderSize(0);
 
   SDL_Rect ns_pos;
-  ns_pos.x = 70; ns_pos.y = 180; ns_pos.w = 300; ns_pos.h = 25;
+  ns_pos.x = 70; ns_pos.y = 160; ns_pos.w = 300; ns_pos.h = 25;
   std::string textens = _("Mute");
   Checkbox *ns_box = new Checkbox(ns_pos, textens, &ns_var);
   ns_box->setImages((configuration->getDataDir() + "images/on.png").c_str(), (configuration->getDataDir() + "images/off.png").c_str());
@@ -26,24 +26,34 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
   ns_box->setBorderSize(0);
 
   SDL_Rect mus_label_pos;
-  mus_label_pos.x = 70; mus_label_pos.y = 230; mus_label_pos.w = 250; mus_label_pos.h = 25;
+  mus_label_pos.x = 100; mus_label_pos.y = 210; mus_label_pos.w = 250; mus_label_pos.h = 25;
   Label *mus_label = new Label(mus_label_pos, _("Music volume:"), T3F_LEFT);
   mus_label->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
   mus_label->setBorderSize(0);
 
   SDL_Rect mus_pos;
-  mus_pos.x = 330; mus_pos.y = 230; mus_pos.w = 300; mus_pos.h = 25;
+  mus_pos.x = 350; mus_pos.y = 210; mus_pos.w = 300; mus_pos.h = 25;
   Jauge *mus_jauge = new Jauge(mus_pos, 0, MIX_MAX_VOLUME, &mus_vol, T3F_HOR);
 
   SDL_Rect fx_label_pos;
-  fx_label_pos.x = 70; fx_label_pos.y = 265; fx_label_pos.w = 250; fx_label_pos.h = 25;
+  fx_label_pos.x = 100; fx_label_pos.y = 245; fx_label_pos.w = 250; fx_label_pos.h = 25;
   Label *fx_label = new Label(fx_label_pos, _("Sounds FX volume:"), T3F_LEFT);
   fx_label->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
   fx_label->setBorderSize(0);
 
   SDL_Rect fx_pos;
-  fx_pos.x = 330; fx_pos.y = 265; fx_pos.w = 300; fx_pos.h = 25;
+  fx_pos.x = 350; fx_pos.y = 245; fx_pos.w = 300; fx_pos.h = 25;
   Jauge *fx_jauge = new Jauge(fx_pos, 0, MIX_MAX_VOLUME, &fx_vol, T3F_HOR);
+
+  SDL_Rect sens_label_pos;
+  sens_label_pos.x = 70; sens_label_pos.y = 300; sens_label_pos.w = 250; sens_label_pos.h = 25;
+  Label *sens_label = new Label(sens_label_pos, _("Joystick sensibility:"), T3F_LEFT);
+  sens_label->setFont((configuration->getDataDir() + "fonts/vera.ttf").c_str(), 20);
+  sens_label->setBorderSize(0);
+
+  SDL_Rect sens_pos;
+  sens_pos.x = 350; sens_pos.y = 300; sens_pos.w = 300; sens_pos.h = 25;
+  Jauge *sens_jauge = new Jauge(sens_pos, 0, MAX_JOY_SENSIBILITY/JOY_SENSIBILITY_STEP, &joy_sens, T3F_HOR);
 
   SDL_Rect control_pos;
   control_pos.x = 70; control_pos.y = 330; control_pos.w = 300; control_pos.h = 25;
@@ -60,7 +70,7 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
   lang_pos.x = 330; lang_pos.y = 380; lang_pos.w = 300; lang_pos.h = 100;
   lang_list = new Liste(lang_pos);
   lang_list->setFont((configuration->getDataDir() + "fonts/babelfish.ttf"), 30);
-  for(int i=0; i < sizeof(language_names)/sizeof(std::string); i++)
+  for(unsigned int i=0; i < sizeof(language_names)/sizeof(std::string); i++)
   {
     lang_list->addValue(new std::string(language_names[i]));
     if(language_codes[i] == configuration->language()) 
@@ -85,10 +95,18 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
     fx_jauge->setActive(false);
   }
 
+  if(!configuration->joystick())
+  {
+    sens_jauge->setActive(false);
+    sens_label->setActive(false);
+  }
+
   unactiveMusLabel = mus_label->getUnactivePtr();
   unactiveMusJauge = mus_jauge->getUnactivePtr();
   unactiveFXLabel = fx_label->getUnactivePtr();
   unactiveFXJauge = fx_jauge->getUnactivePtr();
+  unactiveSensLabel = sens_label->getUnactivePtr();
+  unactiveSensJauge = sens_jauge->getUnactivePtr();
 
   optionsLayer->addWidget(fs_box);
   optionsLayer->addWidget(ns_box);
@@ -96,6 +114,8 @@ Options::Options(SDL_Surface *setfond, Mix_Music *setmusique, std::string setmus
   optionsLayer->addWidget(mus_jauge);
   optionsLayer->addWidget(fx_label);
   optionsLayer->addWidget(fx_jauge);
+  optionsLayer->addWidget(sens_label);
+  optionsLayer->addWidget(sens_jauge);
   optionsLayer->addWidget(control_bouton);
   optionsLayer->addWidget(lang_label);
   optionsLayer->addWidget(lang_list);
@@ -222,6 +242,7 @@ void Options::afficher()
   ns_var = configuration->nosound();
   mus_vol = configuration->musicvol();
   fx_vol = configuration->soundFXvol();
+  joy_sens = (MAX_JOY_SENSIBILITY - configuration->joySensibility())/JOY_SENSIBILITY_STEP;
   keysModified = false;
 
   view->clear();
@@ -371,9 +392,9 @@ void Options::afficher()
       }
     }
     if(fx_vol != configuration->soundFXvol())
-    {
       configuration->setSoundFXVol(fx_vol);
-    }
+    if((unsigned int)joy_sens != (MAX_JOY_SENSIBILITY - configuration->joySensibility())/JOY_SENSIBILITY_STEP)
+      configuration->setJoySensibility(MAX_JOY_SENSIBILITY-joy_sens*JOY_SENSIBILITY_STEP);
     std::string lang_var = language_codes[lang_list->getIntValue()];
     if(lang_var != configuration->language())
       configuration->setLanguage(lang_var);

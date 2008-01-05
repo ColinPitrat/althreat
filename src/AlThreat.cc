@@ -38,7 +38,7 @@ static void jeu_events(unsigned int &dir, bool &shoot, bool &FinJeu)
         if(event.key.keysym.sym == configuration->touche(TOUCHE_DROITE))
           dir |= Droite;
         if(event.key.keysym.sym == configuration->touche(TOUCHE_ARME))
-          shoot = 1;
+          shoot = true;
         if(event.key.keysym.sym == configuration->touche(TOUCHE_PAUSE))
         {
           // TODO : Copier l'image du jeu
@@ -58,20 +58,20 @@ static void jeu_events(unsigned int &dir, bool &shoot, bool &FinJeu)
         if(event.key.keysym.sym == configuration->touche(TOUCHE_DROITE))
           dir &= ~Droite;
         if(event.key.keysym.sym == configuration->touche(TOUCHE_ARME))
-          shoot = 0;
+          shoot = false;
         break;
       case SDL_JOYBUTTONDOWN:
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_HAUT))
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_HAUT))
           dir |= Haut;
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_BAS))
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_BAS))
           dir |= Bas;
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_GAUCHE))
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_GAUCHE))
           dir |= Gauche;
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_DROITE))
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_DROITE))
           dir |= Droite;
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
-          shoot = 1;
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_PAUSE))
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+          shoot = true;
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_PAUSE))
         {
           // TODO : Copier l'image du jeu
           SDL_Surface* fondMenu = SDL_CreateRGBSurface(Screen->flags, Screen->w, Screen->h, Screen->format->BitsPerPixel, Screen->format->Rmask, Screen->format->Gmask, Screen->format->Bmask, Screen->format->Amask);
@@ -81,58 +81,58 @@ static void jeu_events(unsigned int &dir, bool &shoot, bool &FinJeu)
         }
         break;
       case SDL_JOYBUTTONUP:
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_HAUT))
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_HAUT))
           dir &= ~Haut;
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_BAS))
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_BAS))
           dir &= ~Bas;
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_GAUCHE))
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_GAUCHE))
           dir &= ~Gauche;
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_DROITE))
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_DROITE))
           dir &= ~Droite;
-        if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
-          shoot = 0;
+        if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+          shoot = false;
         break;
       case SDL_JOYAXISMOTION:
         // TODO : Handle an axis sensibility
         if(SIGN(event.jaxis.value) != 0)
         {
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_HAUT))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_HAUT))
             dir |= Haut;
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_BAS))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_BAS))
             dir |= Bas;
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_GAUCHE))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_GAUCHE))
             dir |= Gauche;
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_DROITE))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_DROITE))
             dir |= Droite;
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
-            shoot = 0;
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+            shoot = true;
         }
         else
         {
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_HAUT))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, configuration->joySensibility()+1, TOUCHE_HAUT))
           {
             dir &= ~Bas;
             dir &= ~Haut;
           }
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_BAS))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, configuration->joySensibility()+1, TOUCHE_BAS))
           {
             dir &= ~Bas;
             dir &= ~Haut;
           }
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_GAUCHE))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, configuration->joySensibility()+1, TOUCHE_GAUCHE))
           {
             dir &= ~Gauche;
             dir &= ~Droite;
           }
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_DROITE))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, configuration->joySensibility()+1, TOUCHE_DROITE))
           {
             dir &= ~Gauche;
             dir &= ~Droite;
           }
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, 1, TOUCHE_ARME))
-            shoot = 0;
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, -1, TOUCHE_ARME))
-            shoot = 0;
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, configuration->joySensibility()+1, TOUCHE_ARME))
+            shoot = false;
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, -configuration->joySensibility()-1, TOUCHE_ARME))
+            shoot = false;
         }
         break;
       case SDL_QUIT:
@@ -248,11 +248,11 @@ void GameOver(unsigned int score, bool practice)
           }
           break;
         case SDL_JOYAXISMOTION:
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
             finished = true;
           break;
         case SDL_JOYBUTTONDOWN:
-          if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+          if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
             finished = true;
           break;
         case SDL_QUIT:
@@ -357,11 +357,11 @@ void GameOver(unsigned int score, bool practice)
             }
             break;
         case SDL_JOYAXISMOTION:
-          if(configuration->isJoystickEvent(event.jaxis.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
+          if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
             finished = true;
           break;
         case SDL_JOYBUTTONDOWN:
-          if(configuration->isJoystickEvent(event.jbutton.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
+          if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, 1, TOUCHE_ARME))
             finished = true;
           break;
           case SDL_QUIT:
@@ -384,7 +384,6 @@ void GameOver(unsigned int score, bool practice)
 void Jeu(bool practice = false)
 {
   bool FinJeu = false;
-  bool pause = false;
   unsigned int dir = Arret;
   SDL_Surface *Screen = SDL_GetVideoSurface();
   std::string levelsListName("levels/levels.lst");
@@ -394,6 +393,7 @@ void Jeu(bool practice = false)
   Uint32 beginning = SDL_GetTicks();
   Uint32 frames = 0;
   bool nextLevel = true;
+  bool shoot = false;
   while(!FinJeu && !jeu->estMort())
   {
     if(nextLevel)
@@ -401,7 +401,6 @@ void Jeu(bool practice = false)
       FinJeu = !jeu->nextLevel(levelsListName);
       level++;
     }
-    bool shoot = false;
     Uint32 debut = SDL_GetTicks();
 
     while((!FinJeu) && (jeu->getLevel()->getPos() < jeu->getLevel()->getEnd()) && !jeu->getVaisseau()->isDead())

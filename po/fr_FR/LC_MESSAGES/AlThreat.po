@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AlThreat 0.3\n"
 "Report-Msgid-Bugs-To: althreat@googlegroups.com\n"
-"POT-Creation-Date: 2007-11-10 00:00+0100\n"
+"POT-Creation-Date: 2008-01-05 10:53+0100\n"
 "PO-Revision-Date: 2007-11-07 22:38+0100\n"
 "Last-Translator:  <colin.pitrat@gmail.com>\n"
 "Language-Team: French\n"
@@ -49,51 +49,51 @@ msgstr "   Vies : "
 msgid "   Energy: "
 msgstr "   Energie : "
 
-#: ../src/Menu.cc:77
+#: ../src/Menu.cc:76
 msgid "Adventure"
 msgstr "Aventure"
 
-#: ../src/Menu.cc:78
+#: ../src/Menu.cc:77
 msgid "Training"
 msgstr "Entrainement"
 
-#: ../src/Menu.cc:79 ../src/MenuJeu.cc:14
+#: ../src/Menu.cc:78 ../src/MenuJeu.cc:14
 msgid "Options"
 msgstr "Options"
 
-#: ../src/Menu.cc:80
+#: ../src/Menu.cc:79
 msgid "Credits"
 msgstr "Credits"
 
-#: ../src/Menu.cc:81
+#: ../src/Menu.cc:80
 msgid "Quit"
 msgstr "Quitter"
 
-#: ../src/Menu.cc:117 ../src/Options.cc:72
+#: ../src/Menu.cc:118 ../src/Options.cc:82
 msgid "OK"
 msgstr "OK"
 
-#: ../src/Menu.cc:146
+#: ../src/Menu.cc:147
 msgid "Development: Skippy"
 msgstr "Programmation : Skippy"
 
-#: ../src/Menu.cc:147
+#: ../src/Menu.cc:148
 msgid "Graphisms: Raz & Skippy"
 msgstr "Graphismes : Raz & Skippy"
 
-#: ../src/Menu.cc:148
+#: ../src/Menu.cc:149
 msgid "Music: Raz & Vavrek"
 msgstr "Musique : Raz & Vavrek"
 
-#: ../src/Menu.cc:149
+#: ../src/Menu.cc:150
 msgid "-=( the3fold )=-"
 msgstr ""
 
-#: ../src/Menu.cc:150
+#: ../src/Menu.cc:151
 msgid "http://www.vavrek.com"
 msgstr ""
 
-#: ../src/Menu.cc:151
+#: ../src/Menu.cc:152
 msgid "http://the3fold.free.fr"
 msgstr ""
 
@@ -122,46 +122,50 @@ msgid "Sounds FX volume:"
 msgstr "Volume des effets sonores :"
 
 #: ../src/Options.cc:50
+msgid "Joystick sensibility:"
+msgstr ""
+
+#: ../src/Options.cc:60
 msgid "Modify controls"
 msgstr "Modifier les controles"
 
-#: ../src/Options.cc:55
+#: ../src/Options.cc:65
 msgid "Language:"
 msgstr "Langue"
 
-#: ../src/Options.cc:77
+#: ../src/Options.cc:87
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Up"
 msgstr "Haut"
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Down"
 msgstr "Bas"
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Left"
 msgstr "Gauche"
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Right"
 msgstr "Droite"
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Fire"
 msgstr "Feu"
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Special weapon"
 msgstr "Arme speciale"
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Shield"
 msgstr "Bouclier"
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Pause"
 msgstr "Pause"
 

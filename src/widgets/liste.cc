@@ -91,11 +91,11 @@ int Liste::filtre(const SDL_Event *event)
     if(focused && event->type == SDL_KEYDOWN)
     {
       int key = event->key.keysym.sym;
-      if (key == SDLK_UP)
+      if (key == SDLK_UP || key == SDLK_LEFT)
       {
         prevValue();
       }
-      if (key == SDLK_DOWN)
+      if (key == SDLK_DOWN || key == SDLK_RIGHT)
       {
         nextValue();
       }

@@ -173,8 +173,8 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-sonsdir = $(datadir)/sons
-sons_DATA = Level1.ogg Level2.ogg Level3.ogg Level4.ogg Level5.ogg Level6.ogg Licenses.txt bonus1.wav bonus2.wav explode.wav explos.wav laser.wav laser2.wav Menusong.ogg
+sonsdir = $(pkgdatadir)/sons
+sons_DATA = Level1.ogg Level2.ogg Level3.ogg Level4.ogg Level5.ogg Level6.ogg Licenses.txt bonus1.wav bonus2.wav bonus3.wav explode.wav explos.wav laser.wav laser2.wav Menusong.ogg
 EXTRA_DIST = $(sons_DATA)
 all: all-am
 

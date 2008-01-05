@@ -11,7 +11,6 @@ Menu::Menu()
   texte = NULL;
   fond = NULL;
 
-  SDL_Surface *Screen = SDL_GetVideoSurface();
   configuration = Configuration::getConfiguration();
   if(!configuration->nosound())
   {
@@ -21,10 +20,9 @@ Menu::Menu()
 
   }
   fond = loadImage((configuration->getDataDir() + "images/Menu.png").c_str());
-  Selected = 0;
 
   menuLayer = new FocusContainer();
-  init_text();
+  init_text(MenuItem_Adventure);
 }
 
 Menu::~Menu()
@@ -66,19 +64,20 @@ void Menu::init()
   }
 }
 
-void Menu::init_text()
+void Menu::init_text(MenuItems sel)
 {
   SDL_Surface *Screen = SDL_GetVideoSurface();
   if(texte) delete[] texte;
+  texte = NULL;
   if(menuLayer) menuLayer->deleteAll();
 
-  nbChoix = 5;
+  nbChoix = NbMenuItems;
   texte = new std::string[nbChoix];
-  texte[0] = _("Adventure");
-  texte[1] = _("Training");
-  texte[2] = _("Options");
-  texte[3] = _("Credits");
-  texte[4] = _("Quit");
+  texte[MenuItem_Adventure] = _("Adventure");
+  texte[MenuItem_Training] = _("Training");
+  texte[MenuItem_Options] = _("Options");
+  texte[MenuItem_Credits] = _("Credits");
+  texte[MenuItem_Quit] = _("Quit");
 
   SDL_Rect dest[nbChoix];
   MenuButton *choixBoutons[nbChoix];
@@ -93,14 +92,16 @@ void Menu::init_text()
     menuLayer->addWidget(choixBoutons[i]);
   }
 
-  menuLayer->focus(choixBoutons[0]);
+  if(sel < MenuItem_Adventure || sel >= NbMenuItems) sel = MenuItem_Adventure;
+  Selected = sel;
+  menuLayer->focus(choixBoutons[sel]);
 }
 
 void Menu::show_options()
 {
-  Options *options = new Options(fond, musique, configuration->getDataDir() + "sons/Menusong.ogg");
-  options->afficher();
-  init_text();
+  Options options(fond, musique, configuration->getDataDir() + "sons/Menusong.ogg");
+  options.afficher();
+  init_text(MenuItem_Options);
 }
 
 void Menu::show_credits()

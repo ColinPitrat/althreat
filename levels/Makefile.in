@@ -173,7 +173,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-levelsdir = $(datadir)/levels
+levelsdir = $(pkgdatadir)/levels
 levels_DATA = level1 level2 level3 level4 level5 level6 levels.lst
 EXTRA_DIST = $(levels_DATA)
 all: all-am

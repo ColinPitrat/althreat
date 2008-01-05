@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: althreat@googlegroups.com\n"
-"POT-Creation-Date: 2007-11-10 00:00+0100\n"
+"POT-Creation-Date: 2008-01-05 11:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,51 +48,51 @@ msgstr ""
 msgid "   Energy: "
 msgstr ""
 
-#: ../src/Menu.cc:77
+#: ../src/Menu.cc:76
 msgid "Adventure"
 msgstr ""
 
-#: ../src/Menu.cc:78
+#: ../src/Menu.cc:77
 msgid "Training"
 msgstr ""
 
-#: ../src/Menu.cc:79 ../src/MenuJeu.cc:14
+#: ../src/Menu.cc:78 ../src/MenuJeu.cc:14
 msgid "Options"
 msgstr ""
 
-#: ../src/Menu.cc:80
+#: ../src/Menu.cc:79
 msgid "Credits"
 msgstr ""
 
-#: ../src/Menu.cc:81
+#: ../src/Menu.cc:80
 msgid "Quit"
 msgstr ""
 
-#: ../src/Menu.cc:117 ../src/Options.cc:72
+#: ../src/Menu.cc:118 ../src/Options.cc:82
 msgid "OK"
 msgstr ""
 
-#: ../src/Menu.cc:146
+#: ../src/Menu.cc:147
 msgid "Development: Skippy"
 msgstr ""
 
-#: ../src/Menu.cc:147
+#: ../src/Menu.cc:148
 msgid "Graphisms: Raz & Skippy"
 msgstr ""
 
-#: ../src/Menu.cc:148
+#: ../src/Menu.cc:149
 msgid "Music: Raz & Vavrek"
 msgstr ""
 
-#: ../src/Menu.cc:149
+#: ../src/Menu.cc:150
 msgid "-=( the3fold )=-"
 msgstr ""
 
-#: ../src/Menu.cc:150
+#: ../src/Menu.cc:151
 msgid "http://www.vavrek.com"
 msgstr ""
 
-#: ../src/Menu.cc:151
+#: ../src/Menu.cc:152
 msgid "http://the3fold.free.fr"
 msgstr ""
 
@@ -121,46 +121,50 @@ msgid "Sounds FX volume:"
 msgstr ""
 
 #: ../src/Options.cc:50
+msgid "Joystick sensibility:"
+msgstr ""
+
+#: ../src/Options.cc:60
 msgid "Modify controls"
 msgstr ""
 
-#: ../src/Options.cc:55
+#: ../src/Options.cc:65
 msgid "Language:"
 msgstr ""
 
-#: ../src/Options.cc:77
+#: ../src/Options.cc:87
 msgid "Cancel"
 msgstr ""
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Up"
 msgstr ""
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Down"
 msgstr ""
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Left"
 msgstr ""
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Right"
 msgstr ""
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Fire"
 msgstr ""
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Special weapon"
 msgstr ""
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Shield"
 msgstr ""
 
-#: ../src/Options.cc:258
+#: ../src/Options.cc:279
 msgid "Pause"
 msgstr ""
 

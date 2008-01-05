@@ -63,6 +63,8 @@ am_AlThreat_OBJECTS = AlThreat-AlThreat.$(OBJEXT) \
 AlThreat_OBJECTS = $(am_AlThreat_OBJECTS)
 AlThreat_LDADD = $(LDADD)
 AlThreat_DEPENDENCIES = $(top_builddir)/src/widgets/libT3F_Widgets.a
+AlThreat_LINK = $(CXXLD) $(AlThreat_CXXFLAGS) $(CXXFLAGS) \
+	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 am_AlThreat_install_OBJECTS =
 AlThreat_install_OBJECTS = $(am_AlThreat_install_OBJECTS)
 AlThreat_install_LDADD = $(LDADD)
@@ -213,6 +215,7 @@ top_srcdir = @top_srcdir@
 INCLUDES = -I$(top_srcdir)/widgets
 LDADD = $(top_builddir)/src/widgets/libT3F_Widgets.a 
 SUBDIRS = widgets
+AlThreat_CXXFLAGS = -Wall
 AlThreat_CPPFLAGS = -DDATADIR="\"$(pkgdatadir)\"" -DSRCDIR="\"$(srcdir)\""
 AlThreat_SOURCES = AlThreat.cc Arme.cc Bonus.cc Configuration.cc Ennemi.cc Game.cc Level.cc Menu.cc MenuJeu.cc Options.cc Projectile.cc Sprite.cc SpriteData.cc TypeBonus.cc TypeEnnemi.cc Vaisseau.cc graphics.cc Arme.h Bonus.h Configuration.h Ennemi.h Game.h Level.h Menu.h MenuJeu.h Options.h Projectile.h Sprite.h SpriteData.h TypeBonus.h TypeEnnemi.h Vaisseau.h config.h graphics.h Joystick.h lang.h
 AlThreat_install_SOURCES = AlThreat_install.in
@@ -294,7 +297,7 @@ clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 AlThreat$(EXEEXT): $(AlThreat_OBJECTS) $(AlThreat_DEPENDENCIES) 
 	@rm -f AlThreat$(EXEEXT)
-	$(CXXLINK) $(AlThreat_OBJECTS) $(AlThreat_LDADD) $(LIBS)
+	$(AlThreat_LINK) $(AlThreat_OBJECTS) $(AlThreat_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -335,242 +338,242 @@ distclean-compile:
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 AlThreat-AlThreat.o: AlThreat.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-AlThreat.o -MD -MP -MF $(DEPDIR)/AlThreat-AlThreat.Tpo -c -o AlThreat-AlThreat.o `test -f 'AlThreat.cc' || echo '$(srcdir)/'`AlThreat.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-AlThreat.o -MD -MP -MF $(DEPDIR)/AlThreat-AlThreat.Tpo -c -o AlThreat-AlThreat.o `test -f 'AlThreat.cc' || echo '$(srcdir)/'`AlThreat.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-AlThreat.Tpo $(DEPDIR)/AlThreat-AlThreat.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='AlThreat.cc' object='AlThreat-AlThreat.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-AlThreat.o `test -f 'AlThreat.cc' || echo '$(srcdir)/'`AlThreat.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-AlThreat.o `test -f 'AlThreat.cc' || echo '$(srcdir)/'`AlThreat.cc
 
 AlThreat-AlThreat.obj: AlThreat.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-AlThreat.obj -MD -MP -MF $(DEPDIR)/AlThreat-AlThreat.Tpo -c -o AlThreat-AlThreat.obj `if test -f 'AlThreat.cc'; then $(CYGPATH_W) 'AlThreat.cc'; else $(CYGPATH_W) '$(srcdir)/AlThreat.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-AlThreat.obj -MD -MP -MF $(DEPDIR)/AlThreat-AlThreat.Tpo -c -o AlThreat-AlThreat.obj `if test -f 'AlThreat.cc'; then $(CYGPATH_W) 'AlThreat.cc'; else $(CYGPATH_W) '$(srcdir)/AlThreat.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-AlThreat.Tpo $(DEPDIR)/AlThreat-AlThreat.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='AlThreat.cc' object='AlThreat-AlThreat.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-AlThreat.obj `if test -f 'AlThreat.cc'; then $(CYGPATH_W) 'AlThreat.cc'; else $(CYGPATH_W) '$(srcdir)/AlThreat.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-AlThreat.obj `if test -f 'AlThreat.cc'; then $(CYGPATH_W) 'AlThreat.cc'; else $(CYGPATH_W) '$(srcdir)/AlThreat.cc'; fi`
 
 AlThreat-Arme.o: Arme.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Arme.o -MD -MP -MF $(DEPDIR)/AlThreat-Arme.Tpo -c -o AlThreat-Arme.o `test -f 'Arme.cc' || echo '$(srcdir)/'`Arme.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Arme.o -MD -MP -MF $(DEPDIR)/AlThreat-Arme.Tpo -c -o AlThreat-Arme.o `test -f 'Arme.cc' || echo '$(srcdir)/'`Arme.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Arme.Tpo $(DEPDIR)/AlThreat-Arme.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Arme.cc' object='AlThreat-Arme.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Arme.o `test -f 'Arme.cc' || echo '$(srcdir)/'`Arme.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Arme.o `test -f 'Arme.cc' || echo '$(srcdir)/'`Arme.cc
 
 AlThreat-Arme.obj: Arme.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Arme.obj -MD -MP -MF $(DEPDIR)/AlThreat-Arme.Tpo -c -o AlThreat-Arme.obj `if test -f 'Arme.cc'; then $(CYGPATH_W) 'Arme.cc'; else $(CYGPATH_W) '$(srcdir)/Arme.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Arme.obj -MD -MP -MF $(DEPDIR)/AlThreat-Arme.Tpo -c -o AlThreat-Arme.obj `if test -f 'Arme.cc'; then $(CYGPATH_W) 'Arme.cc'; else $(CYGPATH_W) '$(srcdir)/Arme.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Arme.Tpo $(DEPDIR)/AlThreat-Arme.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Arme.cc' object='AlThreat-Arme.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Arme.obj `if test -f 'Arme.cc'; then $(CYGPATH_W) 'Arme.cc'; else $(CYGPATH_W) '$(srcdir)/Arme.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Arme.obj `if test -f 'Arme.cc'; then $(CYGPATH_W) 'Arme.cc'; else $(CYGPATH_W) '$(srcdir)/Arme.cc'; fi`
 
 AlThreat-Bonus.o: Bonus.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Bonus.o -MD -MP -MF $(DEPDIR)/AlThreat-Bonus.Tpo -c -o AlThreat-Bonus.o `test -f 'Bonus.cc' || echo '$(srcdir)/'`Bonus.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Bonus.o -MD -MP -MF $(DEPDIR)/AlThreat-Bonus.Tpo -c -o AlThreat-Bonus.o `test -f 'Bonus.cc' || echo '$(srcdir)/'`Bonus.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Bonus.Tpo $(DEPDIR)/AlThreat-Bonus.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Bonus.cc' object='AlThreat-Bonus.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Bonus.o `test -f 'Bonus.cc' || echo '$(srcdir)/'`Bonus.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Bonus.o `test -f 'Bonus.cc' || echo '$(srcdir)/'`Bonus.cc
 
 AlThreat-Bonus.obj: Bonus.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Bonus.obj -MD -MP -MF $(DEPDIR)/AlThreat-Bonus.Tpo -c -o AlThreat-Bonus.obj `if test -f 'Bonus.cc'; then $(CYGPATH_W) 'Bonus.cc'; else $(CYGPATH_W) '$(srcdir)/Bonus.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Bonus.obj -MD -MP -MF $(DEPDIR)/AlThreat-Bonus.Tpo -c -o AlThreat-Bonus.obj `if test -f 'Bonus.cc'; then $(CYGPATH_W) 'Bonus.cc'; else $(CYGPATH_W) '$(srcdir)/Bonus.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Bonus.Tpo $(DEPDIR)/AlThreat-Bonus.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Bonus.cc' object='AlThreat-Bonus.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Bonus.obj `if test -f 'Bonus.cc'; then $(CYGPATH_W) 'Bonus.cc'; else $(CYGPATH_W) '$(srcdir)/Bonus.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Bonus.obj `if test -f 'Bonus.cc'; then $(CYGPATH_W) 'Bonus.cc'; else $(CYGPATH_W) '$(srcdir)/Bonus.cc'; fi`
 
 AlThreat-Configuration.o: Configuration.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Configuration.o -MD -MP -MF $(DEPDIR)/AlThreat-Configuration.Tpo -c -o AlThreat-Configuration.o `test -f 'Configuration.cc' || echo '$(srcdir)/'`Configuration.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Configuration.o -MD -MP -MF $(DEPDIR)/AlThreat-Configuration.Tpo -c -o AlThreat-Configuration.o `test -f 'Configuration.cc' || echo '$(srcdir)/'`Configuration.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Configuration.Tpo $(DEPDIR)/AlThreat-Configuration.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Configuration.cc' object='AlThreat-Configuration.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Configuration.o `test -f 'Configuration.cc' || echo '$(srcdir)/'`Configuration.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Configuration.o `test -f 'Configuration.cc' || echo '$(srcdir)/'`Configuration.cc
 
 AlThreat-Configuration.obj: Configuration.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Configuration.obj -MD -MP -MF $(DEPDIR)/AlThreat-Configuration.Tpo -c -o AlThreat-Configuration.obj `if test -f 'Configuration.cc'; then $(CYGPATH_W) 'Configuration.cc'; else $(CYGPATH_W) '$(srcdir)/Configuration.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Configuration.obj -MD -MP -MF $(DEPDIR)/AlThreat-Configuration.Tpo -c -o AlThreat-Configuration.obj `if test -f 'Configuration.cc'; then $(CYGPATH_W) 'Configuration.cc'; else $(CYGPATH_W) '$(srcdir)/Configuration.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Configuration.Tpo $(DEPDIR)/AlThreat-Configuration.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Configuration.cc' object='AlThreat-Configuration.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Configuration.obj `if test -f 'Configuration.cc'; then $(CYGPATH_W) 'Configuration.cc'; else $(CYGPATH_W) '$(srcdir)/Configuration.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Configuration.obj `if test -f 'Configuration.cc'; then $(CYGPATH_W) 'Configuration.cc'; else $(CYGPATH_W) '$(srcdir)/Configuration.cc'; fi`
 
 AlThreat-Ennemi.o: Ennemi.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Ennemi.o -MD -MP -MF $(DEPDIR)/AlThreat-Ennemi.Tpo -c -o AlThreat-Ennemi.o `test -f 'Ennemi.cc' || echo '$(srcdir)/'`Ennemi.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Ennemi.o -MD -MP -MF $(DEPDIR)/AlThreat-Ennemi.Tpo -c -o AlThreat-Ennemi.o `test -f 'Ennemi.cc' || echo '$(srcdir)/'`Ennemi.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Ennemi.Tpo $(DEPDIR)/AlThreat-Ennemi.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Ennemi.cc' object='AlThreat-Ennemi.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Ennemi.o `test -f 'Ennemi.cc' || echo '$(srcdir)/'`Ennemi.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Ennemi.o `test -f 'Ennemi.cc' || echo '$(srcdir)/'`Ennemi.cc
 
 AlThreat-Ennemi.obj: Ennemi.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Ennemi.obj -MD -MP -MF $(DEPDIR)/AlThreat-Ennemi.Tpo -c -o AlThreat-Ennemi.obj `if test -f 'Ennemi.cc'; then $(CYGPATH_W) 'Ennemi.cc'; else $(CYGPATH_W) '$(srcdir)/Ennemi.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Ennemi.obj -MD -MP -MF $(DEPDIR)/AlThreat-Ennemi.Tpo -c -o AlThreat-Ennemi.obj `if test -f 'Ennemi.cc'; then $(CYGPATH_W) 'Ennemi.cc'; else $(CYGPATH_W) '$(srcdir)/Ennemi.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Ennemi.Tpo $(DEPDIR)/AlThreat-Ennemi.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Ennemi.cc' object='AlThreat-Ennemi.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Ennemi.obj `if test -f 'Ennemi.cc'; then $(CYGPATH_W) 'Ennemi.cc'; else $(CYGPATH_W) '$(srcdir)/Ennemi.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Ennemi.obj `if test -f 'Ennemi.cc'; then $(CYGPATH_W) 'Ennemi.cc'; else $(CYGPATH_W) '$(srcdir)/Ennemi.cc'; fi`
 
 AlThreat-Game.o: Game.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Game.o -MD -MP -MF $(DEPDIR)/AlThreat-Game.Tpo -c -o AlThreat-Game.o `test -f 'Game.cc' || echo '$(srcdir)/'`Game.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Game.o -MD -MP -MF $(DEPDIR)/AlThreat-Game.Tpo -c -o AlThreat-Game.o `test -f 'Game.cc' || echo '$(srcdir)/'`Game.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Game.Tpo $(DEPDIR)/AlThreat-Game.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Game.cc' object='AlThreat-Game.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Game.o `test -f 'Game.cc' || echo '$(srcdir)/'`Game.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Game.o `test -f 'Game.cc' || echo '$(srcdir)/'`Game.cc
 
 AlThreat-Game.obj: Game.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Game.obj -MD -MP -MF $(DEPDIR)/AlThreat-Game.Tpo -c -o AlThreat-Game.obj `if test -f 'Game.cc'; then $(CYGPATH_W) 'Game.cc'; else $(CYGPATH_W) '$(srcdir)/Game.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Game.obj -MD -MP -MF $(DEPDIR)/AlThreat-Game.Tpo -c -o AlThreat-Game.obj `if test -f 'Game.cc'; then $(CYGPATH_W) 'Game.cc'; else $(CYGPATH_W) '$(srcdir)/Game.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Game.Tpo $(DEPDIR)/AlThreat-Game.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Game.cc' object='AlThreat-Game.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Game.obj `if test -f 'Game.cc'; then $(CYGPATH_W) 'Game.cc'; else $(CYGPATH_W) '$(srcdir)/Game.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Game.obj `if test -f 'Game.cc'; then $(CYGPATH_W) 'Game.cc'; else $(CYGPATH_W) '$(srcdir)/Game.cc'; fi`
 
 AlThreat-Level.o: Level.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Level.o -MD -MP -MF $(DEPDIR)/AlThreat-Level.Tpo -c -o AlThreat-Level.o `test -f 'Level.cc' || echo '$(srcdir)/'`Level.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Level.o -MD -MP -MF $(DEPDIR)/AlThreat-Level.Tpo -c -o AlThreat-Level.o `test -f 'Level.cc' || echo '$(srcdir)/'`Level.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Level.Tpo $(DEPDIR)/AlThreat-Level.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Level.cc' object='AlThreat-Level.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Level.o `test -f 'Level.cc' || echo '$(srcdir)/'`Level.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Level.o `test -f 'Level.cc' || echo '$(srcdir)/'`Level.cc
 
 AlThreat-Level.obj: Level.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Level.obj -MD -MP -MF $(DEPDIR)/AlThreat-Level.Tpo -c -o AlThreat-Level.obj `if test -f 'Level.cc'; then $(CYGPATH_W) 'Level.cc'; else $(CYGPATH_W) '$(srcdir)/Level.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Level.obj -MD -MP -MF $(DEPDIR)/AlThreat-Level.Tpo -c -o AlThreat-Level.obj `if test -f 'Level.cc'; then $(CYGPATH_W) 'Level.cc'; else $(CYGPATH_W) '$(srcdir)/Level.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Level.Tpo $(DEPDIR)/AlThreat-Level.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Level.cc' object='AlThreat-Level.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Level.obj `if test -f 'Level.cc'; then $(CYGPATH_W) 'Level.cc'; else $(CYGPATH_W) '$(srcdir)/Level.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Level.obj `if test -f 'Level.cc'; then $(CYGPATH_W) 'Level.cc'; else $(CYGPATH_W) '$(srcdir)/Level.cc'; fi`
 
 AlThreat-Menu.o: Menu.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Menu.o -MD -MP -MF $(DEPDIR)/AlThreat-Menu.Tpo -c -o AlThreat-Menu.o `test -f 'Menu.cc' || echo '$(srcdir)/'`Menu.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Menu.o -MD -MP -MF $(DEPDIR)/AlThreat-Menu.Tpo -c -o AlThreat-Menu.o `test -f 'Menu.cc' || echo '$(srcdir)/'`Menu.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Menu.Tpo $(DEPDIR)/AlThreat-Menu.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Menu.cc' object='AlThreat-Menu.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Menu.o `test -f 'Menu.cc' || echo '$(srcdir)/'`Menu.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Menu.o `test -f 'Menu.cc' || echo '$(srcdir)/'`Menu.cc
 
 AlThreat-Menu.obj: Menu.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Menu.obj -MD -MP -MF $(DEPDIR)/AlThreat-Menu.Tpo -c -o AlThreat-Menu.obj `if test -f 'Menu.cc'; then $(CYGPATH_W) 'Menu.cc'; else $(CYGPATH_W) '$(srcdir)/Menu.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Menu.obj -MD -MP -MF $(DEPDIR)/AlThreat-Menu.Tpo -c -o AlThreat-Menu.obj `if test -f 'Menu.cc'; then $(CYGPATH_W) 'Menu.cc'; else $(CYGPATH_W) '$(srcdir)/Menu.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Menu.Tpo $(DEPDIR)/AlThreat-Menu.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Menu.cc' object='AlThreat-Menu.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Menu.obj `if test -f 'Menu.cc'; then $(CYGPATH_W) 'Menu.cc'; else $(CYGPATH_W) '$(srcdir)/Menu.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Menu.obj `if test -f 'Menu.cc'; then $(CYGPATH_W) 'Menu.cc'; else $(CYGPATH_W) '$(srcdir)/Menu.cc'; fi`
 
 AlThreat-MenuJeu.o: MenuJeu.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-MenuJeu.o -MD -MP -MF $(DEPDIR)/AlThreat-MenuJeu.Tpo -c -o AlThreat-MenuJeu.o `test -f 'MenuJeu.cc' || echo '$(srcdir)/'`MenuJeu.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-MenuJeu.o -MD -MP -MF $(DEPDIR)/AlThreat-MenuJeu.Tpo -c -o AlThreat-MenuJeu.o `test -f 'MenuJeu.cc' || echo '$(srcdir)/'`MenuJeu.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-MenuJeu.Tpo $(DEPDIR)/AlThreat-MenuJeu.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MenuJeu.cc' object='AlThreat-MenuJeu.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-MenuJeu.o `test -f 'MenuJeu.cc' || echo '$(srcdir)/'`MenuJeu.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-MenuJeu.o `test -f 'MenuJeu.cc' || echo '$(srcdir)/'`MenuJeu.cc
 
 AlThreat-MenuJeu.obj: MenuJeu.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-MenuJeu.obj -MD -MP -MF $(DEPDIR)/AlThreat-MenuJeu.Tpo -c -o AlThreat-MenuJeu.obj `if test -f 'MenuJeu.cc'; then $(CYGPATH_W) 'MenuJeu.cc'; else $(CYGPATH_W) '$(srcdir)/MenuJeu.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-MenuJeu.obj -MD -MP -MF $(DEPDIR)/AlThreat-MenuJeu.Tpo -c -o AlThreat-MenuJeu.obj `if test -f 'MenuJeu.cc'; then $(CYGPATH_W) 'MenuJeu.cc'; else $(CYGPATH_W) '$(srcdir)/MenuJeu.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-MenuJeu.Tpo $(DEPDIR)/AlThreat-MenuJeu.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MenuJeu.cc' object='AlThreat-MenuJeu.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-MenuJeu.obj `if test -f 'MenuJeu.cc'; then $(CYGPATH_W) 'MenuJeu.cc'; else $(CYGPATH_W) '$(srcdir)/MenuJeu.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-MenuJeu.obj `if test -f 'MenuJeu.cc'; then $(CYGPATH_W) 'MenuJeu.cc'; else $(CYGPATH_W) '$(srcdir)/MenuJeu.cc'; fi`
 
 AlThreat-Options.o: Options.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Options.o -MD -MP -MF $(DEPDIR)/AlThreat-Options.Tpo -c -o AlThreat-Options.o `test -f 'Options.cc' || echo '$(srcdir)/'`Options.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Options.o -MD -MP -MF $(DEPDIR)/AlThreat-Options.Tpo -c -o AlThreat-Options.o `test -f 'Options.cc' || echo '$(srcdir)/'`Options.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Options.Tpo $(DEPDIR)/AlThreat-Options.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Options.cc' object='AlThreat-Options.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Options.o `test -f 'Options.cc' || echo '$(srcdir)/'`Options.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Options.o `test -f 'Options.cc' || echo '$(srcdir)/'`Options.cc
 
 AlThreat-Options.obj: Options.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Options.obj -MD -MP -MF $(DEPDIR)/AlThreat-Options.Tpo -c -o AlThreat-Options.obj `if test -f 'Options.cc'; then $(CYGPATH_W) 'Options.cc'; else $(CYGPATH_W) '$(srcdir)/Options.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Options.obj -MD -MP -MF $(DEPDIR)/AlThreat-Options.Tpo -c -o AlThreat-Options.obj `if test -f 'Options.cc'; then $(CYGPATH_W) 'Options.cc'; else $(CYGPATH_W) '$(srcdir)/Options.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Options.Tpo $(DEPDIR)/AlThreat-Options.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Options.cc' object='AlThreat-Options.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Options.obj `if test -f 'Options.cc'; then $(CYGPATH_W) 'Options.cc'; else $(CYGPATH_W) '$(srcdir)/Options.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Options.obj `if test -f 'Options.cc'; then $(CYGPATH_W) 'Options.cc'; else $(CYGPATH_W) '$(srcdir)/Options.cc'; fi`
 
 AlThreat-Projectile.o: Projectile.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Projectile.o -MD -MP -MF $(DEPDIR)/AlThreat-Projectile.Tpo -c -o AlThreat-Projectile.o `test -f 'Projectile.cc' || echo '$(srcdir)/'`Projectile.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Projectile.o -MD -MP -MF $(DEPDIR)/AlThreat-Projectile.Tpo -c -o AlThreat-Projectile.o `test -f 'Projectile.cc' || echo '$(srcdir)/'`Projectile.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Projectile.Tpo $(DEPDIR)/AlThreat-Projectile.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Projectile.cc' object='AlThreat-Projectile.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Projectile.o `test -f 'Projectile.cc' || echo '$(srcdir)/'`Projectile.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Projectile.o `test -f 'Projectile.cc' || echo '$(srcdir)/'`Projectile.cc
 
 AlThreat-Projectile.obj: Projectile.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Projectile.obj -MD -MP -MF $(DEPDIR)/AlThreat-Projectile.Tpo -c -o AlThreat-Projectile.obj `if test -f 'Projectile.cc'; then $(CYGPATH_W) 'Projectile.cc'; else $(CYGPATH_W) '$(srcdir)/Projectile.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Projectile.obj -MD -MP -MF $(DEPDIR)/AlThreat-Projectile.Tpo -c -o AlThreat-Projectile.obj `if test -f 'Projectile.cc'; then $(CYGPATH_W) 'Projectile.cc'; else $(CYGPATH_W) '$(srcdir)/Projectile.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Projectile.Tpo $(DEPDIR)/AlThreat-Projectile.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Projectile.cc' object='AlThreat-Projectile.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Projectile.obj `if test -f 'Projectile.cc'; then $(CYGPATH_W) 'Projectile.cc'; else $(CYGPATH_W) '$(srcdir)/Projectile.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Projectile.obj `if test -f 'Projectile.cc'; then $(CYGPATH_W) 'Projectile.cc'; else $(CYGPATH_W) '$(srcdir)/Projectile.cc'; fi`
 
 AlThreat-Sprite.o: Sprite.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Sprite.o -MD -MP -MF $(DEPDIR)/AlThreat-Sprite.Tpo -c -o AlThreat-Sprite.o `test -f 'Sprite.cc' || echo '$(srcdir)/'`Sprite.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Sprite.o -MD -MP -MF $(DEPDIR)/AlThreat-Sprite.Tpo -c -o AlThreat-Sprite.o `test -f 'Sprite.cc' || echo '$(srcdir)/'`Sprite.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Sprite.Tpo $(DEPDIR)/AlThreat-Sprite.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Sprite.cc' object='AlThreat-Sprite.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Sprite.o `test -f 'Sprite.cc' || echo '$(srcdir)/'`Sprite.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Sprite.o `test -f 'Sprite.cc' || echo '$(srcdir)/'`Sprite.cc
 
 AlThreat-Sprite.obj: Sprite.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Sprite.obj -MD -MP -MF $(DEPDIR)/AlThreat-Sprite.Tpo -c -o AlThreat-Sprite.obj `if test -f 'Sprite.cc'; then $(CYGPATH_W) 'Sprite.cc'; else $(CYGPATH_W) '$(srcdir)/Sprite.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Sprite.obj -MD -MP -MF $(DEPDIR)/AlThreat-Sprite.Tpo -c -o AlThreat-Sprite.obj `if test -f 'Sprite.cc'; then $(CYGPATH_W) 'Sprite.cc'; else $(CYGPATH_W) '$(srcdir)/Sprite.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Sprite.Tpo $(DEPDIR)/AlThreat-Sprite.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Sprite.cc' object='AlThreat-Sprite.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Sprite.obj `if test -f 'Sprite.cc'; then $(CYGPATH_W) 'Sprite.cc'; else $(CYGPATH_W) '$(srcdir)/Sprite.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Sprite.obj `if test -f 'Sprite.cc'; then $(CYGPATH_W) 'Sprite.cc'; else $(CYGPATH_W) '$(srcdir)/Sprite.cc'; fi`
 
 AlThreat-SpriteData.o: SpriteData.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-SpriteData.o -MD -MP -MF $(DEPDIR)/AlThreat-SpriteData.Tpo -c -o AlThreat-SpriteData.o `test -f 'SpriteData.cc' || echo '$(srcdir)/'`SpriteData.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-SpriteData.o -MD -MP -MF $(DEPDIR)/AlThreat-SpriteData.Tpo -c -o AlThreat-SpriteData.o `test -f 'SpriteData.cc' || echo '$(srcdir)/'`SpriteData.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-SpriteData.Tpo $(DEPDIR)/AlThreat-SpriteData.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SpriteData.cc' object='AlThreat-SpriteData.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-SpriteData.o `test -f 'SpriteData.cc' || echo '$(srcdir)/'`SpriteData.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-SpriteData.o `test -f 'SpriteData.cc' || echo '$(srcdir)/'`SpriteData.cc
 
 AlThreat-SpriteData.obj: SpriteData.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-SpriteData.obj -MD -MP -MF $(DEPDIR)/AlThreat-SpriteData.Tpo -c -o AlThreat-SpriteData.obj `if test -f 'SpriteData.cc'; then $(CYGPATH_W) 'SpriteData.cc'; else $(CYGPATH_W) '$(srcdir)/SpriteData.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-SpriteData.obj -MD -MP -MF $(DEPDIR)/AlThreat-SpriteData.Tpo -c -o AlThreat-SpriteData.obj `if test -f 'SpriteData.cc'; then $(CYGPATH_W) 'SpriteData.cc'; else $(CYGPATH_W) '$(srcdir)/SpriteData.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-SpriteData.Tpo $(DEPDIR)/AlThreat-SpriteData.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SpriteData.cc' object='AlThreat-SpriteData.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-SpriteData.obj `if test -f 'SpriteData.cc'; then $(CYGPATH_W) 'SpriteData.cc'; else $(CYGPATH_W) '$(srcdir)/SpriteData.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-SpriteData.obj `if test -f 'SpriteData.cc'; then $(CYGPATH_W) 'SpriteData.cc'; else $(CYGPATH_W) '$(srcdir)/SpriteData.cc'; fi`
 
 AlThreat-TypeBonus.o: TypeBonus.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-TypeBonus.o -MD -MP -MF $(DEPDIR)/AlThreat-TypeBonus.Tpo -c -o AlThreat-TypeBonus.o `test -f 'TypeBonus.cc' || echo '$(srcdir)/'`TypeBonus.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-TypeBonus.o -MD -MP -MF $(DEPDIR)/AlThreat-TypeBonus.Tpo -c -o AlThreat-TypeBonus.o `test -f 'TypeBonus.cc' || echo '$(srcdir)/'`TypeBonus.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-TypeBonus.Tpo $(DEPDIR)/AlThreat-TypeBonus.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TypeBonus.cc' object='AlThreat-TypeBonus.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-TypeBonus.o `test -f 'TypeBonus.cc' || echo '$(srcdir)/'`TypeBonus.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-TypeBonus.o `test -f 'TypeBonus.cc' || echo '$(srcdir)/'`TypeBonus.cc
 
 AlThreat-TypeBonus.obj: TypeBonus.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-TypeBonus.obj -MD -MP -MF $(DEPDIR)/AlThreat-TypeBonus.Tpo -c -o AlThreat-TypeBonus.obj `if test -f 'TypeBonus.cc'; then $(CYGPATH_W) 'TypeBonus.cc'; else $(CYGPATH_W) '$(srcdir)/TypeBonus.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-TypeBonus.obj -MD -MP -MF $(DEPDIR)/AlThreat-TypeBonus.Tpo -c -o AlThreat-TypeBonus.obj `if test -f 'TypeBonus.cc'; then $(CYGPATH_W) 'TypeBonus.cc'; else $(CYGPATH_W) '$(srcdir)/TypeBonus.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-TypeBonus.Tpo $(DEPDIR)/AlThreat-TypeBonus.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TypeBonus.cc' object='AlThreat-TypeBonus.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-TypeBonus.obj `if test -f 'TypeBonus.cc'; then $(CYGPATH_W) 'TypeBonus.cc'; else $(CYGPATH_W) '$(srcdir)/TypeBonus.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-TypeBonus.obj `if test -f 'TypeBonus.cc'; then $(CYGPATH_W) 'TypeBonus.cc'; else $(CYGPATH_W) '$(srcdir)/TypeBonus.cc'; fi`
 
 AlThreat-TypeEnnemi.o: TypeEnnemi.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-TypeEnnemi.o -MD -MP -MF $(DEPDIR)/AlThreat-TypeEnnemi.Tpo -c -o AlThreat-TypeEnnemi.o `test -f 'TypeEnnemi.cc' || echo '$(srcdir)/'`TypeEnnemi.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-TypeEnnemi.o -MD -MP -MF $(DEPDIR)/AlThreat-TypeEnnemi.Tpo -c -o AlThreat-TypeEnnemi.o `test -f 'TypeEnnemi.cc' || echo '$(srcdir)/'`TypeEnnemi.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-TypeEnnemi.Tpo $(DEPDIR)/AlThreat-TypeEnnemi.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TypeEnnemi.cc' object='AlThreat-TypeEnnemi.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-TypeEnnemi.o `test -f 'TypeEnnemi.cc' || echo '$(srcdir)/'`TypeEnnemi.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-TypeEnnemi.o `test -f 'TypeEnnemi.cc' || echo '$(srcdir)/'`TypeEnnemi.cc
 
 AlThreat-TypeEnnemi.obj: TypeEnnemi.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-TypeEnnemi.obj -MD -MP -MF $(DEPDIR)/AlThreat-TypeEnnemi.Tpo -c -o AlThreat-TypeEnnemi.obj `if test -f 'TypeEnnemi.cc'; then $(CYGPATH_W) 'TypeEnnemi.cc'; else $(CYGPATH_W) '$(srcdir)/TypeEnnemi.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-TypeEnnemi.obj -MD -MP -MF $(DEPDIR)/AlThreat-TypeEnnemi.Tpo -c -o AlThreat-TypeEnnemi.obj `if test -f 'TypeEnnemi.cc'; then $(CYGPATH_W) 'TypeEnnemi.cc'; else $(CYGPATH_W) '$(srcdir)/TypeEnnemi.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-TypeEnnemi.Tpo $(DEPDIR)/AlThreat-TypeEnnemi.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TypeEnnemi.cc' object='AlThreat-TypeEnnemi.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-TypeEnnemi.obj `if test -f 'TypeEnnemi.cc'; then $(CYGPATH_W) 'TypeEnnemi.cc'; else $(CYGPATH_W) '$(srcdir)/TypeEnnemi.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-TypeEnnemi.obj `if test -f 'TypeEnnemi.cc'; then $(CYGPATH_W) 'TypeEnnemi.cc'; else $(CYGPATH_W) '$(srcdir)/TypeEnnemi.cc'; fi`
 
 AlThreat-Vaisseau.o: Vaisseau.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Vaisseau.o -MD -MP -MF $(DEPDIR)/AlThreat-Vaisseau.Tpo -c -o AlThreat-Vaisseau.o `test -f 'Vaisseau.cc' || echo '$(srcdir)/'`Vaisseau.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Vaisseau.o -MD -MP -MF $(DEPDIR)/AlThreat-Vaisseau.Tpo -c -o AlThreat-Vaisseau.o `test -f 'Vaisseau.cc' || echo '$(srcdir)/'`Vaisseau.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Vaisseau.Tpo $(DEPDIR)/AlThreat-Vaisseau.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Vaisseau.cc' object='AlThreat-Vaisseau.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Vaisseau.o `test -f 'Vaisseau.cc' || echo '$(srcdir)/'`Vaisseau.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Vaisseau.o `test -f 'Vaisseau.cc' || echo '$(srcdir)/'`Vaisseau.cc
 
 AlThreat-Vaisseau.obj: Vaisseau.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Vaisseau.obj -MD -MP -MF $(DEPDIR)/AlThreat-Vaisseau.Tpo -c -o AlThreat-Vaisseau.obj `if test -f 'Vaisseau.cc'; then $(CYGPATH_W) 'Vaisseau.cc'; else $(CYGPATH_W) '$(srcdir)/Vaisseau.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-Vaisseau.obj -MD -MP -MF $(DEPDIR)/AlThreat-Vaisseau.Tpo -c -o AlThreat-Vaisseau.obj `if test -f 'Vaisseau.cc'; then $(CYGPATH_W) 'Vaisseau.cc'; else $(CYGPATH_W) '$(srcdir)/Vaisseau.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-Vaisseau.Tpo $(DEPDIR)/AlThreat-Vaisseau.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Vaisseau.cc' object='AlThreat-Vaisseau.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Vaisseau.obj `if test -f 'Vaisseau.cc'; then $(CYGPATH_W) 'Vaisseau.cc'; else $(CYGPATH_W) '$(srcdir)/Vaisseau.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-Vaisseau.obj `if test -f 'Vaisseau.cc'; then $(CYGPATH_W) 'Vaisseau.cc'; else $(CYGPATH_W) '$(srcdir)/Vaisseau.cc'; fi`
 
 AlThreat-graphics.o: graphics.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-graphics.o -MD -MP -MF $(DEPDIR)/AlThreat-graphics.Tpo -c -o AlThreat-graphics.o `test -f 'graphics.cc' || echo '$(srcdir)/'`graphics.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-graphics.o -MD -MP -MF $(DEPDIR)/AlThreat-graphics.Tpo -c -o AlThreat-graphics.o `test -f 'graphics.cc' || echo '$(srcdir)/'`graphics.cc
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-graphics.Tpo $(DEPDIR)/AlThreat-graphics.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='graphics.cc' object='AlThreat-graphics.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-graphics.o `test -f 'graphics.cc' || echo '$(srcdir)/'`graphics.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-graphics.o `test -f 'graphics.cc' || echo '$(srcdir)/'`graphics.cc
 
 AlThreat-graphics.obj: graphics.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-graphics.obj -MD -MP -MF $(DEPDIR)/AlThreat-graphics.Tpo -c -o AlThreat-graphics.obj `if test -f 'graphics.cc'; then $(CYGPATH_W) 'graphics.cc'; else $(CYGPATH_W) '$(srcdir)/graphics.cc'; fi`
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -MT AlThreat-graphics.obj -MD -MP -MF $(DEPDIR)/AlThreat-graphics.Tpo -c -o AlThreat-graphics.obj `if test -f 'graphics.cc'; then $(CYGPATH_W) 'graphics.cc'; else $(CYGPATH_W) '$(srcdir)/graphics.cc'; fi`
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/AlThreat-graphics.Tpo $(DEPDIR)/AlThreat-graphics.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='graphics.cc' object='AlThreat-graphics.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-graphics.obj `if test -f 'graphics.cc'; then $(CYGPATH_W) 'graphics.cc'; else $(CYGPATH_W) '$(srcdir)/graphics.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AlThreat_CPPFLAGS) $(CPPFLAGS) $(AlThreat_CXXFLAGS) $(CXXFLAGS) -c -o AlThreat-graphics.obj `if test -f 'graphics.cc'; then $(CYGPATH_W) 'graphics.cc'; else $(CYGPATH_W) '$(srcdir)/graphics.cc'; fi`
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run `make' without going through this Makefile.

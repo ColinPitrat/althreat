@@ -132,7 +132,7 @@ bool Game::resetLevel(std::string filename)
   std::string levelFile;
   unsigned int nbLevels;
 
-  // Recherche le fichier correspondant au prochain level dans la liste des levels
+  // Recharge le fichier correspondant au level
   {
     levelsList.open((configuration->getDataDir() + filename.c_str()).c_str(),std::ios::in);
     if(!levelsList)

@@ -10,6 +10,8 @@
 #include "widgets/switch.h"
 #include "widgets/menubutton.h"
 
+enum MenuItems { MenuItem_Adventure = 0, MenuItem_Training, MenuItem_Options, MenuItem_Credits, MenuItem_Quit, NbMenuItems };
+
 class Menu
 {
   public:
@@ -19,7 +21,7 @@ class Menu
     unsigned char show(Game *&jeu);
     ~Menu();
     void init();
-    void init_text();
+    void init_text(MenuItems sel);
 
   private:
     Menu();

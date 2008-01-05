@@ -51,11 +51,18 @@ AR = ar
 ARFLAGS = cru
 libT3F_Widgets_a_AR = $(AR) $(ARFLAGS)
 libT3F_Widgets_a_LIBADD =
-am_libT3F_Widgets_a_OBJECTS = bouton.$(OBJEXT) checkbox.$(OBJEXT) \
-	container.$(OBJEXT) edit.$(OBJEXT) focuscontainer.$(OBJEXT) \
-	jauge.$(OBJEXT) label.$(OBJEXT) liste.$(OBJEXT) \
-	menubutton.$(OBJEXT) switch.$(OBJEXT) view.$(OBJEXT) \
-	widget.$(OBJEXT)
+am_libT3F_Widgets_a_OBJECTS = libT3F_Widgets_a-bouton.$(OBJEXT) \
+	libT3F_Widgets_a-checkbox.$(OBJEXT) \
+	libT3F_Widgets_a-container.$(OBJEXT) \
+	libT3F_Widgets_a-edit.$(OBJEXT) \
+	libT3F_Widgets_a-focuscontainer.$(OBJEXT) \
+	libT3F_Widgets_a-jauge.$(OBJEXT) \
+	libT3F_Widgets_a-label.$(OBJEXT) \
+	libT3F_Widgets_a-liste.$(OBJEXT) \
+	libT3F_Widgets_a-menubutton.$(OBJEXT) \
+	libT3F_Widgets_a-switch.$(OBJEXT) \
+	libT3F_Widgets_a-view.$(OBJEXT) \
+	libT3F_Widgets_a-widget.$(OBJEXT)
 libT3F_Widgets_a_OBJECTS = $(am_libT3F_Widgets_a_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/src@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -190,6 +197,7 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 noinst_LIBRARIES = libT3F_Widgets.a
+libT3F_Widgets_a_CXXFLAGS = -Wall
 libT3F_Widgets_a_SOURCES = bouton.cc checkbox.cc container.cc edit.cc focuscontainer.cc jauge.cc label.cc liste.cc menubutton.cc switch.cc view.cc widget.cc bouton.h checkbox.h constantes.h container.h edit.h focuscontainer.h jauge.h label.h liste.h menubutton.h switch.h view.h widget.h
 all: all-am
 
@@ -238,18 +246,18 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bouton.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/checkbox.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/container.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/edit.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/focuscontainer.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/jauge.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/label.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/liste.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/menubutton.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/switch.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/view.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/widget.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-bouton.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-checkbox.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-container.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-edit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-focuscontainer.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-jauge.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-label.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-liste.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-menubutton.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-switch.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-view.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libT3F_Widgets_a-widget.Po@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -264,6 +272,174 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+libT3F_Widgets_a-bouton.o: bouton.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-bouton.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-bouton.Tpo -c -o libT3F_Widgets_a-bouton.o `test -f 'bouton.cc' || echo '$(srcdir)/'`bouton.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-bouton.Tpo $(DEPDIR)/libT3F_Widgets_a-bouton.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='bouton.cc' object='libT3F_Widgets_a-bouton.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-bouton.o `test -f 'bouton.cc' || echo '$(srcdir)/'`bouton.cc
+
+libT3F_Widgets_a-bouton.obj: bouton.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-bouton.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-bouton.Tpo -c -o libT3F_Widgets_a-bouton.obj `if test -f 'bouton.cc'; then $(CYGPATH_W) 'bouton.cc'; else $(CYGPATH_W) '$(srcdir)/bouton.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-bouton.Tpo $(DEPDIR)/libT3F_Widgets_a-bouton.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='bouton.cc' object='libT3F_Widgets_a-bouton.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-bouton.obj `if test -f 'bouton.cc'; then $(CYGPATH_W) 'bouton.cc'; else $(CYGPATH_W) '$(srcdir)/bouton.cc'; fi`
+
+libT3F_Widgets_a-checkbox.o: checkbox.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-checkbox.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-checkbox.Tpo -c -o libT3F_Widgets_a-checkbox.o `test -f 'checkbox.cc' || echo '$(srcdir)/'`checkbox.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-checkbox.Tpo $(DEPDIR)/libT3F_Widgets_a-checkbox.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='checkbox.cc' object='libT3F_Widgets_a-checkbox.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-checkbox.o `test -f 'checkbox.cc' || echo '$(srcdir)/'`checkbox.cc
+
+libT3F_Widgets_a-checkbox.obj: checkbox.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-checkbox.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-checkbox.Tpo -c -o libT3F_Widgets_a-checkbox.obj `if test -f 'checkbox.cc'; then $(CYGPATH_W) 'checkbox.cc'; else $(CYGPATH_W) '$(srcdir)/checkbox.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-checkbox.Tpo $(DEPDIR)/libT3F_Widgets_a-checkbox.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='checkbox.cc' object='libT3F_Widgets_a-checkbox.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-checkbox.obj `if test -f 'checkbox.cc'; then $(CYGPATH_W) 'checkbox.cc'; else $(CYGPATH_W) '$(srcdir)/checkbox.cc'; fi`
+
+libT3F_Widgets_a-container.o: container.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-container.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-container.Tpo -c -o libT3F_Widgets_a-container.o `test -f 'container.cc' || echo '$(srcdir)/'`container.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-container.Tpo $(DEPDIR)/libT3F_Widgets_a-container.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='container.cc' object='libT3F_Widgets_a-container.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-container.o `test -f 'container.cc' || echo '$(srcdir)/'`container.cc
+
+libT3F_Widgets_a-container.obj: container.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-container.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-container.Tpo -c -o libT3F_Widgets_a-container.obj `if test -f 'container.cc'; then $(CYGPATH_W) 'container.cc'; else $(CYGPATH_W) '$(srcdir)/container.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-container.Tpo $(DEPDIR)/libT3F_Widgets_a-container.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='container.cc' object='libT3F_Widgets_a-container.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-container.obj `if test -f 'container.cc'; then $(CYGPATH_W) 'container.cc'; else $(CYGPATH_W) '$(srcdir)/container.cc'; fi`
+
+libT3F_Widgets_a-edit.o: edit.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-edit.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-edit.Tpo -c -o libT3F_Widgets_a-edit.o `test -f 'edit.cc' || echo '$(srcdir)/'`edit.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-edit.Tpo $(DEPDIR)/libT3F_Widgets_a-edit.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='edit.cc' object='libT3F_Widgets_a-edit.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-edit.o `test -f 'edit.cc' || echo '$(srcdir)/'`edit.cc
+
+libT3F_Widgets_a-edit.obj: edit.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-edit.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-edit.Tpo -c -o libT3F_Widgets_a-edit.obj `if test -f 'edit.cc'; then $(CYGPATH_W) 'edit.cc'; else $(CYGPATH_W) '$(srcdir)/edit.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-edit.Tpo $(DEPDIR)/libT3F_Widgets_a-edit.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='edit.cc' object='libT3F_Widgets_a-edit.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-edit.obj `if test -f 'edit.cc'; then $(CYGPATH_W) 'edit.cc'; else $(CYGPATH_W) '$(srcdir)/edit.cc'; fi`
+
+libT3F_Widgets_a-focuscontainer.o: focuscontainer.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-focuscontainer.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-focuscontainer.Tpo -c -o libT3F_Widgets_a-focuscontainer.o `test -f 'focuscontainer.cc' || echo '$(srcdir)/'`focuscontainer.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-focuscontainer.Tpo $(DEPDIR)/libT3F_Widgets_a-focuscontainer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='focuscontainer.cc' object='libT3F_Widgets_a-focuscontainer.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-focuscontainer.o `test -f 'focuscontainer.cc' || echo '$(srcdir)/'`focuscontainer.cc
+
+libT3F_Widgets_a-focuscontainer.obj: focuscontainer.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-focuscontainer.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-focuscontainer.Tpo -c -o libT3F_Widgets_a-focuscontainer.obj `if test -f 'focuscontainer.cc'; then $(CYGPATH_W) 'focuscontainer.cc'; else $(CYGPATH_W) '$(srcdir)/focuscontainer.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-focuscontainer.Tpo $(DEPDIR)/libT3F_Widgets_a-focuscontainer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='focuscontainer.cc' object='libT3F_Widgets_a-focuscontainer.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-focuscontainer.obj `if test -f 'focuscontainer.cc'; then $(CYGPATH_W) 'focuscontainer.cc'; else $(CYGPATH_W) '$(srcdir)/focuscontainer.cc'; fi`
+
+libT3F_Widgets_a-jauge.o: jauge.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-jauge.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-jauge.Tpo -c -o libT3F_Widgets_a-jauge.o `test -f 'jauge.cc' || echo '$(srcdir)/'`jauge.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-jauge.Tpo $(DEPDIR)/libT3F_Widgets_a-jauge.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='jauge.cc' object='libT3F_Widgets_a-jauge.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-jauge.o `test -f 'jauge.cc' || echo '$(srcdir)/'`jauge.cc
+
+libT3F_Widgets_a-jauge.obj: jauge.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-jauge.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-jauge.Tpo -c -o libT3F_Widgets_a-jauge.obj `if test -f 'jauge.cc'; then $(CYGPATH_W) 'jauge.cc'; else $(CYGPATH_W) '$(srcdir)/jauge.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-jauge.Tpo $(DEPDIR)/libT3F_Widgets_a-jauge.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='jauge.cc' object='libT3F_Widgets_a-jauge.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-jauge.obj `if test -f 'jauge.cc'; then $(CYGPATH_W) 'jauge.cc'; else $(CYGPATH_W) '$(srcdir)/jauge.cc'; fi`
+
+libT3F_Widgets_a-label.o: label.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-label.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-label.Tpo -c -o libT3F_Widgets_a-label.o `test -f 'label.cc' || echo '$(srcdir)/'`label.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-label.Tpo $(DEPDIR)/libT3F_Widgets_a-label.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='label.cc' object='libT3F_Widgets_a-label.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-label.o `test -f 'label.cc' || echo '$(srcdir)/'`label.cc
+
+libT3F_Widgets_a-label.obj: label.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-label.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-label.Tpo -c -o libT3F_Widgets_a-label.obj `if test -f 'label.cc'; then $(CYGPATH_W) 'label.cc'; else $(CYGPATH_W) '$(srcdir)/label.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-label.Tpo $(DEPDIR)/libT3F_Widgets_a-label.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='label.cc' object='libT3F_Widgets_a-label.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-label.obj `if test -f 'label.cc'; then $(CYGPATH_W) 'label.cc'; else $(CYGPATH_W) '$(srcdir)/label.cc'; fi`
+
+libT3F_Widgets_a-liste.o: liste.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-liste.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-liste.Tpo -c -o libT3F_Widgets_a-liste.o `test -f 'liste.cc' || echo '$(srcdir)/'`liste.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-liste.Tpo $(DEPDIR)/libT3F_Widgets_a-liste.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='liste.cc' object='libT3F_Widgets_a-liste.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-liste.o `test -f 'liste.cc' || echo '$(srcdir)/'`liste.cc
+
+libT3F_Widgets_a-liste.obj: liste.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-liste.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-liste.Tpo -c -o libT3F_Widgets_a-liste.obj `if test -f 'liste.cc'; then $(CYGPATH_W) 'liste.cc'; else $(CYGPATH_W) '$(srcdir)/liste.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-liste.Tpo $(DEPDIR)/libT3F_Widgets_a-liste.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='liste.cc' object='libT3F_Widgets_a-liste.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-liste.obj `if test -f 'liste.cc'; then $(CYGPATH_W) 'liste.cc'; else $(CYGPATH_W) '$(srcdir)/liste.cc'; fi`
+
+libT3F_Widgets_a-menubutton.o: menubutton.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-menubutton.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-menubutton.Tpo -c -o libT3F_Widgets_a-menubutton.o `test -f 'menubutton.cc' || echo '$(srcdir)/'`menubutton.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-menubutton.Tpo $(DEPDIR)/libT3F_Widgets_a-menubutton.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='menubutton.cc' object='libT3F_Widgets_a-menubutton.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-menubutton.o `test -f 'menubutton.cc' || echo '$(srcdir)/'`menubutton.cc
+
+libT3F_Widgets_a-menubutton.obj: menubutton.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-menubutton.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-menubutton.Tpo -c -o libT3F_Widgets_a-menubutton.obj `if test -f 'menubutton.cc'; then $(CYGPATH_W) 'menubutton.cc'; else $(CYGPATH_W) '$(srcdir)/menubutton.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-menubutton.Tpo $(DEPDIR)/libT3F_Widgets_a-menubutton.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='menubutton.cc' object='libT3F_Widgets_a-menubutton.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-menubutton.obj `if test -f 'menubutton.cc'; then $(CYGPATH_W) 'menubutton.cc'; else $(CYGPATH_W) '$(srcdir)/menubutton.cc'; fi`
+
+libT3F_Widgets_a-switch.o: switch.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-switch.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-switch.Tpo -c -o libT3F_Widgets_a-switch.o `test -f 'switch.cc' || echo '$(srcdir)/'`switch.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-switch.Tpo $(DEPDIR)/libT3F_Widgets_a-switch.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='switch.cc' object='libT3F_Widgets_a-switch.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-switch.o `test -f 'switch.cc' || echo '$(srcdir)/'`switch.cc
+
+libT3F_Widgets_a-switch.obj: switch.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-switch.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-switch.Tpo -c -o libT3F_Widgets_a-switch.obj `if test -f 'switch.cc'; then $(CYGPATH_W) 'switch.cc'; else $(CYGPATH_W) '$(srcdir)/switch.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-switch.Tpo $(DEPDIR)/libT3F_Widgets_a-switch.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='switch.cc' object='libT3F_Widgets_a-switch.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-switch.obj `if test -f 'switch.cc'; then $(CYGPATH_W) 'switch.cc'; else $(CYGPATH_W) '$(srcdir)/switch.cc'; fi`
+
+libT3F_Widgets_a-view.o: view.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-view.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-view.Tpo -c -o libT3F_Widgets_a-view.o `test -f 'view.cc' || echo '$(srcdir)/'`view.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-view.Tpo $(DEPDIR)/libT3F_Widgets_a-view.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='view.cc' object='libT3F_Widgets_a-view.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-view.o `test -f 'view.cc' || echo '$(srcdir)/'`view.cc
+
+libT3F_Widgets_a-view.obj: view.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-view.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-view.Tpo -c -o libT3F_Widgets_a-view.obj `if test -f 'view.cc'; then $(CYGPATH_W) 'view.cc'; else $(CYGPATH_W) '$(srcdir)/view.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-view.Tpo $(DEPDIR)/libT3F_Widgets_a-view.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='view.cc' object='libT3F_Widgets_a-view.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-view.obj `if test -f 'view.cc'; then $(CYGPATH_W) 'view.cc'; else $(CYGPATH_W) '$(srcdir)/view.cc'; fi`
+
+libT3F_Widgets_a-widget.o: widget.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-widget.o -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-widget.Tpo -c -o libT3F_Widgets_a-widget.o `test -f 'widget.cc' || echo '$(srcdir)/'`widget.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-widget.Tpo $(DEPDIR)/libT3F_Widgets_a-widget.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='widget.cc' object='libT3F_Widgets_a-widget.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-widget.o `test -f 'widget.cc' || echo '$(srcdir)/'`widget.cc
+
+libT3F_Widgets_a-widget.obj: widget.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -MT libT3F_Widgets_a-widget.obj -MD -MP -MF $(DEPDIR)/libT3F_Widgets_a-widget.Tpo -c -o libT3F_Widgets_a-widget.obj `if test -f 'widget.cc'; then $(CYGPATH_W) 'widget.cc'; else $(CYGPATH_W) '$(srcdir)/widget.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libT3F_Widgets_a-widget.Tpo $(DEPDIR)/libT3F_Widgets_a-widget.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='widget.cc' object='libT3F_Widgets_a-widget.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libT3F_Widgets_a_CXXFLAGS) $(CXXFLAGS) -c -o libT3F_Widgets_a-widget.obj `if test -f 'widget.cc'; then $(CYGPATH_W) 'widget.cc'; else $(CYGPATH_W) '$(srcdir)/widget.cc'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

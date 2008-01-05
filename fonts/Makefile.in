@@ -173,7 +173,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-fontsdir = $(datadir)/fonts
+fontsdir = $(pkgdatadir)/fonts
 fonts_DATA = babelfish.ttf vera.ttf
 EXTRA_DIST = $(fonts_DATA)
 all: all-am

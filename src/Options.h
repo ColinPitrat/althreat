@@ -37,6 +37,7 @@ class Options
     bool ns_var;
     int mus_vol;
     int fx_vol;
+    int joy_sens;
     int keys[nbControles];
     bool keysModified;
 
@@ -47,6 +48,8 @@ class Options
     bool *unactiveMusJauge;
     bool *unactiveFXLabel;
     bool *unactiveFXJauge;
+    bool *unactiveSensLabel;
+    bool *unactiveSensJauge;
     std::string music_file;
 };
 

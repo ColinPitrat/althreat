@@ -8,8 +8,10 @@
 #include <sstream>
 #include "Joystick.h"
 
-#define JOY_SENSIBILITY 0
-#define SIGN(x) ((x)>JOY_SENSIBILITY ? 1 : ((x)<-JOY_SENSIBILITY ? -1 : 0))
+#define MAX_JOY_SENSIBILITY 32767
+#define DEFAULT_JOY_SENSIBILITY 10000
+#define JOY_SENSIBILITY_STEP 1000
+#define SIGN(x) ((x)>(signed int)configuration->joySensibility() ? 1 : ((x)<-(signed int)configuration->joySensibility() ? -1 : 0))
 
 // Les touches sont :
 //  0 - Haut
@@ -36,6 +38,7 @@ class Configuration
     bool debug() { return _debug; };
     int musicvol() { return _musicvol; };
     int soundFXvol() { return _soundFXvol; };
+    unsigned int joySensibility() { return _joysens; };
     int touche(Controles touche) { return keys[touche]; };
     std::string language() { return _lang; };
     std::string getDataDir() { return datadir; };
@@ -46,6 +49,7 @@ class Configuration
     void setMusicVol(unsigned int vol) { _musicvol = vol; if(!_nosound) Mix_VolumeMusic(vol); };
     void setSoundFXVol(unsigned int vol) { _soundFXvol = vol; if(!_nosound) Mix_Volume(-1, vol); };
     void setNoSound(bool opt) { _nosound = opt; };
+    void setJoySensibility(unsigned int opt) { _joysens = opt; };
     void setJoystick(bool opt) { _joystick = opt; };
     void setSpectrum(bool opt) { _spectrum = opt; };
     void setFullscreen(bool opt) { _fullscreen = opt; };
@@ -66,6 +70,7 @@ class Configuration
     int keys[nbControles];
     int _musicvol;
     int _soundFXvol;
+    unsigned int _joysens;
     bool _nosound;
     bool _spectrum;
     bool _fullscreen;
