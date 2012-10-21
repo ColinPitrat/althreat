@@ -1,12 +1,20 @@
-AC_INIT(src/AlThreat.cc)
+AC_INIT(AlThreat, 0.4)
+AC_CONFIG_SRCDIR(src/AlThreat.cc)
 
+AM_INIT_AUTOMAKE
 AM_CONFIG_HEADER(src/config.h)
-AM_INIT_AUTOMAKE(AlThreat, 0.4)
 AM_GNU_GETTEXT([external])
 
 AC_PROG_CXX
 AC_PROG_RANLIB
 AC_PROG_INSTALL
+
+AC_CHECK_FUNCS([strstr])
+AC_CHECK_HEADERS([libintl.h])
+AC_CHECK_HEADERS([locale.h])
+AC_CHECK_HEADER_STDBOOL
+AC_PREREQ
+AC_PROG_AWK
 
 AC_CHECK_LIB([SDL], [SDL_Init],, AC_MSG_ERROR([SDL library needed for AlThreat! see http://www.libsdl.org/]))
 AC_CHECK_LIB([SDL_image], [IMG_Load],, AC_MSG_ERROR([SDL_image library needed for AlThreat! see http://www.libsdl.org/]))
