@@ -51,37 +51,49 @@ Vaisseau::Vaisseau()
           if(event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == configuration->touche(TOUCHE_ARME))
             Selection = true;
           if(event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == configuration->touche(TOUCHE_DROITE))
+          {
             if(++i == nbVaisseaux)
               i = 0;
+          }
           if(event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == configuration->touche(TOUCHE_GAUCHE))
+          {
             if(i == 0)
               i = nbVaisseaux - 1;
             else
               i--;
+          }
           break;
         case SDL_JOYAXISMOTION:
           if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_ARME))
             Selection = true;
           if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_DROITE))
+          {
             if(++i == nbVaisseaux)
               i = 0;
+          }
           if(configuration->isJoystickEvent(event.type, event.jaxis.which, event.jaxis.axis, event.jaxis.value, TOUCHE_GAUCHE))
+          {
             if(i == 0)
               i = nbVaisseaux - 1;
             else
               i--;
+          }
           break;
         case SDL_JOYBUTTONDOWN:
           if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_ARME))
             Selection = true;
           if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_DROITE))
+          {
             if(++i == nbVaisseaux)
               i = 0;
+          }
           if(configuration->isJoystickEvent(event.type, event.jbutton.which, event.jbutton.button, event.jbutton.state, TOUCHE_GAUCHE))
+          {
             if(i == 0)
               i = nbVaisseaux - 1;
             else
               i--;
+          }
           break;
         case SDL_QUIT:
           SDL_Quit();

@@ -1,8 +1,8 @@
 AC_INIT(AlThreat, 0.4)
 AC_CONFIG_SRCDIR(src/AlThreat.cc)
+AC_CONFIG_HEADER(src/config.h)
 
 AM_INIT_AUTOMAKE
-AM_CONFIG_HEADER(src/config.h)
 AM_GNU_GETTEXT([external])
 
 AC_PROG_CXX

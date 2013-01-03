@@ -1,12 +1,13 @@
 Original musics of AlThreat are distributed under Creative Commons licenses.
 Here is the detailed list of these musics :
 
-Music     Artis            License       Track                Comments
+Music     Artist           License       Track                Comments
 
 Menu      Raz              CC-by-nc-nd   Psycho Theory           
 Level 1   Andrew Vavrek    CC-by-sa      Sunlight             http://vavrek.com
 Level 2   Fast Friday      CC-by-sa      Ego Kiss             http://www.jamendo.com
 Level 3   Andrew Vavrek    CC-by-sa      Freedom              http://vavrek.com
+Level 3.5 Silence is Sexy  CC-by-nc-sa   Come Back To You     http://silenceissexy.jamendo.net
 Level 4   L'Onomatopeur    CC-by-nc-nd   Who Loves My 8-Bits  http://www.jamendo.com
 Level 5   Andrew Vavrek    CC-by-sa      Entropy              http://vavrek.com
 Level 6   Les Asskronautes CC-by-nc-sa   Crazy bull           http://www.jamendo.com
