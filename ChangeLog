@@ -15,11 +15,13 @@
 	- added a new level (level 5) with new decors (tunnels)
 	- added a "configure / make / make install" system using the autotools
 
+
  * version 0.2
   - rewrite the whole game in C++
 	- added options
 	- added T3FWidgets library
 	- added sounds
+
 
  * version 0.1
    First release of the game. AlThreat is a shoot'em up in C/SDL programmed to
