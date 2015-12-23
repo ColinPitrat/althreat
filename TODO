@@ -14,5 +14,8 @@
  - Mode practice (Debloquer les levels au fur et à mesure de l'avancement en mode adventure)
 remarque : pour débloquer les vaisseaux/levels, il faut enregistrer des informations. Doit-on essayer d'empecher le joueur de tricher (ce qui est de toute façon vain) ?
  - Internationalisation avec gettext
+          (partiellement fait)
  - Vérifier l'utilisation mémoire avec valgrind
           (essayé, peu concluant -> rame à mort)
+ - Améliorer la génération de niveau: vitesse min/max, frequence min/max, etc ...
+ - Réorganiser l'arborescence: bouger les resources dans un répertoire commun
