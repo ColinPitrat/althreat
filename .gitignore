@@ -1,0 +1,11 @@
+**/Makefile
+**/.deps/
+althreat-*.tar.gz
+autom4te.cache/
+config.log
+config.status
+po/althreat.pot
+po/**/AlThreat.mo
+src/AlThreat_install
+src/stamp-h1
+
